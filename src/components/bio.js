@@ -38,12 +38,13 @@ function Bio() {
               }}
             />
             <p>
-              Written by <strong>{author}</strong> who lives and works in San
-              Francisco building useful things.
+              个人博客 <br/>
+              坚持每天一篇
+              {/* Written by <strong>{author}</strong> who lives and works in Shanghai building useful things.
               {` `}
-              <a href={`https://twitter.com/${social.twitter}`}>
-                You should follow him on Twitter
-              </a>
+              <a href={`https://github.com/${social.twitter}`}>
+                You should follow him on Github
+              </a> */}
             </p>
           </div>
         )
