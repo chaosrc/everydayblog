@@ -1,5 +1,5 @@
 ---
-Typescript(二): 接口
+title: Typescript(二)：接口
 date: 2019-06-16
 decription: 本篇为Typescript系列的第二篇，主要介绍Typescript的接口
 ----
