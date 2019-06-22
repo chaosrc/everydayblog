@@ -1,5 +1,5 @@
 ---
-title: Typescript系列(三)：类型别名以及交叉类型、联合类型
+title: Typescript系列(四)：类型别名以及交叉类型、联合类型
 date: 2019-06-18
 time: 22:30-00:30
 description: 本篇介绍typescript中的类型别名及交叉类型、联合类型的定义使用
