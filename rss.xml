@@ -1,4 +1,152 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[温故而知新]]></title><description><![CDATA[个人博客, 坚持每天一篇！]]></description><link>https://gatsby-starter-blog-demo.netlify.com/</link><generator>RSS for Node</generator><lastBuildDate>Thu, 20 Jun 2019 15:10:58 GMT</lastBuildDate><item><title><![CDATA[Typescript系列(六)：索引类型与映射类型]]></title><link>https://gatsby-starter-blog-demo.netlify.com//typescript/maptype/</link><guid isPermaLink="false">https://gatsby-starter-blog-demo.netlify.com//typescript/maptype/</guid><pubDate>Thu, 20 Jun 2019 00:00:00 GMT</pubDate><content:encoded></content:encoded></item><item><title><![CDATA[Typescript系列(五)：泛型及泛型的约束]]></title><description><![CDATA[泛型及泛型的约束泛型是什么先从一个例子开始：对于log函数有了类型限定后message参数只能为string类型，那么函数的通用性不够，比如要打印一个数字，会报类型错误，一种方式是将message设置为any类型此时log…]]></description><link>https://gatsby-starter-blog-demo.netlify.com//typescript/generic/</link><guid isPermaLink="false">https://gatsby-starter-blog-demo.netlify.com//typescript/generic/</guid><pubDate>Wed, 19 Jun 2019 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;泛型及泛型的约束&lt;/h1&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[温故而知新]]></title><description><![CDATA[个人博客, 坚持每天一篇！]]></description><link>https://gatsby-starter-blog-demo.netlify.com/</link><generator>RSS for Node</generator><lastBuildDate>Sat, 22 Jun 2019 14:35:47 GMT</lastBuildDate><item><title><![CDATA[LeetCode算法题--最大子序和]]></title><description><![CDATA[LeetCode初级算法题—最大子序和最大子序和问题描述给定一个整数数组 nums ，找到一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。示例:分析最简单的情况数组长度为1数组长度为2时连续子数组有-2,-2, 1,1,对比长度为1时，增加了两个连续子数组-…]]></description><link>https://gatsby-starter-blog-demo.netlify.com//typescript/maxsubarray/</link><guid isPermaLink="false">https://gatsby-starter-blog-demo.netlify.com//typescript/maxsubarray/</guid><pubDate>Fri, 21 Jun 2019 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;LeetCode初级算法题—最大子序和&lt;/p&gt;
+&lt;h3&gt;&lt;a href=&quot;https://leetcode.com/problems/maximum-subarray/description/&quot;&gt;最大子序和&lt;/a&gt;&lt;/h3&gt;
+&lt;h4&gt;问题描述&lt;/h4&gt;
+&lt;blockquote&gt;
+&lt;p&gt;给定一个整数数组 nums ，找到一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4&gt;示例:&lt;/h4&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;输入: [-2,1,-3,4,-1,2,1,-5,4],
+输出: 6
+解释: 连续子数组 [4,-1,2,1] 的和最大，为 6。&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h4&gt;分析&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;最简单的情况数组长度为1&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;输入: [-2]
+输出: -2&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;数组长度为2时&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;输入: [-2, 1]&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;连续子数组有[-2],[-2, 1],[1],对比长度为1时，增加了两个连续子数组[-2, 1],[1]，这是和最大的子数组为[1]，其和为1&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;数组长度为3时&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;输入: [-2, 1, -3]&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;连续子数组有[-2],[-2, 1],[1]，[-2, 1, -3], [1,-3],[-3], 新增子数组为[-2, 1, -3], [1,-3],[-3]，可见增加第i个输入数组时，新增的连续子数组为i个，新增的连续子数组为第i个数往前的包括i的所有连续数组，比如新增第4个值时如图：&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&quot;https://s2.ax1x.com/2019/06/22/ZpAuHP.jpg&quot;&gt;&lt;/p&gt;
+&lt;p&gt;最大的子数组和在原来的最大值和新增的子数组中产生&lt;/p&gt;
+&lt;h4&gt;伪代码&lt;/h4&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;输入[1, 2, 3, ..., n]
+使用递归的方式将数组的前1到n-1个进行递归
+拿到n-1数组的最大子序和(lastMax)
+计算n对比n-1新增的子数组中的最大值(curMax)
+返回lastMax与curMax中的最大值&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h4&gt;实现&lt;/h4&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;golang&quot;&gt;&lt;pre class=&quot;language-golang&quot;&gt;&lt;code class=&quot;language-golang&quot;&gt;func maxSubArray(nums []int) int {
+    // 长度为1时直接返回
+    if len(nums) == 1 {
+		return nums[0]
+    }
+    // 获取第1个到第n-1个数组值
+	var lastArray = nums[:len(nums)-1]
+    // 递归计算第1个到第n-1个的最大值
+	var lastMax = maxSubArray(lastArray)
+
+    // 获取数组的最后一个值
+    var curVal = nums[len(nums)-1]
+    // 设置默认的新增子数组的最大值
+    var curMax = curVal
+    // 计算新增子数组的最大值
+	for i := len(lastArray) - 1; i &amp;gt;= 0; i-- {
+		curMax = curMax + lastArray[i]
+		if curMax &amp;gt; curVal {
+			curVal = curMax
+		}
+	}
+	if curVal &amp;gt; lastMax {
+		return curVal
+	}
+	return lastMax
+}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h4&gt;执行结果&lt;/h4&gt;
+&lt;p&gt;&lt;img src=&quot;https://s2.ax1x.com/2019/06/22/ZpAogH.png&quot;&gt;&lt;/p&gt;
+&lt;p&gt;只是完成了功能的实现，对算法的性能、内存占用等没有考虑&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Typescript系列(六)：索引类型与映射类型]]></title><description><![CDATA[索引类型与映射类型索引类型通过keyof(索引类型查询操作符)关键词,可以拿到类型的所有属性即索引K的类型为T所有的属性的联合类型，这时K等同于再通过in关键词来索引其中TP是索引访问操作符，通过像索引一样查询T中对应的类型。M的类型为, M…]]></description><link>https://gatsby-starter-blog-demo.netlify.com//typescript/maptype/</link><guid isPermaLink="false">https://gatsby-starter-blog-demo.netlify.com//typescript/maptype/</guid><pubDate>Thu, 20 Jun 2019 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;索引类型与映射类型&lt;/h2&gt;
+&lt;h3&gt;索引类型&lt;/h3&gt;
+&lt;p&gt;通过keyof(&lt;strong&gt;索引类型查询操作符&lt;/strong&gt;)关键词,可以拿到类型的所有属性即索引&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;typescript&quot;&gt;&lt;pre class=&quot;language-typescript&quot;&gt;&lt;code class=&quot;language-typescript&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;type&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;T&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    name&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;string&lt;/span&gt;
+    age&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;number&lt;/span&gt;
+    phone&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;string&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;type&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;K&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;keyof&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;T&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;// K为&apos;name|age|phone&apos;类型&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;K的类型为T所有的属性的联合类型&lt;code class=&quot;language-text&quot;&gt;name|age|phone&lt;/code&gt;，这时K等同于&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;typescript&quot;&gt;&lt;pre class=&quot;language-typescript&quot;&gt;&lt;code class=&quot;language-typescript&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;type&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;K&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;name&apos;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;age&apos;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;phone&apos;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;再通过in关键词来索引&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;typescript&quot;&gt;&lt;pre class=&quot;language-typescript&quot;&gt;&lt;code class=&quot;language-typescript&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;type&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;M&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token constant&quot;&gt;P&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;K&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;string&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;// M: {name: string, age: string, phone: string}&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;type&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;M2&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token constant&quot;&gt;P&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;K&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token constant&quot;&gt;P&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;// M2: {name: string, age: number, phone: string}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;其中T[P]是&lt;strong&gt;索引访问操作符&lt;/strong&gt;，通过像索引一样查询T中对应的类型。M的类型为&lt;code class=&quot;language-text&quot;&gt;{name: string, age: string, phone: string}&lt;/code&gt;, M2的类型为&lt;code class=&quot;language-text&quot;&gt;{name: string, age: number, phone: string}&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;索引类型非常强大可以创作出各种映射类型&lt;/p&gt;
+&lt;h3&gt;映射类型&lt;/h3&gt;
+&lt;p&gt;经常会出现一种情况是在旧的类型中创建一种新的类型但是保持类型的属性名不变而类型变化&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;typescript&quot;&gt;&lt;pre class=&quot;language-typescript&quot;&gt;&lt;code class=&quot;language-typescript&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;type&lt;/span&gt; DateRange &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    start&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; Date
+    end&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; Date
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;DateRange中的start和end的类型为Date，但是传输给后端的时候需要转换成string类型，当然也可以手动创建一个新的类型&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;typescript&quot;&gt;&lt;pre class=&quot;language-typescript&quot;&gt;&lt;code class=&quot;language-typescript&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;type&lt;/span&gt; DateRangeText &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    start&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;string&lt;/span&gt;
+    end&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;string&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;这样会造成代码冗余不易维护，这时就可以使用映射类型&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;typescript&quot;&gt;&lt;pre class=&quot;language-typescript&quot;&gt;&lt;code class=&quot;language-typescript&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;type&lt;/span&gt; MapType&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token constant&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token constant&quot;&gt;K&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;keyof&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;string&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;type&lt;/span&gt; DateRangeText &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; MapType&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;DateRange&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;// DateRangeText = {start: string, end: string }&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;这时DateRangeText中start和end都为string类型&lt;/p&gt;
+&lt;p&gt;更灵活的方式时通过泛型指定Map后的类型&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;typescript&quot;&gt;&lt;pre class=&quot;language-typescript&quot;&gt;&lt;code class=&quot;language-typescript&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;type&lt;/span&gt; MapType&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token constant&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;P&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token constant&quot;&gt;K&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;keyof&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;P&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;type&lt;/span&gt; DateRangeText &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; MapType&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;DateRange&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;// DateRangeText = {start: string, end: string }&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;type&lt;/span&gt; DateRangeNumber &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; MapType&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;DateRange&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;number&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;// DateRangeText = {start: number, end: number }&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;ts中内置了一些映射类型，比如：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Readonly&lt;T&gt; 将类型每一个属性映射为只读属性&lt;/li&gt;
+&lt;li&gt;Partial&lt;T&gt; 将类型每一个属性映射为可选属性&lt;/li&gt;
+&lt;li&gt;Pick&amp;#x3C;T, P&gt; 从T中选取出P在中存在的的属性，其中P继承自keyof T&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;以下时他们的实现方式及用法&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;typescript&quot;&gt;&lt;pre class=&quot;language-typescript&quot;&gt;&lt;code class=&quot;language-typescript&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;// 定义Reaonly映射类型&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;type&lt;/span&gt; Reaonly&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token constant&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;readonly&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token constant&quot;&gt;K&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;keyof&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token constant&quot;&gt;K&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;// 将DateRange映射为readonly&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; readonlyDate&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; Readonly&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;DateRange&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;//修改readonlyDate属性会报错，Cannot assign to &apos;start&apos; because it is a read-only property.&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;//readonlyData.start = new Date()&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;// 定义Partial映射类型&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;type&lt;/span&gt; Partial&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token constant&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token constant&quot;&gt;K&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;keyof&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;?&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token constant&quot;&gt;K&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;// start和end都成为了可选属性&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; partialDate&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; Partial&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;DateRange&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;start&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Date&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;// 定义Pick映射类型&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;type&lt;/span&gt; Pick&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token constant&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;P&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;extends&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;keyof&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token constant&quot;&gt;K&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;P&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token constant&quot;&gt;K&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;type&lt;/span&gt; StartDate &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; Pick&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;DateRange&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;start&apos;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;//StartDate的类型为： {start: Date}&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;type&lt;/span&gt; EndDate &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; Pick&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;DateRange&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;end&apos;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;//EndDate的类型为： {end: Date}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;通过使用索引类型与映射类型，能够很大的提高代码的可复用性和可维护性&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Typescript系列(五)：泛型及泛型的约束]]></title><description><![CDATA[泛型及泛型的约束泛型是什么先从一个例子开始：对于log函数有了类型限定后message参数只能为string类型，那么函数的通用性不够，比如要打印一个数字，会报类型错误，一种方式是将message设置为any类型此时log…]]></description><link>https://gatsby-starter-blog-demo.netlify.com//typescript/generic/</link><guid isPermaLink="false">https://gatsby-starter-blog-demo.netlify.com//typescript/generic/</guid><pubDate>Wed, 19 Jun 2019 00:00:00 GMT</pubDate><content:encoded>&lt;h1&gt;泛型及泛型的约束&lt;/h1&gt;
 &lt;h3&gt;泛型是什么&lt;/h3&gt;
 &lt;p&gt;先从一个例子开始：&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;typescript&quot;&gt;&lt;pre class=&quot;language-typescript&quot;&gt;&lt;code class=&quot;language-typescript&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;message&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;string&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
