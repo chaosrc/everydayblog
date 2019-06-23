@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[温故而知新]]></title><description><![CDATA[个人博客, 坚持每天一篇！]]></description><link>https://gatsby-starter-blog-demo.netlify.com/</link><generator>RSS for Node</generator><lastBuildDate>Sun, 23 Jun 2019 14:12:43 GMT</lastBuildDate><item><title><![CDATA[搭建个人博客]]></title><description><![CDATA[如何使用Github Pages搭建个人博客Github Pages是GitHub的上的一个功能，可以用来存放静态的网页，适合存放项目文档、博客等，最大的优势是可以结合git对文档、博客等做版本管理GitHub Pages的使用在GitHub…]]></description><link>https://gatsby-starter-blog-demo.netlify.com//other/createblog/</link><guid isPermaLink="false">https://gatsby-starter-blog-demo.netlify.com//other/createblog/</guid><pubDate>Sat, 22 Jun 2019 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;如何使用Github Pages搭建个人博客&lt;/h2&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[温故而知新]]></title><description><![CDATA[个人博客, 坚持每天一篇！]]></description><link>https://gatsby-starter-blog-demo.netlify.com/</link><generator>RSS for Node</generator><lastBuildDate>Sun, 23 Jun 2019 14:14:50 GMT</lastBuildDate><item><title><![CDATA[No title]]></title><link>https://gatsby-starter-blog-demo.netlify.com//nodejs/whynodejs/</link><guid isPermaLink="false">https://gatsby-starter-blog-demo.netlify.com//nodejs/whynodejs/</guid><content:encoded></content:encoded></item><item><title><![CDATA[搭建个人博客]]></title><description><![CDATA[如何使用Github Pages搭建个人博客Github Pages是GitHub的上的一个功能，可以用来存放静态的网页，适合存放项目文档、博客等，最大的优势是可以结合git对文档、博客等做版本管理GitHub Pages的使用在GitHub…]]></description><link>https://gatsby-starter-blog-demo.netlify.com//other/createblog/</link><guid isPermaLink="false">https://gatsby-starter-blog-demo.netlify.com//other/createblog/</guid><pubDate>Sat, 22 Jun 2019 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;如何使用Github Pages搭建个人博客&lt;/h2&gt;
 &lt;p&gt;Github Pages是GitHub的上的一个功能，可以用来存放静态的网页，适合存放项目文档、博客等，最大的优势是可以结合git对文档、博客等做版本管理&lt;/p&gt;
 &lt;h4&gt;GitHub Pages的使用&lt;/h4&gt;
 &lt;p&gt;在GitHub上创建一个项目&lt;/p&gt;
@@ -26,7 +26,7 @@
 &lt;p&gt;&lt;img src=&quot;https://s2.ax1x.com/2019/06/23/Z9viE4.jpg&quot;&gt;&lt;/p&gt;
 &lt;p&gt;再访问&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://s2.ax1x.com/2019/06/23/Z9vCbF.jpg&quot;&gt;&lt;/p&gt;
-&lt;p&gt;至此GitHub Pages的博客就搭建完成了，唯一的不足是在微信上访问会提示“非微信网页，是否继续访问”&lt;/p&gt;</content:encoded></item><item><title><![CDATA[LeetCode算法题--最大子序和]]></title><description><![CDATA[LeetCode初级算法题—最大子序和最大子序和问题描述给定一个整数数组 nums ，找到一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。示例:分析最简单的情况数组长度为1数组长度为2时连续子数组有-2,-2, 1,1,对比长度为1时，增加了两个连续子数组-…]]></description><link>https://gatsby-starter-blog-demo.netlify.com//typescript/maxsubarray/</link><guid isPermaLink="false">https://gatsby-starter-blog-demo.netlify.com//typescript/maxsubarray/</guid><pubDate>Fri, 21 Jun 2019 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;LeetCode初级算法题—最大子序和&lt;/p&gt;
+&lt;p&gt;至此GitHub Pages的博客就搭建完成了，唯一的不足是在微信上访问会提示“非微信网页，是否继续访问”&lt;/p&gt;</content:encoded></item><item><title><![CDATA[LeetCode算法题--最大子序和]]></title><description><![CDATA[LeetCode初级算法题—最大子序和最大子序和问题描述给定一个整数数组 nums ，找到一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。示例:分析最简单的情况数组长度为1数组长度为2时连续子数组有-2,-2, 1,1,对比长度为1时，增加了两个连续子数组-…]]></description><link>https://gatsby-starter-blog-demo.netlify.com//leetcode/maxsubarray/</link><guid isPermaLink="false">https://gatsby-starter-blog-demo.netlify.com//leetcode/maxsubarray/</guid><pubDate>Fri, 21 Jun 2019 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;LeetCode初级算法题—最大子序和&lt;/p&gt;
 &lt;h3&gt;&lt;a href=&quot;https://leetcode.com/problems/maximum-subarray/description/&quot;&gt;最大子序和&lt;/a&gt;&lt;/h3&gt;
 &lt;h4&gt;问题描述&lt;/h4&gt;
 &lt;blockquote&gt;
@@ -63,32 +63,32 @@
 计算n对比n-1新增的子数组中的最大值(curMax)
 返回lastMax与curMax中的最大值&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h4&gt;实现&lt;/h4&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;golang&quot;&gt;&lt;pre class=&quot;language-golang&quot;&gt;&lt;code class=&quot;language-golang&quot;&gt;func maxSubArray(nums []int) int {
-    // 长度为1时直接返回
-    if len(nums) == 1 {
-		return nums[0]
-    }
-    // 获取第1个到第n-1个数组值
-	var lastArray = nums[:len(nums)-1]
-    // 递归计算第1个到第n-1个的最大值
-	var lastMax = maxSubArray(lastArray)
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;go&quot;&gt;&lt;pre class=&quot;language-go&quot;&gt;&lt;code class=&quot;language-go&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;maxSubArray&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;nums &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token builtin&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token comment&quot;&gt;// 长度为1时直接返回&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;nums&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+		&lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; nums&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;token comment&quot;&gt;// 获取第1个到第n-1个数组值&lt;/span&gt;
+	&lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; lastArray &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; nums&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;nums&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+    &lt;span class=&quot;token comment&quot;&gt;// 递归计算第1个到第n-1个的最大值&lt;/span&gt;
+	&lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; lastMax &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;maxSubArray&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;lastArray&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
 
-    // 获取数组的最后一个值
-    var curVal = nums[len(nums)-1]
-    // 设置默认的新增子数组的最大值
-    var curMax = curVal
-    // 计算新增子数组的最大值
-	for i := len(lastArray) - 1; i &amp;gt;= 0; i-- {
-		curMax = curMax + lastArray[i]
-		if curMax &amp;gt; curVal {
-			curVal = curMax
-		}
-	}
-	if curVal &amp;gt; lastMax {
-		return curVal
-	}
-	return lastMax
-}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+    &lt;span class=&quot;token comment&quot;&gt;// 获取数组的最后一个值&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; curVal &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; nums&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;nums&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+    &lt;span class=&quot;token comment&quot;&gt;// 设置默认的新增子数组的最大值&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; curMax &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; curVal
+    &lt;span class=&quot;token comment&quot;&gt;// 计算新增子数组的最大值&lt;/span&gt;
+	&lt;span class=&quot;token keyword&quot;&gt;for&lt;/span&gt; i &lt;span class=&quot;token operator&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;lastArray&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; i &lt;span class=&quot;token operator&quot;&gt;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; i&lt;span class=&quot;token operator&quot;&gt;--&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+		curMax &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; curMax &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; lastArray&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;i&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+		&lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; curMax &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; curVal &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+			curVal &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; curMax
+		&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+	&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+	&lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; curVal &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; lastMax &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+		&lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; curVal
+	&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+	&lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; lastMax
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h4&gt;执行结果&lt;/h4&gt;
 &lt;p&gt;&lt;img src=&quot;https://s2.ax1x.com/2019/06/22/ZpAogH.png&quot;&gt;&lt;/p&gt;
 &lt;p&gt;只是完成了功能的实现，对算法的性能、内存占用等没有考虑&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Typescript系列(六)：索引类型与映射类型]]></title><description><![CDATA[索引类型与映射类型索引类型通过keyof(索引类型查询操作符)关键词,可以拿到类型的所有属性即索引K的类型为T所有的属性的联合类型，这时K等同于再通过in关键词来索引其中TP是索引访问操作符，通过像索引一样查询T中对应的类型。M的类型为, M…]]></description><link>https://gatsby-starter-blog-demo.netlify.com//typescript/maptype/</link><guid isPermaLink="false">https://gatsby-starter-blog-demo.netlify.com//typescript/maptype/</guid><pubDate>Thu, 20 Jun 2019 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;索引类型与映射类型&lt;/h2&gt;
