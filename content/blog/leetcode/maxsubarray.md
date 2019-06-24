@@ -54,7 +54,7 @@ LeetCode初级算法题--最大子序和
 
 #### 实现
 
-```golang
+```go
 func maxSubArray(nums []int) int {
     // 长度为1时直接返回
     if len(nums) == 1 {
