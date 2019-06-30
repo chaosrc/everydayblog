@@ -26,37 +26,33 @@ workbox.clientsClaim();
  */
 self.__precacheManifest = [
   {
-    "url": "webpack-runtime-bd5bb2398a3d5353a04e.js"
+    "url": "webpack-runtime-c2ff63c8c55f5a5eb477.js"
   },
   {
-    "url": "styles.5785587a5bdfe3b1c35b.css"
+    "url": "styles.56ed853a29f6a2d7040d.css"
   },
   {
     "url": "styles-ff2e44a9804126390d97.js"
   },
   {
-    "url": "app-3506358d4f5713026798.js"
+    "url": "app-819b0cee2c39039d8b39.js"
   },
   {
     "url": "component---node-modules-gatsby-plugin-offline-app-shell-js-f7b9a63337316485910f.js"
   },
   {
     "url": "offline-plugin-app-shell-fallback/index.html",
-    "revision": "9a1e082f8765d05e3fca16e22c72f32f"
+    "revision": "e8003d2cee4c258e4ca87a025aa35441"
   },
   {
     "url": "0-f232b5f526709d128bc3.js"
   },
   {
-    "url": "component---src-pages-404-js-cd602eeb9a370598e5f3.js"
+    "url": "component---src-pages-404-js-d97a92de88564f7c9221.js"
   },
   {
     "url": "page-data/404.html/page-data.json",
-    "revision": "7a08f029c14759aaea531d421fefb442"
-  },
-  {
-    "url": "page-data/offline-plugin-app-shell-fallback/page-data.json",
-    "revision": "d0e0dfbab4defeb03277f4be6ba55498"
+    "revision": "035672c154be6b45ec97b7c5d071726d"
   },
   {
     "url": "manifest.webmanifest",
@@ -82,7 +78,7 @@ const navigationRoute = new workbox.routing.NavigationRoute(({ event }) => {
   return idbKeyval.get(WHITELIST_KEY).then((customWhitelist = []) => {
     // Respond with the offline shell if we match the custom whitelist
     if (customWhitelist.includes(pathname)) {
-      const offlineShell = `/gitblog.chao-home.com/everydayblog/offline-plugin-app-shell-fallback/index.html`
+      const offlineShell = `/offline-plugin-app-shell-fallback/index.html`
       const cacheName = workbox.core.cacheNames.precache
 
       return caches.match(offlineShell, { cacheName }).then(cachedResponse => {
@@ -154,7 +150,7 @@ const messageApi = {
 
     pathnames = pathnames.map(({ pathname, includesPrefix }) => {
       if (!includesPrefix) {
-        return `/gitblog.chao-home.com/everydayblog${pathname}`
+        return `${pathname}`
       } else {
         return pathname
       }
