@@ -26,37 +26,37 @@ workbox.clientsClaim();
  */
 self.__precacheManifest = [
   {
-    "url": "webpack-runtime-39cefe7d87e0f272418c.js"
+    "url": "webpack-runtime-84d2db4c0d33438781c2.js"
   },
   {
-    "url": "styles.32852ac6a5ca063f5fdb.css"
+    "url": "styles.d232cb40084b773a36f7.css"
   },
   {
     "url": "styles-ff2e44a9804126390d97.js"
   },
   {
-    "url": "app-e1a0aa7cf320b82fc8c8.js"
+    "url": "app-7836845591db2450bb3f.js"
   },
   {
     "url": "component---node-modules-gatsby-plugin-offline-app-shell-js-f7b9a63337316485910f.js"
   },
   {
     "url": "offline-plugin-app-shell-fallback/index.html",
-    "revision": "ed14790679842b29f8e0579231950681"
+    "revision": "b448c6fa3ca775127b80c88fd8fc433b"
   },
   {
     "url": "0-f232b5f526709d128bc3.js"
   },
   {
-    "url": "component---src-pages-404-js-eb4853aeed332f6cbafd.js"
+    "url": "component---src-pages-404-js-7dbca650e540e0572627.js"
   },
   {
     "url": "page-data/404.html/page-data.json",
-    "revision": "e9df7a1bc9d41708bbc40d97222c09df"
+    "revision": "2f118afa80fa860ead67c48240339c55"
   },
   {
     "url": "page-data/offline-plugin-app-shell-fallback/page-data.json",
-    "revision": "b9f65b34293510be3384b3b2c20a8b86"
+    "revision": "8a59fdb6ab10336058e345edd153ce3c"
   },
   {
     "url": "manifest.webmanifest",
@@ -82,7 +82,7 @@ const navigationRoute = new workbox.routing.NavigationRoute(({ event }) => {
   return idbKeyval.get(WHITELIST_KEY).then((customWhitelist = []) => {
     // Respond with the offline shell if we match the custom whitelist
     if (customWhitelist.includes(pathname)) {
-      const offlineShell = `/everydayblog/offline-plugin-app-shell-fallback/index.html`
+      const offlineShell = `/./offline-plugin-app-shell-fallback/index.html`
       const cacheName = workbox.core.cacheNames.precache
 
       return caches.match(offlineShell, { cacheName }).then(cachedResponse => {
@@ -154,7 +154,7 @@ const messageApi = {
 
     pathnames = pathnames.map(({ pathname, includesPrefix }) => {
       if (!includesPrefix) {
-        return `/everydayblog${pathname}`
+        return `/.${pathname}`
       } else {
         return pathname
       }
