@@ -26,33 +26,37 @@ workbox.clientsClaim();
  */
 self.__precacheManifest = [
   {
-    "url": "webpack-runtime-c2ff63c8c55f5a5eb477.js"
+    "url": "webpack-runtime-cb7676882e655792aca2.js"
   },
   {
-    "url": "styles.56ed853a29f6a2d7040d.css"
+    "url": "styles.32852ac6a5ca063f5fdb.css"
   },
   {
     "url": "styles-ff2e44a9804126390d97.js"
   },
   {
-    "url": "app-819b0cee2c39039d8b39.js"
+    "url": "app-e1a0aa7cf320b82fc8c8.js"
   },
   {
     "url": "component---node-modules-gatsby-plugin-offline-app-shell-js-f7b9a63337316485910f.js"
   },
   {
     "url": "offline-plugin-app-shell-fallback/index.html",
-    "revision": "e8003d2cee4c258e4ca87a025aa35441"
+    "revision": "c6ac34318246c64546722f50d48b59e0"
   },
   {
     "url": "0-f232b5f526709d128bc3.js"
   },
   {
-    "url": "component---src-pages-404-js-d97a92de88564f7c9221.js"
+    "url": "component---src-pages-404-js-eb4853aeed332f6cbafd.js"
   },
   {
     "url": "page-data/404.html/page-data.json",
-    "revision": "035672c154be6b45ec97b7c5d071726d"
+    "revision": "86a711cf58d1458d4940e4ffe32d3556"
+  },
+  {
+    "url": "page-data/offline-plugin-app-shell-fallback/page-data.json",
+    "revision": "3b729b5f14ec5dbfcd214664f4122161"
   },
   {
     "url": "manifest.webmanifest",
@@ -78,7 +82,7 @@ const navigationRoute = new workbox.routing.NavigationRoute(({ event }) => {
   return idbKeyval.get(WHITELIST_KEY).then((customWhitelist = []) => {
     // Respond with the offline shell if we match the custom whitelist
     if (customWhitelist.includes(pathname)) {
-      const offlineShell = `/offline-plugin-app-shell-fallback/index.html`
+      const offlineShell = `/everydayblog/offline-plugin-app-shell-fallback/index.html`
       const cacheName = workbox.core.cacheNames.precache
 
       return caches.match(offlineShell, { cacheName }).then(cachedResponse => {
@@ -150,7 +154,7 @@ const messageApi = {
 
     pathnames = pathnames.map(({ pathname, includesPrefix }) => {
       if (!includesPrefix) {
-        return `${pathname}`
+        return `/everydayblog${pathname}`
       } else {
         return pathname
       }
