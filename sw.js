@@ -26,37 +26,37 @@ workbox.clientsClaim();
  */
 self.__precacheManifest = [
   {
-    "url": "webpack-runtime-cb7676882e655792aca2.js"
+    "url": "webpack-runtime-bd5bb2398a3d5353a04e.js"
   },
   {
-    "url": "styles.32852ac6a5ca063f5fdb.css"
+    "url": "styles.5785587a5bdfe3b1c35b.css"
   },
   {
     "url": "styles-ff2e44a9804126390d97.js"
   },
   {
-    "url": "app-e1a0aa7cf320b82fc8c8.js"
+    "url": "app-3506358d4f5713026798.js"
   },
   {
     "url": "component---node-modules-gatsby-plugin-offline-app-shell-js-f7b9a63337316485910f.js"
   },
   {
     "url": "offline-plugin-app-shell-fallback/index.html",
-    "revision": "c6ac34318246c64546722f50d48b59e0"
+    "revision": "9a1e082f8765d05e3fca16e22c72f32f"
   },
   {
     "url": "0-f232b5f526709d128bc3.js"
   },
   {
-    "url": "component---src-pages-404-js-eb4853aeed332f6cbafd.js"
+    "url": "component---src-pages-404-js-cd602eeb9a370598e5f3.js"
   },
   {
     "url": "page-data/404.html/page-data.json",
-    "revision": "86a711cf58d1458d4940e4ffe32d3556"
+    "revision": "7a08f029c14759aaea531d421fefb442"
   },
   {
     "url": "page-data/offline-plugin-app-shell-fallback/page-data.json",
-    "revision": "3b729b5f14ec5dbfcd214664f4122161"
+    "revision": "d0e0dfbab4defeb03277f4be6ba55498"
   },
   {
     "url": "manifest.webmanifest",
@@ -82,7 +82,7 @@ const navigationRoute = new workbox.routing.NavigationRoute(({ event }) => {
   return idbKeyval.get(WHITELIST_KEY).then((customWhitelist = []) => {
     // Respond with the offline shell if we match the custom whitelist
     if (customWhitelist.includes(pathname)) {
-      const offlineShell = `/everydayblog/offline-plugin-app-shell-fallback/index.html`
+      const offlineShell = `/gitblog.chao-home.com/everydayblog/offline-plugin-app-shell-fallback/index.html`
       const cacheName = workbox.core.cacheNames.precache
 
       return caches.match(offlineShell, { cacheName }).then(cachedResponse => {
@@ -154,7 +154,7 @@ const messageApi = {
 
     pathnames = pathnames.map(({ pathname, includesPrefix }) => {
       if (!includesPrefix) {
-        return `/everydayblog${pathname}`
+        return `/gitblog.chao-home.com/everydayblog${pathname}`
       } else {
         return pathname
       }
