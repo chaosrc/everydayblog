@@ -4,7 +4,7 @@ module.exports = {
     title: `温故而知新`,
     author: `chao`,
     description: `个人博客, 坚持每天一篇！`,
-    siteUrl: `https://gatsby-starter-blog-demo.netlify.com/`,
+    siteUrl: `https://gitblog.chao-home.com/`,
     social: {
       twitter: `chaosrc`,
       github: `chaosrc`

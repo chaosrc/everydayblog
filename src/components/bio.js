@@ -39,7 +39,7 @@ function Bio() {
             />
             <p>
               个人博客 <br/>
-              坚持每天一篇
+              每天坚持✊
               {/* Written by <strong>{author}</strong> who lives and works in Shanghai building useful things.
               {` `}
               <a href={`https://github.com/${social.twitter}`}>
