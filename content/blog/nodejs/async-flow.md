@@ -1,6 +1,6 @@
 ---
 title: Node.js的异步流程控制以及串行流程的实现
-date: 2019-07-28
+date: 2019-06-28
 description: Node.js的异步流程控制以及串行流程的实现
 ---
 
