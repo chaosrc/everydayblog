@@ -15,7 +15,7 @@ description: 对比了几种常见的 Node.js Web 框架的优缺点以及使用
 - Hapi
 - Sails
 - Restify
-- LoopBack
+- Nest
 
 
 
