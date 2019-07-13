@@ -1,4 +1,445 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[温故而知新]]></title><description><![CDATA[个人博客, 坚持每天一篇！]]></description><link>https://gitblog.chao-home.com/</link><generator>RSS for Node</generator><lastBuildDate>Sat, 06 Jul 2019 15:09:15 GMT</lastBuildDate><item><title><![CDATA[Node.js Web 框架之 Sails]]></title><description><![CDATA[Node.js Web 框架之 SailsSails 是 Node.js 中最流行的 MVC 框架，类似于 Ruby on Rails。使用 Sails 可以轻松构建企业级的 Node.js Web 服务特点Sails 内置强大的 ROM…]]></description><link>https://gitblog.chao-home.com//nodejs/nodejs-web-framework-sails/</link><guid isPermaLink="false">https://gitblog.chao-home.com//nodejs/nodejs-web-framework-sails/</guid><pubDate>Sat, 06 Jul 2019 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;Node.js Web 框架之 Sails&lt;/h2&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[温故而知新]]></title><description><![CDATA[个人博客, 坚持每天一篇！]]></description><link>https://gitblog.chao-home.com/</link><generator>RSS for Node</generator><lastBuildDate>Sat, 13 Jul 2019 12:49:13 GMT</lastBuildDate><item><title><![CDATA[express 环境配置与模版渲染]]></title><link>https://gitblog.chao-home.com//nodejs/express-view-render/</link><guid isPermaLink="false">https://gitblog.chao-home.com//nodejs/express-view-render/</guid><pubDate>Sat, 13 Jul 2019 00:00:00 GMT</pubDate><content:encoded></content:encoded></item><item><title><![CDATA[Node.js Web 之深入了解 express 框架]]></title><description><![CDATA[Node.js Web 之深入了解 express 框架express 是 Node.js 中最流行的 Web 框架，使用起来很简单但是功能强大。生成 express 程序 是一个 express 程序生成器，安装完成后可通过  查看其功能生成 shoutbox…]]></description><link>https://gitblog.chao-home.com//nodejs/nodejs-understand-express/</link><guid isPermaLink="false">https://gitblog.chao-home.com//nodejs/nodejs-understand-express/</guid><pubDate>Fri, 12 Jul 2019 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;Node.js Web 之深入了解 express 框架&lt;/h2&gt;
+&lt;p&gt;express 是 Node.js 中最流行的 Web 框架，使用起来很简单但是功能强大。&lt;/p&gt;
+&lt;h4&gt;生成 express 程序&lt;/h4&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sh&quot;&gt;&lt;pre class=&quot;language-sh&quot;&gt;&lt;code class=&quot;language-sh&quot;&gt;$ sudo npm install -g express-generator&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;express-generator&lt;/code&gt; 是一个 express 程序生成器，安装完成后可通过 &lt;code class=&quot;language-text&quot;&gt;express --help&lt;/code&gt; 查看其功能&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sh&quot;&gt;&lt;pre class=&quot;language-sh&quot;&gt;&lt;code class=&quot;language-sh&quot;&gt;$ express --help
+
+  Usage: express [options] [dir]
+
+  Options:
+
+        --version        output the version number
+    -e, --ejs            add ejs engine support
+        --pug            add pug engine support
+        --hbs            add handlebars engine support
+    -H, --hogan          add hogan.js engine support
+    -v, --view &amp;lt;engine&amp;gt;  add view &amp;lt;engine&amp;gt; support (dust|ejs|hbs|hjs|jade|pug|twig|vash) (defaults to jade)
+        --no-view        use static html instead of view engine
+    -c, --css &amp;lt;engine&amp;gt;   add stylesheet &amp;lt;engine&amp;gt; support (less|stylus|compass|sass) (defaults to plain css)
+        --git            add .gitignore
+    -f, --force          force on non-empty directory
+    -h, --help           output usage information&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;生成 shoutbox 项目 &lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ express -e shoutbox&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;项目结构&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sh&quot;&gt;&lt;pre class=&quot;language-sh&quot;&gt;&lt;code class=&quot;language-sh&quot;&gt;shoutbox/
+├── app.js
+├── bin
+│   └── www
+├── package.json
+├── public
+│   ├── images
+│   ├── javascripts
+│   └── stylesheets
+│       └── style.css
+├── routes
+│   ├── index.js
+│   └── users.js
+└── views
+    ├── error.ejs
+    └── index.ejs&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h4&gt;项目实践&lt;/h4&gt;
+&lt;p&gt;通过实现一个在线留言版服务来熟悉 express 开发，功能规划如下：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;用户可登陆、注册、退出&lt;/li&gt;
+&lt;li&gt;用户可以发送信息&lt;/li&gt;
+&lt;li&gt;在页面中分页浏览线留言版条目&lt;/li&gt;
+&lt;li&gt;简单的认证功能&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;通过这些需求可以初步定义项目需要的路由，如下：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;GET /entries: 获取条目列表&lt;/li&gt;
+&lt;li&gt;GET /entries/page: 获取单条条目&lt;/li&gt;
+&lt;li&gt;POST /entries/create: 创建条目&lt;/li&gt;
+&lt;li&gt;POST /login: 登陆&lt;/li&gt;
+&lt;li&gt;POST /logout： 退出&lt;/li&gt;
+&lt;li&gt;POST /register：注册&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;下一步将使用 express 框架实现这些功能&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Node.js Web 之深入了解 Connect 中间件（二）]]></title><description><![CDATA[Node.js Web 之深入了解 Connect 中间件（二）上一篇中介绍了 Connect 中间件的工作机制，本篇继续介绍如何组合中间件、中间件的顺序以及创建可配置的中间件组合中间件Connect 中使用 use…]]></description><link>https://gitblog.chao-home.com//nodejs/nodejs-understand-connect-2/</link><guid isPermaLink="false">https://gitblog.chao-home.com//nodejs/nodejs-understand-connect-2/</guid><pubDate>Wed, 10 Jul 2019 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;Node.js Web 之深入了解 Connect 中间件（二）&lt;/h2&gt;
+&lt;p&gt;上一篇中介绍了 Connect 中间件的工作机制，本篇继续介绍如何组合中间件、中间件的顺序以及创建可配置的中间件&lt;/p&gt;
+&lt;h4&gt;组合中间件&lt;/h4&gt;
+&lt;p&gt;Connect 中使用 use 方法来组合中间件。首先定义两个中间件 &lt;code class=&quot;language-text&quot;&gt;logger&lt;/code&gt; 和 &lt;code class=&quot;language-text&quot;&gt;helloConnect&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;logger&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;req&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; res&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; next&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;req&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;url&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; req&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;statusCode&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token function&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;helloConnect&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;req&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; res&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    res&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;hello connect&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;helloConnect&lt;/code&gt; 中没有 &lt;code class=&quot;language-text&quot;&gt;next&lt;/code&gt; 是因为它在里面完成了 HTTP 响应，不需要再往下调用中间件&lt;/p&gt;
+&lt;p&gt;组合 &lt;code class=&quot;language-text&quot;&gt;logger&lt;/code&gt; 和 &lt;code class=&quot;language-text&quot;&gt;helloConnect&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;app&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;use&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;logger&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+   &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;use&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;helloConnect&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+   &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;listen&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;8806&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;use&lt;/code&gt; 函数返回 Connect 实例，支持链式调用&lt;/p&gt;
+&lt;h4&gt;中间件的顺序&lt;/h4&gt;
+&lt;p&gt;中间件的调用会对程序的行为产生很大的影响，如果漏掉 &lt;code class=&quot;language-text&quot;&gt;next&lt;/code&gt; 的调用后面的中间件不会调用，会使本次响应无法正常返回&lt;/p&gt;
+&lt;p&gt;比如改变上面的中间件调用顺序，先调用 &lt;code class=&quot;language-text&quot;&gt;helloConnect&lt;/code&gt; 再调用 &lt;code class=&quot;language-text&quot;&gt;logger&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;app&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;use&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;helloConnect&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+   &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;use&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;logger&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+   &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;listen&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;8806&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;访问 localhost:8806 能正常返回‘hello connect’。以下两次中间件的执行顺序，左边是第一次，右边是第二次&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://s2.ax1x.com/2019/07/11/Zg5Fnx.png&quot;&gt;&lt;/p&gt;
+&lt;h3&gt;创建可配置的中间件&lt;/h3&gt;
+&lt;p&gt;为了达到中间件的可复用性、通用性，需要创建可配置的中间件&lt;/p&gt;
+&lt;p&gt;可配置的中间件的原则是定义一个函数返回另一个函数，返回的这个函数是一个中间件，基本结构如下&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;setupLogger&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;option&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token comment&quot;&gt;// 处理配置逻辑&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;logger&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;req&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; res&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; next&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token comment&quot;&gt;// 处理中间件逻辑&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;使用可配置的中间件&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;app&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;use&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;setupLogger&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;option&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;接下来会使用一个例子来演示如何构建一个可配置的中间件&lt;/p&gt;
+&lt;p&gt;创建一个静态文件服务的中间件&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;static&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;req&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; res&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; next&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; staticDir &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; path&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;join&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;__dirname&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;/public&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; staticURLPath &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;/static&apos;&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; urlPath &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; req&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;url&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;split&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;?&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+
+    &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;!&lt;/span&gt;urlPath&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;startsWith&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;staticURLPath&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token function&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; filepath &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; path&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;join&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;staticDir&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; urlPath&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;slice&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;staticURLPath&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;length&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+    &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; stream &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; fs&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;createReadStream&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;filepath&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+    stream&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;pipe&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;res&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+app&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;use&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;static&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;在项目目录下建立 public 文件夹添加 index.html 文件&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;html&quot;&gt;&lt;pre class=&quot;language-html&quot;&gt;&lt;code class=&quot;language-html&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;&amp;lt;!-- index.html --&gt;&lt;/span&gt;
+&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;&lt;/span&gt;p&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;hello static&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token tag&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;&amp;lt;/&lt;/span&gt;p&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;访问 localhost:8806/static/index.html&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ &lt;span class=&quot;token function&quot;&gt;curl&lt;/span&gt; localhost:8806/static/index.html
+&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;p&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;hello static&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;/p&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;当前 &lt;code class=&quot;language-text&quot;&gt;static&lt;/code&gt; 中间件请求 url 和本地文件路径都是固定的，无法在其他项目中复用&lt;/p&gt;
+&lt;p&gt;创建一个静态文件服务的中间件，使得请求 url 和本地文件路径可配置&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;setupStatic&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;staticURLPath&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; staticDir&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;static&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;req&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; res&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; next&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token comment&quot;&gt;// const staticDir = path.join(__dirname, &apos;/public&apos;)&lt;/span&gt;
+        &lt;span class=&quot;token comment&quot;&gt;// const staticURLPath = &apos;/static&apos;&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; urlPath &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; req&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;url&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;split&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;?&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+    
+        &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;!&lt;/span&gt;urlPath&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;startsWith&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;staticURLPath&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;token function&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+    
+        &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; filepath &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; path&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;join&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;staticDir&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; urlPath&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;slice&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;staticURLPath&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;length&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+        console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;filepath&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;filepath&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; staticDir&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; urlPath&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; stream &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; fs&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;createReadStream&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;filepath&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    
+        stream&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;pipe&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;res&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+app&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;use&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;setupStatic&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;/static&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; path&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;join&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;__dirname&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;/public&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;setupStatic&lt;/code&gt; 成为了可配置中间件，通过传人不同的路径参数来映射不同的文件夹，可以在其他地方复用这段代码&lt;/p&gt;
+&lt;p&gt;整个 Connect 社区都在使用可配置中间件的概念，Connect 的核心中间件都是可配置的&lt;sup id=&quot;fnref-1&quot;&gt;&lt;a href=&quot;#fn-1&quot; class=&quot;footnote-ref&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+&lt;h4&gt;Connect 的错误处理中间件&lt;/h4&gt;
+&lt;p&gt;Connect 中错误处理中间件比常规的中间件多了一个错误对象，Connect 的两种错误处理模式：默认错误处理器和自行处理&lt;/p&gt;
+&lt;p&gt;默认错误处理器&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;app&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;use&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;req&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; res&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token function&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;foo&lt;/code&gt; 方法没有定义, Connect 默认会返回500状态码&lt;/p&gt;
+&lt;p&gt;自行处理错误&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;handleError&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;err&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; req&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; res&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; next&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    res&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;server error&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+app&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;use&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;handleError&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;错误处理中间件必须有4个参数err, req, res, next，程序发生错误时，Coonect 会跳过其他中间件，直接调用错误处理中间件&lt;/p&gt;
+&lt;p&gt;访问 localhost:8806&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ &lt;span class=&quot;token function&quot;&gt;curl&lt;/span&gt; localhost:8806
+server error&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;footnotes&quot;&gt;
+&lt;hr&gt;
+&lt;ol&gt;
+&lt;li id=&quot;fn-1&quot;&gt;
+&lt;p&gt;《Node.js实战第二版》第六章 深入了解 Connect 和 Express&lt;/p&gt;
+&lt;a href=&quot;#fnref-1&quot; class=&quot;footnote-backref&quot;&gt;↩&lt;/a&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</content:encoded></item><item><title><![CDATA[Node.js Web 之深入了解 Connect 中间件（一）]]></title><description><![CDATA[Node.js Web 之深入了解 Connect 中间件（一）connect 是一个基于 HTTP 服务器的工具集，它提供了一种新的组织代码的方式来与请求和响应对象进行交互，称为中间件（书上原话）。通俗的来说，http…]]></description><link>https://gitblog.chao-home.com//nodejs/nodejs-understand-connect/</link><guid isPermaLink="false">https://gitblog.chao-home.com//nodejs/nodejs-understand-connect/</guid><pubDate>Tue, 09 Jul 2019 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;Node.js Web 之深入了解 Connect 中间件（一）&lt;/h2&gt;
+&lt;blockquote&gt;
+&lt;p&gt;connect 是一个基于 HTTP 服务器的工具集，它提供了一种新的组织代码的方式来与请求和响应对象进行交互，称为中间件（书上原话）。通俗的来说，http 创建服务器接收请求时，所有的响应都要写在一个回调函数里面，对于不同的请求路径，所返回的响应信息都是通过 if 和 else 来区分，所有的逻辑都是在一个函数中，当逻辑复杂起来会有各种回调，极容易出现问题，故有了让问题简单起来的 connect 中间件的产生，connect 把所有的请求信息都拆分开，形成多个中间件，http 请求就相当于是水流一样流过中间件，当路径相同时，就会响应该请求，否则就继续往下流，直到结束。中间件就是函数组成的。&lt;sup id=&quot;fnref-1&quot;&gt;&lt;a href=&quot;#fn-1&quot; class=&quot;footnote-ref&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4&gt;安装&lt;/h4&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ &lt;span class=&quot;token function&quot;&gt;npm&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; connect&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h4&gt;创建 Connect Web 程序&lt;/h4&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; Connect &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;connect&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; app &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;Connect&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+app&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;use&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;req&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; res&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; next&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  res&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;hello connect&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+app&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;listen&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;8806&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;传给 &lt;code class=&quot;language-text&quot;&gt;app.use()&lt;/code&gt; 的为中间件函数，处理 HTTP 响应。一个 Connect Web 程序就是由很多个中间件函数组成。&lt;/p&gt;
+&lt;p&gt;根据中间件在整个http处理流程的位置，可将中间件大致分为三类&lt;sup id=&quot;fnref-2&quot;&gt;&lt;a href=&quot;#fn-2&quot; class=&quot;footnote-ref&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Pre-Request 通常用来改写request的原始数据&lt;/li&gt;
+&lt;li&gt;Request/Response 大部分中间件都在这里，功能各异&lt;/li&gt;
+&lt;li&gt;Post-Response 全局异常处理，改写response数据等&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&quot;https://files.cnblogs.com/luics/connect-middleware.zip&quot;&gt;&lt;/p&gt;
+&lt;h4&gt;了解 Connect 中间件的机制&lt;/h4&gt;
+&lt;p&gt;Connect 中间件就是一个 Javascript 函数，它接受请求对象（Request）、响应对象（Response）以及 回调函数 next，一个中间件执行完成后如果要继续往下执行后续的中间件，就可以调用 next 函数&lt;sup id=&quot;fnref-3&quot;&gt;&lt;a href=&quot;#fn-3&quot; class=&quot;footnote-ref&quot;&gt;3&lt;/a&gt;&lt;/sup&gt;。&lt;/p&gt;
+&lt;p&gt;在中间件执行之前，Connect 中的分派器（Dispatcher）会接管请求，然后开始执行第一个中间件，再依次执行后续的中间件。&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token operator&quot;&gt;...&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; app &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;Connect&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+app&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;use&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;logger&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+   &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;use&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;bodyParser&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+   &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;use&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;req&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; res&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; next&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+      res&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;hello connect&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;token operator&quot;&gt;...&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;执行流程&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://s2.ax1x.com/2019/07/10/Z6dP4e.png&quot;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Dispatcher 接受到请求，将请求传给第一个中间件&lt;/li&gt;
+&lt;li&gt;调用 logger 中间件打印日志，logger 中调用 next()，将请求传给下一个中间件&lt;/li&gt;
+&lt;li&gt;bodyParser 中间件解析请求的 body，调用 next() 将请求继续传给下一个中间&lt;/li&gt;
+&lt;li&gt;最后一个中间件处理响应，结束请求，不在调用 next()&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Connect 通过中间件组合具有非常大的可扩展性，能够轻松实现复杂的逻辑&lt;/p&gt;
+&lt;div class=&quot;footnotes&quot;&gt;
+&lt;hr&gt;
+&lt;ol&gt;
+&lt;li id=&quot;fn-1&quot;&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.cnblogs.com/aicanxxx/p/7132427.html&quot;&gt;https://www.cnblogs.com/aicanxxx/p/7132427.html&lt;/a&gt;&lt;/p&gt;
+&lt;a href=&quot;#fnref-1&quot; class=&quot;footnote-backref&quot;&gt;↩&lt;/a&gt;
+&lt;/li&gt;
+&lt;li id=&quot;fn-2&quot;&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.cnblogs.com/luics/archive/2012/11/28/2775206.html&quot;&gt;https://www.cnblogs.com/luics/archive/2012/11/28/2775206.html&lt;/a&gt;&lt;/p&gt;
+&lt;a href=&quot;#fnref-2&quot; class=&quot;footnote-backref&quot;&gt;↩&lt;/a&gt;
+&lt;/li&gt;
+&lt;li id=&quot;fn-3&quot;&gt;
+&lt;p&gt;《Node.js实战第二版》第六章 深入了解 Connect 和 Express&lt;/p&gt;
+&lt;a href=&quot;#fnref-3&quot; class=&quot;footnote-backref&quot;&gt;↩&lt;/a&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</content:encoded></item><item><title><![CDATA[Node.js Web 框架 Nest]]></title><description><![CDATA[Node.js Web 框架 NestNest 是一个用来构建高效、可扩展的 Node.js Web 服务的框架，使用 Typescript 编写并结合了OOP (面向对象), FP (函数式), and FRP (响应式编程)等编程范式Nest…]]></description><link>https://gitblog.chao-home.com//nodejs/nodejs-web-framework-nest/</link><guid isPermaLink="false">https://gitblog.chao-home.com//nodejs/nodejs-web-framework-nest/</guid><pubDate>Sun, 07 Jul 2019 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;Node.js Web 框架 Nest&lt;/h2&gt;
+&lt;p&gt;Nest 是一个用来构建高效、可扩展的 Node.js Web 服务的框架，使用 Typescript 编写并结合了OOP (面向对象), FP (函数式), and FRP (响应式编程)等编程范式&lt;/p&gt;
+&lt;p&gt;Nest 设计上的灵感很多来源于 Angular，而 Angular 的设计模式又来源于 Java 中的 Spring 框架，比如依赖注入、控制反转、面向切面等，所以很多人认为 Nest 是 Node.js 版的Spring &lt;sup id=&quot;fnref-1&quot;&gt;&lt;a href=&quot;#fn-1&quot; class=&quot;footnote-ref&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
+&lt;h4&gt;安装 &amp;#x26; 创建项目&lt;/h4&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ &lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;npm&lt;/span&gt; i -g @nestjs/cli
+
+$ nest new nest-demo
+⚡  We will scaffold your app &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; a few seconds&lt;span class=&quot;token punctuation&quot;&gt;..&lt;/span&gt;
+
+CREATE /nest-demo/.prettierrc &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;51 bytes&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+CREATE /nest-demo/README.md &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;3370 bytes&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+CREATE /nest-demo/nest-cli.json &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;84 bytes&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+CREATE /nest-demo/nodemon-debug.json &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;163 bytes&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+CREATE /nest-demo/nodemon.json &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;67 bytes&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+CREATE /nest-demo/package.json &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;1805 bytes&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+CREATE /nest-demo/tsconfig.build.json &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;97 bytes&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+CREATE /nest-demo/tsconfig.json &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;325 bytes&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+CREATE /nest-demo/tslint.json &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;426 bytes&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+CREATE /nest-demo/src/app.controller.spec.ts &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;617 bytes&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+CREATE /nest-demo/src/app.controller.ts &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;274 bytes&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+CREATE /nest-demo/src/app.module.ts &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;249 bytes&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+CREATE /nest-demo/src/app.service.ts &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;142 bytes&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+CREATE /nest-demo/src/main.ts &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;208 bytes&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+CREATE /nest-demo/test/app.e2e-spec.ts &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;561 bytes&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+CREATE /nest-demo/test/jest-e2e.json &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;183 bytes&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+? Which package manager would you ❤️  to use? &lt;span class=&quot;token function&quot;&gt;npm&lt;/span&gt;
+▹▹▸▹▹ Installation &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; progress&lt;span class=&quot;token punctuation&quot;&gt;..&lt;/span&gt;. ☕&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h4&gt;项目结构&lt;/h4&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;src/
+├── app.controller.spec.ts
+├── app.controller.ts
+├── app.module.ts
+├── app.service.ts
+└── main.ts&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;app.controller.ts   路由控制器&lt;/li&gt;
+&lt;li&gt;app.module.ts       项目的根模块&lt;/li&gt;
+&lt;li&gt;main.ts             加载模块，项目的启动的入口&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;typescript&quot;&gt;&lt;pre class=&quot;language-typescript&quot;&gt;&lt;code class=&quot;language-typescript&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;// main.ts&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; NestFactory &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;@nestjs/core&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; AppModule &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;./app.module&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;async&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;bootstrap&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; app &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;await&lt;/span&gt; NestFactory&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;create&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;AppModule&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;await&lt;/span&gt; app&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;listen&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3000&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token function&quot;&gt;bootstrap&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;使用 &lt;code class=&quot;language-text&quot;&gt;NestFactory.create&lt;/code&gt; 来创建服务&lt;/p&gt;
+&lt;h4&gt;基本概念&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;Controllers (控制器)&lt;sup id=&quot;fnref-2&quot;&gt;&lt;a href=&quot;#fn-2&quot; class=&quot;footnote-ref&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Controller 负责处理请求，以及返回响应给客户端&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://docs.nestjs.com/assets/Controllers_1.png&quot;&gt;&lt;/p&gt;
+&lt;p&gt;一个 Controller 可以定义多个路由。Nest 中通过使用 Typescript 中的装饰器（&lt;a href=&quot;https://www.typescriptlang.org/docs/handbook/decorators.html&quot;&gt;decorators&lt;/a&gt;）来添加路由的信息（metadata）&lt;/p&gt;
+&lt;p&gt;使用 Nest CLI 工具 生成一个 Controller&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ nest g controller todo
+CREATE /src/todo/todo.controller.spec.ts &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;479 bytes&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+CREATE /src/todo/todo.controller.ts &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;97 bytes&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+UPDATE /src/app.module.ts &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;322 bytes&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;生成了todo.controller.ts 文件&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;typescript&quot;&gt;&lt;pre class=&quot;language-typescript&quot;&gt;&lt;code class=&quot;language-typescript&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;// 文件 todo.controller.ts&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; Controller &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;@nestjs/common&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+@&lt;span class=&quot;token function&quot;&gt;Controller&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;todo&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;TodoController&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;同时在 app.module.ts 添加了 TodoController 依赖&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;typescript&quot;&gt;&lt;pre class=&quot;language-typescript&quot;&gt;&lt;code class=&quot;language-typescript&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;// 文件 app.module.ts&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; AppController &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;./app.controller&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; AppService &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;./app.service&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; TodoController &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;./todo/todo.controller&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+@&lt;span class=&quot;token function&quot;&gt;Module&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  imports&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+  controllers&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;AppController&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; TodoController&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+  providers&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;AppService&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;AppModule&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;通过&lt;strong&gt;装饰器&lt;/strong&gt;来添加路由，Nest 提供了标准的 HTTP 请求方法的的装饰器 @Post(), @Get(), @Put(), @Delete(), @Head(), @All()等&lt;/p&gt;
+&lt;p&gt;添加一个 &lt;code class=&quot;language-text&quot;&gt;item&lt;/code&gt; 路由&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;typescript&quot;&gt;&lt;pre class=&quot;language-typescript&quot;&gt;&lt;code class=&quot;language-typescript&quot;&gt;@&lt;span class=&quot;token function&quot;&gt;Controller&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;todo&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;TodoController&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    @&lt;span class=&quot;token function&quot;&gt;Get&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;/item&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token function&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;Watch movie&apos;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;访问 localhost:3000/todo/item&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;$ curl localhost:3000/todo/item
+Watch movie&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;通过&lt;strong&gt;装饰器&lt;/strong&gt;模式可以很方便的获取请求数据&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;@Res()    获取 Request 对象&lt;/li&gt;
+&lt;li&gt;@Req()    获取 Response 对象&lt;/li&gt;
+&lt;li&gt;@Param(key?: string)    获取请求参数&lt;/li&gt;
+&lt;li&gt;@Body(key?: string)     获取请求 Body&lt;/li&gt;
+&lt;li&gt;@Query(key?: string)    获取URL的 query 参数&lt;/li&gt;
+&lt;li&gt;@Headers(name?: string) 获取请求 Header&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;typescript&quot;&gt;&lt;pre class=&quot;language-typescript&quot;&gt;&lt;code class=&quot;language-typescript&quot;&gt;  @&lt;span class=&quot;token function&quot;&gt;Get&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;/item&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;token function&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;@&lt;span class=&quot;token function&quot;&gt;Req&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; req&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; Request&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; @&lt;span class=&quot;token function&quot;&gt;Query&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;id&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; id&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+      query&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; id &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+      url&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; req&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;url&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;访问&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ &lt;span class=&quot;token function&quot;&gt;curl&lt;/span&gt; localhost:3000/todo/item?id&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;22
+&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;query&quot;&lt;/span&gt;:&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;id&quot;&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;22&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;,&lt;span class=&quot;token string&quot;&gt;&quot;url&quot;&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;/todo/item?id=22&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;2019-07-08 更新&lt;/p&gt;
+&lt;ol start=&quot;2&quot;&gt;
+&lt;li&gt;Providers (提供者)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Providers 是 Nest 中非常重要的概念，许多基本的类比如services、repositories、factories、helpers 等都被视为 Providers。Provider 使用依赖注入的方式来委托给 Nest 运行时。&lt;/p&gt;
+&lt;p&gt;Provider 可以通过 &lt;code class=&quot;language-text&quot;&gt;@Injectable()&lt;/code&gt; 类装饰器创建&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;ts&quot;&gt;&lt;pre class=&quot;language-ts&quot;&gt;&lt;code class=&quot;language-ts&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; Injectable &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;@nestjs/common&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; Todo &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;dist/todo/todo.dto&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+@&lt;span class=&quot;token function&quot;&gt;Injectable&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;TodoService&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;private&lt;/span&gt; list&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; Todo&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; title&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;To sleep&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; content&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;To sleep at night&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; isDone&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;false&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+  &lt;span class=&quot;token function&quot;&gt;getTodoLit&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;list&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+  &lt;span class=&quot;token function&quot;&gt;getTodoItem&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;list&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;id&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;一般用 Controller 来处理 HTTP 请求，而将复杂的任务交给 Provider&lt;/p&gt;
+&lt;p&gt;在 Controller 中使用 service&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;ts&quot;&gt;&lt;pre class=&quot;language-ts&quot;&gt;&lt;code class=&quot;language-ts&quot;&gt;&lt;span class=&quot;token operator&quot;&gt;...&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; TodoService &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;./todo.service&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+@&lt;span class=&quot;token function&quot;&gt;Controller&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;todo&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;TodoController&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  
+  &lt;span class=&quot;token keyword&quot;&gt;constructor&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;readonly&lt;/span&gt; todoService&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; TodoService&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+  @&lt;span class=&quot;token function&quot;&gt;Get&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;/item&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;token function&quot;&gt;item&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;@&lt;span class=&quot;token function&quot;&gt;Req&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; req&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; Request&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; @&lt;span class=&quot;token function&quot;&gt;Query&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;id&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; id&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;todoService&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;getTodoItem&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;id&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;TodoService 通过 TodoController 的构造器注入后，可以在 TodoController 中使用 TodoService 实例&lt;/p&gt;
+&lt;p&gt;注册 Provider&lt;/p&gt;
+&lt;p&gt;在 Contorller 能够使用 Provider 之前需要在模块中注册 Provider&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;ts&quot;&gt;&lt;pre class=&quot;language-ts&quot;&gt;&lt;code class=&quot;language-ts&quot;&gt;&lt;span class=&quot;token operator&quot;&gt;...&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; TodoService &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;./todo/todo.service&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+@&lt;span class=&quot;token function&quot;&gt;Module&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  imports&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+  controllers&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;AppController&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; TodoController&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+  providers&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;AppService&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; TodoService&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;AppModule&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;再访问 localhost:3000/todo/item&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ &lt;span class=&quot;token function&quot;&gt;curl&lt;/span&gt; localhost:3000/todo/item?id&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;0
+&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;title&quot;&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;To sleep&quot;&lt;/span&gt;,&lt;span class=&quot;token string&quot;&gt;&quot;content&quot;&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;To sleep at night&quot;&lt;/span&gt;,&lt;span class=&quot;token string&quot;&gt;&quot;isDone&quot;&lt;/span&gt;:false&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;当前项目结构如下&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;src/
+├── app.controller.spec.ts
+├── app.controller.ts
+├── app.module.ts
+├── app.service.ts
+├── main.ts
+└── todo
+    ├── todo.controller.spec.ts
+    ├── todo.controller.ts
+    ├── todo.dto.ts
+    └── todo.service.ts&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ol start=&quot;3&quot;&gt;
+&lt;li&gt;Modules (模块)&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;模块是通过 &lt;code class=&quot;language-text&quot;&gt;@Module()&lt;/code&gt; 装饰器申明，在模块中申明元数据用来组织项目结构&lt;sup id=&quot;fnref-3&quot;&gt;&lt;a href=&quot;#fn-3&quot; class=&quot;footnote-ref&quot;&gt;3&lt;/a&gt;&lt;/sup&gt;，每个项目至少有一个模块
+&lt;img src=&quot;https://docs.nestjs.com/assets/Modules_1.png&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;@Module()&lt;/code&gt;接受一下几个参数&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;providers    提供者，初始化后可以在多个模块中共享&lt;/li&gt;
+&lt;li&gt;controllers  控制器，引人模块中需要使用到的控制器&lt;/li&gt;
+&lt;li&gt;imports      从模块中引入需要暴露给 Provider 的类&lt;/li&gt;
+&lt;li&gt;exports      当前模块提供需要暴露给外部模块的类&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;ts&quot;&gt;&lt;pre class=&quot;language-ts&quot;&gt;&lt;code class=&quot;language-ts&quot;&gt;&lt;span class=&quot;token operator&quot;&gt;...&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; TodoService &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;./todo/todo.service&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+@&lt;span class=&quot;token function&quot;&gt;Module&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  imports&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+  controllers&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;AppController&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; TodoController&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+  providers&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;AppService&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; TodoService&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;export&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;AppModule&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;上面的例子中引人了两个 Controller：AppController、TodoController，两个 Contoller 中都可以注入AppService、TodoService&lt;/p&gt;
+&lt;div class=&quot;footnotes&quot;&gt;
+&lt;hr&gt;
+&lt;ol&gt;
+&lt;li id=&quot;fn-1&quot;&gt;
+&lt;p&gt;&lt;a href=&quot;https://keelii.com/2019/07/03/nestjs-framework-tutorial-1/&quot;&gt;https://keelii.com/2019/07/03/nestjs-framework-tutorial-1/&lt;/a&gt;&lt;/p&gt;
+&lt;a href=&quot;#fnref-1&quot; class=&quot;footnote-backref&quot;&gt;↩&lt;/a&gt;
+&lt;/li&gt;
+&lt;li id=&quot;fn-2&quot;&gt;
+&lt;p&gt;&lt;a href=&quot;https://docs.nestjs.com/controllers&quot;&gt;https://docs.nestjs.com/controllers&lt;/a&gt;&lt;/p&gt;
+&lt;a href=&quot;#fnref-2&quot; class=&quot;footnote-backref&quot;&gt;↩&lt;/a&gt;
+&lt;/li&gt;
+&lt;li id=&quot;fn-3&quot;&gt;
+&lt;p&gt;&lt;a href=&quot;https://docs.nestjs.com/modules&quot;&gt;https://docs.nestjs.com/modules&lt;/a&gt;&lt;/p&gt;
+&lt;a href=&quot;#fnref-3&quot; class=&quot;footnote-backref&quot;&gt;↩&lt;/a&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</content:encoded></item><item><title><![CDATA[Node.js Web 框架之 Sails]]></title><description><![CDATA[Node.js Web 框架之 SailsSails 是 Node.js 中最流行的 MVC 框架，类似于 Ruby on Rails。使用 Sails 可以轻松构建企业级的 Node.js Web 服务特点Sails 内置强大的 ROM…]]></description><link>https://gitblog.chao-home.com//nodejs/nodejs-web-framework-sails/</link><guid isPermaLink="false">https://gitblog.chao-home.com//nodejs/nodejs-web-framework-sails/</guid><pubDate>Sat, 06 Jul 2019 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;Node.js Web 框架之 Sails&lt;/h2&gt;
 &lt;p&gt;&lt;img src=&quot;https://sailsjs.com/images/get_started_hero@2x.png&quot;&gt;&lt;/p&gt;
 &lt;p&gt;Sails 是 Node.js 中最流行的 MVC 框架，类似于 Ruby on Rails。使用 Sails 可以轻松构建企业级的 Node.js Web 服务&lt;sup id=&quot;fnref-1&quot;&gt;&lt;a href=&quot;#fn-1&quot; class=&quot;footnote-ref&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
 &lt;h4&gt;特点&lt;/h4&gt;
@@ -138,14 +579,14 @@ $ &lt;span class=&quot;token function&quot;&gt;curl&lt;/span&gt; localhost:8804/
 &lt;a href=&quot;#fnref-1&quot; class=&quot;footnote-backref&quot;&gt;↩&lt;/a&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;/div&gt;</content:encoded></item><item><title><![CDATA[Node.js Web 框架比较]]></title><description><![CDATA[Node.js Web 框架比较当我们开始构建 Web 服务器时，首先要选择一个适合的框架，各个框架有不同的优缺点以及应用场景，在选择之前最好了解一下常见的框架，以做出最好的选择。接下来会简单介绍以下几个 Web…]]></description><link>https://gitblog.chao-home.com//nodejs/nodejs-web-framework/</link><guid isPermaLink="false">https://gitblog.chao-home.com//nodejs/nodejs-web-framework/</guid><pubDate>Wed, 03 Jul 2019 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;Node.js Web 框架比较&lt;/h2&gt;
+&lt;/div&gt;</content:encoded></item><item><title><![CDATA[Node.js Web 框架比较]]></title><description><![CDATA[Node.js Web 框架比较当我们开始构建 Web 服务器时，首先要选择一个适合的框架，各个框架有不同的优缺点以及应用场景，在选择之前最好了解一下常见的框架，以做出最好的选择。接下来会简单介绍以下几个 Web 框架：KoaHapiSailsRestifyNestKoaKoa…]]></description><link>https://gitblog.chao-home.com//nodejs/nodejs-web-framework/</link><guid isPermaLink="false">https://gitblog.chao-home.com//nodejs/nodejs-web-framework/</guid><pubDate>Wed, 03 Jul 2019 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;Node.js Web 框架比较&lt;/h2&gt;
 &lt;p&gt;当我们开始构建 Web 服务器时，首先要选择一个适合的框架，各个框架有不同的优缺点以及应用场景，在选择之前最好了解一下常见的框架，以做出最好的选择。接下来会简单介绍以下几个 Web 框架：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;Koa&lt;/li&gt;
 &lt;li&gt;Hapi&lt;/li&gt;
 &lt;li&gt;Sails&lt;/li&gt;
 &lt;li&gt;Restify&lt;/li&gt;
-&lt;li&gt;LoopBack&lt;/li&gt;
+&lt;li&gt;Nest&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h4&gt;Koa&lt;/h4&gt;
 &lt;blockquote&gt;
