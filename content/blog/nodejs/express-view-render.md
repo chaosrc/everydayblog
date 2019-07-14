@@ -1,5 +1,5 @@
 ---
-title: express 环境配置与模版渲染
+title: Express 环境配置与模版渲染
 date: 2019-07-13
 ---
 
@@ -15,7 +15,6 @@ date: 2019-07-13
 #### 环境配置
 
 express 自带了一个极简的环境配置系统，由以下几个方法组成：
-
 - app.set()
 - app.get()
 - app.disable()
