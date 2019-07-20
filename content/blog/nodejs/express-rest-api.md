@@ -94,6 +94,141 @@ router.get('/entry/:page',(req, res) => {
 
 下一步将会添加分页中间件以及返回 JSON 和 XML 格式数据
 
-（未完待续）
+
+
+
+
+#### 添加分页中间件
+
+获取消息列表 `/entry/:page` 时通过参数 page 来得到当前显示的页数
+
+```js
+function page() {
+    return (req, res, next) => {
+        const p = req.params.page
+        const size = 10
+        const page = {
+            form: (Number(p) - 1) * size,
+            to: Number(p) * size,
+        }
+        req.page = page
+        next()
+    }
+}
+```
+
+访问 localhost:3000/api/entry/1
+```
+$ curl http://localhost:3000/api/entry/1
+[{"title":"hahaewrw","content":"bzddddwrwfew"},{"title":"1133","content":"11222222222"},{"title":"ww","content":""},{"title":"hello","content":"qqqqqqq"}]
+```
+
+
+
+#### 格式化响应数据
+
+创建完 API 后，接下来看看如何是接口支持多种数据类型
+
+HTTP 请求通过 Accept 请求头提供内容协商机制，比如请求头：
+```
+Accept: text/plain; q=0.5, text/html
+``` 
+其中 q 表示 quality value，即 text/html 的优先级比 text/plain 要高出 50%。Express 会解析这个信息并放在 req.accepted 数组中
+
+```js
+[
+    { value: 'text/html', quality: 1 },
+    { value: 'text/plain', quality: 0.5 }
+]
+```
+
+在 Express 中还提供了 res.format 方法，它的参数是 MIME 类型和 回调函数
+
+添加 JSON 格式的响应
+
+```js
+res.format({
+    'application/json': () => {
+        res.send(list)
+    }
+})
+```
+添加 XML 格式的响应
+
+```js
+res.format({
+    'application/json': () => {
+        res.send(list)
+    },
+    'application/xml': () => {
+        res.write('<entries>')
+        list.forEach(item => {
+            res.write(`
+            <entry>
+                <title>${item.title}</title>
+                <content>${item.content}</content>
+            </entry>
+            `)
+        })
+        res.end('</entries>')
+    }
+})
+```
+
+访问并获取 XML 格式的数据
+```bash
+$ curl -H 'Accept: application/xml'   http://localhost:3000/api/entry/1
+```
+```html
+<entry>
+    <title>hahaewrw</title>
+    <content>bzddddwrwfew</content>
+</entry>
+
+<entry>
+    <title>1133</title>
+    <content>11222222222</content>
+</entry>
+
+<entry>
+    <title>ww</title>
+    <content></content>
+</entry>
+
+<entry>
+    <title>hello</title>
+    <content>qqqqqqq</content>
+</entry>
+</entries>
+
+```
+
+还可通过模版的形式来返回 XML 格式数据
+
+先定义 ejs 模版
+```html
+<!-- 文件 list.ejs -->
+<entries>
+  <% list.forEach(item => { %>
+  <entry>
+    <title><%= item.title %></title>
+    <content><%= item.content %></content>
+  </entry>
+  <% }) %>
+</entries>
+```
+在格式化回调函数中渲染模版
+```js
+res.format({
+    'application/json': () => {
+        res.send(list)
+    },
+    'application/xml': () => {
+        res.render('list', { list })
+    }
+})
+```
+
+
 
 
