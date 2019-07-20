@@ -56,7 +56,99 @@ app<span class="token punctuation">.</span><span class="token function">use</spa
 <span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre></div>
 <p>通过 Entry 的 getRange 获取分页消息列表</p>
 <p>下一步将会添加分页中间件以及返回 JSON 和 XML 格式数据</p>
-<p>（未完待续）</p></div><hr style="margin-bottom:1.75rem"/><div style="display:flex;margin-bottom:4.375rem"><div class=" gatsby-image-wrapper" style="position:relative;overflow:hidden;display:inline-block;width:50px;height:50px;margin-right:0.875rem;margin-bottom:0;min-width:50px;border-radius:100%"><img src="data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAUABQDASIAAhEBAxEB/8QAGAABAQEBAQAAAAAAAAAAAAAAAAQCAQP/xAAXAQEBAQEAAAAAAAAAAAAAAAABAAID/9oADAMBAAIQAxAAAAGHXfXnTNo3QLMMn//EABwQAAEEAwEAAAAAAAAAAAAAAAEAAgMREiEyQf/aAAgBAQABBQIglYyNPSb1Qo7VYxeuFO//xAAUEQEAAAAAAAAAAAAAAAAAAAAg/9oACAEDAQE/AR//xAAVEQEBAAAAAAAAAAAAAAAAAAAQAf/aAAgBAgEBPwEh/8QAGxABAQEAAgMAAAAAAAAAAAAAAQARAhAhMVH/2gAIAQEABj8CwtUtzvzPI9wfWS//xAAcEAEAAwEAAwEAAAAAAAAAAAABABEhQTFRYbH/2gAIAQEAAT8hoNVicxvJa1G17Di3z2NlFyJdjfmR9uj9lXxaQzFxn//aAAwDAQACAAMAAAAQ7wiC/8QAFxEBAAMAAAAAAAAAAAAAAAAAEAFBUf/aAAgBAwEBPxCNKP/EABgRAQEBAQEAAAAAAAAAAAAAAAEAIREx/9oACAECAQE/EDibeQMl2//EAB4QAQACAgIDAQAAAAAAAAAAAAEAESExQWFRcYHR/9oACAEBAAE/EFi6wXR963LFqBXk8X1ojc5F25uWkjlh6wXDD7Ws8jfjUuOGF6HuAiRF1kXEPqKKepWCUcfk/9k=" alt="chao" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;object-position:center;opacity:1;transition-delay:500ms;border-radius:50%"/><noscript><picture><img loading="lazy" width="50" height="50" srcset="/static/272e8ca81ab2a8cd0c319392a23038bc/9b664/profile-pic.jpg 1x,
+<h4>添加分页中间件</h4>
+<p>获取消息列表 <code class="language-text">/entry/:page</code> 时通过参数 page 来得到当前显示的页数</p>
+<div class="gatsby-highlight" data-language="js"><pre class="language-js"><code class="language-js"><span class="token keyword">function</span> <span class="token function">page</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token punctuation">(</span><span class="token parameter">req<span class="token punctuation">,</span> res<span class="token punctuation">,</span> next</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+        <span class="token keyword">const</span> p <span class="token operator">=</span> req<span class="token punctuation">.</span>params<span class="token punctuation">.</span>page
+        <span class="token keyword">const</span> size <span class="token operator">=</span> <span class="token number">10</span>
+        <span class="token keyword">const</span> page <span class="token operator">=</span> <span class="token punctuation">{</span>
+            form<span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token function">Number</span><span class="token punctuation">(</span>p<span class="token punctuation">)</span> <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">*</span> size<span class="token punctuation">,</span>
+            to<span class="token punctuation">:</span> <span class="token function">Number</span><span class="token punctuation">(</span>p<span class="token punctuation">)</span> <span class="token operator">*</span> size<span class="token punctuation">,</span>
+        <span class="token punctuation">}</span>
+        req<span class="token punctuation">.</span>page <span class="token operator">=</span> page
+        <span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre></div>
+<p>访问 localhost:3000/api/entry/1</p>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">$ curl http://localhost:3000/api/entry/1
+[{&quot;title&quot;:&quot;hahaewrw&quot;,&quot;content&quot;:&quot;bzddddwrwfew&quot;},{&quot;title&quot;:&quot;1133&quot;,&quot;content&quot;:&quot;11222222222&quot;},{&quot;title&quot;:&quot;ww&quot;,&quot;content&quot;:&quot;&quot;},{&quot;title&quot;:&quot;hello&quot;,&quot;content&quot;:&quot;qqqqqqq&quot;}]</code></pre></div>
+<h4>格式化响应数据</h4>
+<p>创建完 API 后，接下来看看如何是接口支持多种数据类型</p>
+<p>HTTP 请求通过 Accept 请求头提供内容协商机制，比如请求头：</p>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">Accept: text/plain; q=0.5, text/html</code></pre></div>
+<p>其中 q 表示 quality value，即 text/html 的优先级比 text/plain 要高出 50%。Express 会解析这个信息并放在 req.accepted 数组中</p>
+<div class="gatsby-highlight" data-language="js"><pre class="language-js"><code class="language-js"><span class="token punctuation">[</span>
+    <span class="token punctuation">{</span> value<span class="token punctuation">:</span> <span class="token string">'text/html'</span><span class="token punctuation">,</span> quality<span class="token punctuation">:</span> <span class="token number">1</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span> value<span class="token punctuation">:</span> <span class="token string">'text/plain'</span><span class="token punctuation">,</span> quality<span class="token punctuation">:</span> <span class="token number">0.5</span> <span class="token punctuation">}</span>
+<span class="token punctuation">]</span></code></pre></div>
+<p>在 Express 中还提供了 res.format 方法，它的参数是 MIME 类型和 回调函数</p>
+<p>添加 JSON 格式的响应</p>
+<div class="gatsby-highlight" data-language="js"><pre class="language-js"><code class="language-js">res<span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    <span class="token string">'application/json'</span><span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+        res<span class="token punctuation">.</span><span class="token function">send</span><span class="token punctuation">(</span>list<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre></div>
+<p>添加 XML 格式的响应</p>
+<div class="gatsby-highlight" data-language="js"><pre class="language-js"><code class="language-js">res<span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    <span class="token string">'application/json'</span><span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+        res<span class="token punctuation">.</span><span class="token function">send</span><span class="token punctuation">(</span>list<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token string">'application/xml'</span><span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+        res<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span><span class="token string">'&lt;entries>'</span><span class="token punctuation">)</span>
+        list<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token parameter">item</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+            res<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span><span class="token template-string"><span class="token string">`
+            &lt;entry>
+                &lt;title></span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>item<span class="token punctuation">.</span>title<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">&lt;/title>
+                &lt;content></span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>item<span class="token punctuation">.</span>content<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">&lt;/content>
+            &lt;/entry>
+            `</span></span><span class="token punctuation">)</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span>
+        res<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token string">'&lt;/entries>'</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre></div>
+<p>访问并获取 XML 格式的数据</p>
+<div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash">$ <span class="token function">curl</span> -H <span class="token string">'Accept: application/xml'</span>   http://localhost:3000/api/entry/1</code></pre></div>
+<div class="gatsby-highlight" data-language="html"><pre class="language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>entry</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">></span></span>hahaewrw<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>content</span><span class="token punctuation">></span></span>bzddddwrwfew<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>content</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>entry</span><span class="token punctuation">></span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>entry</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">></span></span>1133<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>content</span><span class="token punctuation">></span></span>11222222222<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>content</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>entry</span><span class="token punctuation">></span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>entry</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">></span></span>ww<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>content</span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>content</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>entry</span><span class="token punctuation">></span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>entry</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">></span></span>hello<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>content</span><span class="token punctuation">></span></span>qqqqqqq<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>content</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>entry</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>entries</span><span class="token punctuation">></span></span></code></pre></div>
+<p>还可通过模版的形式来返回 XML 格式数据</p>
+<p>先定义 ejs 模版</p>
+<div class="gatsby-highlight" data-language="html"><pre class="language-html"><code class="language-html"><span class="token comment">&lt;!-- 文件 list.ejs --></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>entries</span><span class="token punctuation">></span></span>
+  &lt;% list.forEach(item => { %>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>entry</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">></span></span>&lt;%= item.title %><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>content</span><span class="token punctuation">></span></span>&lt;%= item.content %><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>content</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>entry</span><span class="token punctuation">></span></span>
+  &lt;% }) %>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>entries</span><span class="token punctuation">></span></span></code></pre></div>
+<p>在格式化回调函数中渲染模版</p>
+<div class="gatsby-highlight" data-language="js"><pre class="language-js"><code class="language-js">res<span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    <span class="token string">'application/json'</span><span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+        res<span class="token punctuation">.</span><span class="token function">send</span><span class="token punctuation">(</span>list<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token string">'application/xml'</span><span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">{</span>
+        res<span class="token punctuation">.</span><span class="token function">render</span><span class="token punctuation">(</span><span class="token string">'list'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> list <span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre></div></div><hr style="margin-bottom:1.75rem"/><div style="display:flex;margin-bottom:4.375rem"><div class=" gatsby-image-wrapper" style="position:relative;overflow:hidden;display:inline-block;width:50px;height:50px;margin-right:0.875rem;margin-bottom:0;min-width:50px;border-radius:100%"><img src="data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAUABQDASIAAhEBAxEB/8QAGAABAQEBAQAAAAAAAAAAAAAAAAQCAQP/xAAXAQEBAQEAAAAAAAAAAAAAAAABAAID/9oADAMBAAIQAxAAAAGHXfXnTNo3QLMMn//EABwQAAEEAwEAAAAAAAAAAAAAAAEAAgMREiEyQf/aAAgBAQABBQIglYyNPSb1Qo7VYxeuFO//xAAUEQEAAAAAAAAAAAAAAAAAAAAg/9oACAEDAQE/AR//xAAVEQEBAAAAAAAAAAAAAAAAAAAQAf/aAAgBAgEBPwEh/8QAGxABAQEAAgMAAAAAAAAAAAAAAQARAhAhMVH/2gAIAQEABj8CwtUtzvzPI9wfWS//xAAcEAEAAwEAAwEAAAAAAAAAAAABABEhQTFRYbH/2gAIAQEAAT8hoNVicxvJa1G17Di3z2NlFyJdjfmR9uj9lXxaQzFxn//aAAwDAQACAAMAAAAQ7wiC/8QAFxEBAAMAAAAAAAAAAAAAAAAAEAFBUf/aAAgBAwEBPxCNKP/EABgRAQEBAQEAAAAAAAAAAAAAAAEAIREx/9oACAECAQE/EDibeQMl2//EAB4QAQACAgIDAQAAAAAAAAAAAAEAESExQWFRcYHR/9oACAEBAAE/EFi6wXR963LFqBXk8X1ojc5F25uWkjlh6wXDD7Ws8jfjUuOGF6HuAiRF1kXEPqKKepWCUcfk/9k=" alt="chao" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;object-position:center;opacity:1;transition-delay:500ms;border-radius:50%"/><noscript><picture><img loading="lazy" width="50" height="50" srcset="/static/272e8ca81ab2a8cd0c319392a23038bc/9b664/profile-pic.jpg 1x,
 /static/272e8ca81ab2a8cd0c319392a23038bc/06a10/profile-pic.jpg 1.5x,
 /static/272e8ca81ab2a8cd0c319392a23038bc/f1b5a/profile-pic.jpg 2x" src="/static/272e8ca81ab2a8cd0c319392a23038bc/9b664/profile-pic.jpg" alt="chao" style="position:absolute;top:0;left:0;opacity:1;width:100%;height:100%;object-fit:cover;object-position:center"/></picture></noscript></div><p>个人博客 <br/>每天坚持✊</p></div><ul style="display:flex;flex-wrap:wrap;justify-content:space-between;list-style:none;padding:0"><li><a rel="prev" href="/nodejs/express-login/">← <!-- -->Express Web 之用户登录</a></li><li></li></ul></main><footer>© <!-- -->2019<!-- -->, Built with<!-- --> <a href="https://www.gatsbyjs.org">Gatsby</a></footer></div></div></div><script>
   
