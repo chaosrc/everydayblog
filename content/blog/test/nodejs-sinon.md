@@ -1,5 +1,5 @@
 ---
-titile: Node.js 测试之 Sinon.js 的探测器和存根
+title: Node.js 测试之 Sinon.js 的探测器和存根
 date: 2019-07-30
 ---
 
