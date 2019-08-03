@@ -1,4 +1,117 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[温故而知新]]></title><description><![CDATA[个人博客, 坚持每天一篇！]]></description><link>https://gitblog.chao-home.com/</link><generator>RSS for Node</generator><lastBuildDate>Wed, 31 Jul 2019 17:36:51 GMT</lastBuildDate><item><title><![CDATA[Node.js 端到端测试框架 Cypress]]></title><description><![CDATA[Node.js 端到端测试框架 Cypress使用 Cypress 能够对浏览器中运行的任何内容进行快速，简单和可靠的测试对比 Selenium 运行在浏览器之外，Cypress运行在浏览器里面能够直接获取 document、window 等 Javascript…]]></description><link>https://gitblog.chao-home.com//test/nodejs-cypress/</link><guid isPermaLink="false">https://gitblog.chao-home.com//test/nodejs-cypress/</guid><pubDate>Wed, 31 Jul 2019 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;Node.js 端到端测试框架 Cypress&lt;/h2&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[温故而知新]]></title><description><![CDATA[个人博客, 坚持每天一篇！]]></description><link>https://gitblog.chao-home.com/</link><generator>RSS for Node</generator><lastBuildDate>Sat, 03 Aug 2019 08:36:41 GMT</lastBuildDate><item><title><![CDATA[Node.js 程序的运维与部署]]></title><description><![CDATA[Node.js 程序的运维与部署每一种 web 技术都有各种增强稳定性和提供性能的技巧，Node.js 也不例外。web 程序如何部署，如何选择部署环境，如何保证在线时长也是一个至关重要的安置 Node.js 程序可靠和可扩展的运行 Node.js…]]></description><link>https://gitblog.chao-home.com//deploy/nodejs-deploy/</link><guid isPermaLink="false">https://gitblog.chao-home.com//deploy/nodejs-deploy/</guid><pubDate>Fri, 02 Aug 2019 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;Node.js 程序的运维与部署&lt;/h2&gt;
+&lt;p&gt;每一种 web 技术都有各种增强稳定性和提供性能的技巧，Node.js 也不例外。web 程序如何部署，如何选择部署环境，如何保证在线时长也是一个至关重要的&lt;/p&gt;
+&lt;h4&gt;安置 Node.js 程序&lt;/h4&gt;
+&lt;p&gt;可靠和可扩展的运行 Node.js 的三种方式：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;平台即服务（PaaS） — 在 Amoazon、Azure 等平台上运行&lt;/li&gt;
+&lt;li&gt;服务器或虚拟主机 — 在云上、私有主机或者公司内部的服务器上运行&lt;/li&gt;
+&lt;li&gt;容器 — 在 Docker 容器中运行&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;在 PaaS 服务上运行相对比较容易，只需要注册相应的账号，创建程序，然后推送代码，基本上是即插即用的&lt;/p&gt;
+&lt;p&gt;在服务器上安装定制化比较高，可以安装自己想要的服务，比如 HTTP 服务器、缓存层、日志软件等，但是需要自己管理，对 DevOps 等有要求&lt;/p&gt;
+&lt;p&gt;容器可以看作是程序部署自动化的 OS 虚拟技术，可以将程序定义为镜像，方便的组合多个程序，将程序容器化后，用一条命令就可以带起一个新实例&lt;/p&gt;
+&lt;h4&gt;保证 Node.js 不掉线&lt;/h4&gt;
+&lt;p&gt;如果使用 ssh 在服务器上直接运行 Node.js，退出 ssh 后 Node.js 就会停止运行。使用 Forever 工具可以保证程序不会停止运行，而且如果程序崩溃，Forever 还会重启程序&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;安装 Forever&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ &lt;span class=&quot;token function&quot;&gt;npm&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; -g forever&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;使用 Forever 启动程序&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ forver start server.js&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;停止程序&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ forver stop server.js&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;列出所有管理程序&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ forvever list&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;源码发生改变是自动重启&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ forvever -w start server.js&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;使用 Upstart 保证在线时长&lt;/h4&gt;
+&lt;p&gt;Upstart 可以优雅第管理所有 Linux 程序的启动和关停。CentOS 和 Ubuntu 的现代版本都支持 Upstart&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;安装&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;CentOS&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ &lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; yun &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; upstart&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Ubuntu&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ &lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;apt&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; upstart&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;安装好后需要给每个程序添加一个 Upstart 配置文件，并放在 /etc/init 目录下&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;author  &amp;#39;chao&amp;#39;
+description: &amp;#39;描述&amp;#39;
+
+start on runlevel [2345]
+stop on runlevel [06]
+
+respawn
+respawn limit 15 5
+
+console log
+env NODE_ENV=production
+exec /usr/bing/node server.js&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;respaw 配置程序在崩溃后需要重启的次数
+、以及间隔时间&lt;/p&gt;
+&lt;p&gt;再使用 exec 命令运行程序&lt;/p&gt;
+&lt;p&gt;Upstart 可配置化很高，功能强大，，深入了解可以参考官网文档&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Cypress 测试框架的核心概念]]></title><description><![CDATA[Cypress 测试框架的核心概念查询元素类似于 jQuery 的选择器, 但是不会同步返回元素，比如:Cypress 里面不会直接返回元素，而是会包装一层重试和超时逻辑，使用 .then 方法异步获取元素设置超时当查找的元素不存在时，cypress…]]></description><link>https://gitblog.chao-home.com//test/nodejs-cypress-core/</link><guid isPermaLink="false">https://gitblog.chao-home.com//test/nodejs-cypress-core/</guid><pubDate>Thu, 01 Aug 2019 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;Cypress 测试框架的核心概念&lt;/h2&gt;
+&lt;h4&gt;查询元素&lt;/h4&gt;
+&lt;p&gt;类似于 jQuery 的选择器, 但是不会同步返回元素，比如:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;// jQuery&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; el &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;input&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;// Cypress&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; el &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; cy&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;input&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Cypress 里面不会直接返回元素，而是会包装一层重试和超时逻辑，使用 .then 方法异步获取元素&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;cy&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;input&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;then&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;el&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;el&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h4&gt;设置超时&lt;/h4&gt;
+&lt;p&gt;当查找的元素不存在时，cypress 不会马上失败，而是会等待一个超时时间后报错, 如下设置10秒的超时：&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;cy&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;.name&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;timeout&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;100000&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;默认的超时时间为4秒&lt;/p&gt;
+&lt;h4&gt;与元素的互交&lt;/h4&gt;
+&lt;p&gt;cypress 中提供了以下与元素互交的方法:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;.type() 输入 input 元素的值&lt;/li&gt;
+&lt;li&gt;.blur() 使元素失去焦点&lt;/li&gt;
+&lt;li&gt;.focus() 使元素聚焦&lt;/li&gt;
+&lt;li&gt;.clear() 清除 input 或者 textarea 的值&lt;/li&gt;
+&lt;li&gt;.check() 选择 checkbox&lt;/li&gt;
+&lt;li&gt;.uncheck() 取消 checkbox 选择&lt;/li&gt;
+&lt;li&gt;.select() 选择 option&lt;/li&gt;
+&lt;li&gt;.dbclick() 双击元素&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;通过链式调用与元素互交&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;cy&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;textarea.post&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;hello&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+cy&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;.btn&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;click&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h4&gt;设置别名&lt;/h4&gt;
+&lt;p&gt;Cypress 提供了一个功能可以快速获取之前以及选择过的元素，如下：&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;cy
+  &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;.my-selector&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;as&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;myElement&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// 设置别名&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;click&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+cy
+  &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;@myElement&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;click&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;通过 as 方法设置别名，后面可以通过别名来获取元素，可以复用之前的选择&lt;/p&gt;
+&lt;h4&gt;异步执行命令&lt;/h4&gt;
+&lt;p&gt;一个非常重要的理解是 Cypress 命令在调用的时候不会立即执行，而是将它们储存在队列中稍后运行，因此Cypress 命令是异步执行的&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token function&quot;&gt;it&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;changes the URL when &quot;awesome&quot; is clicked&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  cy&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;visit&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;/my/resource/path&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; 
+
+  cy&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;.awesome-selector&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;  
+    &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;click&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;   
+
+  cy&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;               
+    &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;should&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;include&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;/my/resource/path#awesomeness&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; 
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;当 it 方法执行完成后才会依次执行上面的每一个命令&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Node.js 端到端测试框架 Cypress]]></title><description><![CDATA[Node.js 端到端测试框架 Cypress使用 Cypress 能够对浏览器中运行的任何内容进行快速，简单和可靠的测试对比 Selenium 运行在浏览器之外，Cypress运行在浏览器里面能够直接获取 document、window 等 Javascript…]]></description><link>https://gitblog.chao-home.com//test/nodejs-cypress/</link><guid isPermaLink="false">https://gitblog.chao-home.com//test/nodejs-cypress/</guid><pubDate>Wed, 31 Jul 2019 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;Node.js 端到端测试框架 Cypress&lt;/h2&gt;
 &lt;p&gt;使用 Cypress 能够对浏览器中运行的任何内容进行快速，简单和可靠的测试&lt;/p&gt;
 &lt;p&gt;对比 Selenium 运行在浏览器之外，Cypress运行在浏览器里面能够直接获取 document、window 等 Javascript 对象，对 Javascript 方法、对象能够更好的模拟，也因为如此 Cypress 只支持 Javascript&lt;/p&gt;
 &lt;h4&gt;安装 Cypress&lt;/h4&gt;
