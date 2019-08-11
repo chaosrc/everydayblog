@@ -1,4 +1,254 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[温故而知新]]></title><description><![CDATA[个人博客, 坚持每天一篇！]]></description><link>https://gitblog.chao-home.com/</link><generator>RSS for Node</generator><lastBuildDate>Wed, 07 Aug 2019 18:57:22 GMT</lastBuildDate><item><title><![CDATA[使用 Node.js 编写命令行程序（二）]]></title><description><![CDATA[使用 Node.js 创建 Todo 命令行程序完成一个命令行小程序，具有以下功能：todo new        创建一个 todotodo get        获取 todo 列表todo complete   完成一个 todotodo help…]]></description><link>https://gitblog.chao-home.com//command/nodejs-command-todo/</link><guid isPermaLink="false">https://gitblog.chao-home.com//command/nodejs-command-todo/</guid><pubDate>Tue, 06 Aug 2019 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;使用 Node.js 创建 Todo 命令行程序&lt;/h2&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[温故而知新]]></title><description><![CDATA[个人博客, 坚持每天一篇！]]></description><link>https://gitblog.chao-home.com/</link><generator>RSS for Node</generator><lastBuildDate>Sun, 11 Aug 2019 16:41:49 GMT</lastBuildDate><item><title><![CDATA[使用 v8-profiler 分析 CPU 使用情况]]></title><description><![CDATA[使用 v8-profiler 分析 CPU 使用情况Node.js 是基于 Chrome 的 V8 引擎，V8 暴露了一些 profiler API 用来分析 CPU 的使用情况创建测试代码在  get 请求里面使用  同步方法获取 hash 值，进行 CPU…]]></description><link>https://gitblog.chao-home.com//debug/v8-profiler/</link><guid isPermaLink="false">https://gitblog.chao-home.com//debug/v8-profiler/</guid><pubDate>Sat, 10 Aug 2019 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;使用 v8-profiler 分析 CPU 使用情况&lt;/h2&gt;
+&lt;p&gt;Node.js 是基于 Chrome 的 V8 引擎，V8 暴露了一些 profiler API 用来分析 CPU 的使用情况&lt;/p&gt;
+&lt;h4&gt;创建测试代码&lt;/h4&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; profiler &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;v8-profiler&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; crypto &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;crypto&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; express &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;express&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; fs &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;fs&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; app &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;express&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; users &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+
+app&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;/newUser&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;req&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; res&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; name &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; req&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;query&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;name &lt;span class=&quot;token operator&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;test&apos;&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; password &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; req&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;query&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;password &lt;span class=&quot;token operator&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;test&apos;&lt;/span&gt;
+
+    &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; salt &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; crypto&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;randomBytes&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;128&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;toString&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;base64&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; hash &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; crypto&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;pbkdf2Sync&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;password&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; salt&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;10000&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;64&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;sha512&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;toString&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;hex&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    users&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;name&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; salt&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; hash &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+    res&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;创建成功&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+app&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;/profiler&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;req&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; res&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token comment&quot;&gt;// 开始记录&lt;/span&gt;
+    profiler&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;startProfiling&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;CPU profiler&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+    &lt;span class=&quot;token comment&quot;&gt;// 30 秒后停止记录，并且导出记录结果&lt;/span&gt;
+    &lt;span class=&quot;token function&quot;&gt;setTimeout&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; profile &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; profiler&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;stopProfiling&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+        profile&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;export&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;pipe&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;fs&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;createWriteStream&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;./profile.cpuprofile&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;on&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;finish&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+                profile&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;delete&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+            &lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;30&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1000&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+app&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;listen&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;8001&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;在 &lt;code class=&quot;language-text&quot;&gt;/newUser&lt;/code&gt; get 请求里面使用 &lt;code class=&quot;language-text&quot;&gt;crypto.pbkdf2Sync&lt;/code&gt; 同步方法获取 hash 值，进行 CPU 密集型计算&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;/profiler&lt;/code&gt; 请求中开始记录 CPU 运算，30 秒后停止记录，并将记录的数据导出至当前目录下的 &lt;code class=&quot;language-text&quot;&gt;profile.cpuprofile&lt;/code&gt; 文件&lt;/p&gt;
+&lt;h4&gt;记录 CPU 使用情况&lt;/h4&gt;
+&lt;p&gt;启用 web 服务，并开始记录 CPU 使用&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ node index.js &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&lt;/span&gt;
+$ &lt;span class=&quot;token function&quot;&gt;curl&lt;/span&gt; http://localhost:8001/profiler&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;在另一个终端进行 ab 压测触发 CPU 密集计算&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ ab -c 20 -n 2000 &lt;span class=&quot;token string&quot;&gt;&apos;http://localhost:8001/newUser&apos;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;最后生成的 &lt;code class=&quot;language-text&quot;&gt;profile.cpuprofile&lt;/code&gt; 文件中记录了函数调用栈、路径、时间戳和一些其他信息&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ ll
+400K -rw-rw-r--   1 chao chao 399K Aug 10 18:20 profile.cpuprofile&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h4&gt;使用 Chrome DevTools 可视化数据&lt;/h4&gt;
+&lt;p&gt;Chrome 自带了分析 CPU profile 日志的工具&lt;/p&gt;
+&lt;p&gt;打开 Chrome 开发工具，选择 Javascript Profiler 面板，点击 Load 加载&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://s2.ax1x.com/2019/08/10/eOTV3j.png&quot;&gt;&lt;/p&gt;
+&lt;p&gt;选择 profile.cpuprofile 文件加载&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://s2.ax1x.com/2019/08/10/eOLxgg.png&quot;&gt;&lt;/p&gt;
+&lt;p&gt;2019-08-11 更新&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;在左上角的菜单中可以选择三种查看模式&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://s2.ax1x.com/2019/08/11/ev1JqU.md.png&quot;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Chart 显示按时间顺序排列的火焰图&lt;/li&gt;
+&lt;li&gt;Heavy(Botton Up) 按照函数对性能的影响排列，同时可以查看函数的调用路径&lt;/li&gt;
+&lt;li&gt;Tree(Top Down) 显示调用结构的总体状况，从调用堆栈的顶端开始&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;选择 Tree(Top Down) 模式，可以看的有下面三列&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Self Time 函数调用所耗费的时间，仅包含函数本身的声明，不包括任何子函数的执行时间&lt;/li&gt;
+&lt;li&gt;Total Time 函数调用所耗费的总时间，包含本身的函数声明及所以子函数的执行时间&lt;/li&gt;
+&lt;li&gt;Function 函数名及路径，可展开查看子函数&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&quot;https://s2.ax1x.com/2019/08/11/evdQTx.png&quot;&gt;
+从图中可以看到 parserOnHeadersComplete 函数占据了绝大部分的 CPU 时间&lt;/p&gt;
+&lt;p&gt;逐级展开后定位到最终 crypto 的 pbkdf2Sync 方法&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://s2.ax1x.com/2019/08/11/ev0lRO.png&quot;&gt;&lt;/p&gt;
+&lt;h4&gt;使用火焰图来展示 cpuprofile 数据&lt;/h4&gt;
+&lt;p&gt;全局安装 flamegraph&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ &lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;npm&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; -g flamegraph&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;将 cpuprofile 文件生成 svg 文件&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ flamegraph -t cpuprofile -f profile.cpuprofile -o profile.svg&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;img src=&quot;https://s2.ax1x.com/2019/08/11/evDkDJ.png&quot;&gt;&lt;/p&gt;
+&lt;p&gt;同样能够定位到 pbkdf2 占据了绝大部分的 CPU 时间&lt;/p&gt;
+&lt;h4&gt;使用 v8-analytics 分析 CPU 使用&lt;/h4&gt;
+&lt;p&gt;v8-analytics 是 Node.js 社区开源的一个解析 v8-profiler 和 heapdump 等模块生成的 CPU 和 heap-memory日志工具，具有以下功能：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;将 V8 引擎逆优化或者优化失败的函数标红展示，并显示优化失败的结果&lt;/li&gt;
+&lt;li&gt;在函数执行时长超过预期时标红展示&lt;/li&gt;
+&lt;li&gt;展示当前项目中可疑的内存泄露点&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;安装 v8-analytics&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ &lt;span class=&quot;token function&quot;&gt;npm&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; -g v8-analytics&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;使用 v8-analytics 查看执行时间大于 50 ms的函数&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ va &lt;span class=&quot;token function&quot;&gt;timeout&lt;/span&gt; profile.cpuprofile 50 --only
+Function Execute Time &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; 50ms List:
+1. &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;idle&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;416.7ms 1.39%&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; 
+2. &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;idle&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;855.3ms 2.85%&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; 
+3. parserOnHeadersComplete &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;61.4ms 0.20%&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;_http_common.js 71&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+4. parserOnIncoming &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;61.4ms 100.00%&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;_http_server.js 644&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+5. emit &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;61.4ms 100.00%&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;events.js 149&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+6. app &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;61.4ms 100.00%&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;/Users/chao/workspace/node/node-demo/perf-demo/node_modules/express/lib/express.js 38&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+7. handle &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;61.4ms 100.00%&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;/Users/chao/workspace/node/node-demo/perf-demo/node_modules/express/lib/application.js 158&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+8. handle &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;61.4ms 100.00%&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;/Users/chao/workspace/node/node-demo/perf-demo/node_modules/express/lib/router/index.js 136&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+9. next &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;61.4ms 100.00%&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;/Users/chao/workspace/node/node-demo/perf-demo/node_modules/express/lib/router/index.js 176&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+10. process_params &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;61.4ms 100.00%&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;/Users/chao/workspace/node/node-demo/perf-demo/node_modules/express/lib/router/index.js 327&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+11. anonymous &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;61.4ms 100.00%&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;/Users/chao/workspace/node/node-demo/perf-demo/node_modules/express/lib/router/index.js 275&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+12. trim_prefix &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;61.4ms 100.00%&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;/Users/chao/workspace/node/node-demo/perf-demo/node_modules/express/lib/router/index.js 288&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+13. handle &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;61.4ms 100.00%&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;/Users/chao/workspace/node/node-demo/perf-demo/node_modules/express/lib/router/layer.js 86&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+14. query &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;61.4ms 100.00%&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;/Users/chao/workspace/node/node-demo/perf-demo/node_modules/express/lib/middleware/query.js 39&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+15. expressInit &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;61.4ms 100.00%&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;/Users/chao/workspace/node/node-demo/perf-demo/node_modules/express/lib/middleware/init.js 29&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+16. dispatch &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;61.4ms 100.00%&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;/Users/chao/workspace/node/node-demo/perf-demo/node_modules/express/lib/router/route.js 98&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+17. next &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;61.4ms 100.00%&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;/Users/chao/workspace/node/node-demo/perf-demo/node_modules/express/lib/router/route.js 114&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+18. anonymous &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;61.4ms 100.00%&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;/Users/chao/workspace/node/node-demo/perf-demo/v8-pf.js 10&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+19. pbkdf2Sync &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;61.4ms 100.00%&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;internal/crypto/pbkdf2.js 44&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+20. handleError &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;61.4ms 100.00%&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;internal/crypto/pbkdf2.js 74&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+21. pbkdf2 &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;61.4ms 100.00%&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;依然可以定位到 pbkdf2 函数&lt;/p&gt;</content:encoded></item><item><title><![CDATA[理解 perf 与 火焰图（FlameGraph）]]></title><description><![CDATA[perf 与 火焰图（FlameGraph）Node.js 是单线程异步的 I/O 模型，在接受到请求时并不是每个请求启动一个线程，如果有一个任务长时间占用 CPU 整个应用就会卡住，无非处理其他请求。火焰图（FlameGraph）可以将 CPU…]]></description><link>https://gitblog.chao-home.com//debug/perf-flame-graph/</link><guid isPermaLink="false">https://gitblog.chao-home.com//debug/perf-flame-graph/</guid><pubDate>Thu, 08 Aug 2019 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;perf 与 火焰图（FlameGraph）&lt;/h2&gt;
+&lt;p&gt;Node.js 是单线程异步的 I/O 模型，在接受到请求时并不是每个请求启动一个线程，如果有一个任务长时间占用 CPU 整个应用就会卡住，无非处理其他请求。火焰图（FlameGraph）可以将 CPU 的使用情况可视化，自观的了解到程序的性能瓶颈&lt;/p&gt;
+&lt;h4&gt;perf&lt;/h4&gt;
+&lt;p&gt;perf（perf_event 的简称）是 linux 内核自带的系统性能分析工具，能进行函数级与指令级的热点查找，常用于查找性能瓶颈以及定位热点代码。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;安装 perf&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ &lt;span class=&quot;token function&quot;&gt;uname&lt;/span&gt; -a
+Linux chao-TOP2 4.18.0-18-generic &lt;span class=&quot;token comment&quot;&gt;#19~18.04.1-Ubuntu SMP Fri Apr 5 10:22:13 UTC 2019 x86_64 x86_64 x86_64 GNU/Linux&lt;/span&gt;
+
+$ &lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;apt&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; linux-tools-common
+$ &lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;apt&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; linux-tools-4.18.0-18-generic linux-cloud-tools-4.18.0-18-generic&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;查看当前 Linux 内核版本，安装 linux-tools-common 以及对应内核版本的 tools&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;创建测试代码&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; crypto &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;crypto&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; express &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;express&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; app &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;express&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; users &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+
+app&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;/newUser&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;req&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; res&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; name &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; req&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;query&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;name &lt;span class=&quot;token operator&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;test&apos;&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; password &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; req&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;query&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;password &lt;span class=&quot;token operator&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;test&apos;&lt;/span&gt;
+
+    &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; salt &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; crypto&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;randomBytes&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;128&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;toString&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;base64&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; hash &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; crypto&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;pbkdf2Sync&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;password&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; salt&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;10000&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;64&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;sha512&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;toString&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;hex&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    users&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;name&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; salt&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; hash &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;token comment&quot;&gt;// res.status(204)&lt;/span&gt;
+    res&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;创建成功&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+app&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;/auth&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;req&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; res&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; name &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; req&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;query&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;name &lt;span class=&quot;token operator&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;test&apos;&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; password &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; req&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;query&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;password &lt;span class=&quot;token operator&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;test&apos;&lt;/span&gt;
+
+    &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;!&lt;/span&gt;name&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        res&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;用户名不能为空&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; user &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; users&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;name&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;!&lt;/span&gt;user&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        res&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;用户名不存在&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; salt &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; user&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;salt
+    &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; hash &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; crypto&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;pbkdf2Sync&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;password&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; salt&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;10000&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;64&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;sha512&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;toString&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;hex&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;user&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;hash &lt;span class=&quot;token operator&quot;&gt;===&lt;/span&gt; hash&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token comment&quot;&gt;// res.status(204)&lt;/span&gt;
+        res&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;登录成功&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+       res&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;密码错误&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+
+app&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;listen&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;8001&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;添加 —perf&lt;em&gt;basic&lt;/em&gt;prof 运行程序&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ node --perf_basic_prof index.js &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&lt;/span&gt; 
+&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;1&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; 6450&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;会生成 /tmp/perf-&lt;PID&gt;.map 文件&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ &lt;span class=&quot;token function&quot;&gt;tail&lt;/span&gt; /tmp/perf-6450.map 
+2b04e2de7f2a 45 LazyCompile:~emitBeforeScript internal/async_hooks.js:316
+2b04e2de812a 5a LazyCompile:~validateAsyncId internal/async_hooks.js:113
+2b04e2de83a2 &lt;span class=&quot;token function&quot;&gt;bc&lt;/span&gt; LazyCompile:~pushAsyncIds internal/async_hooks.js:351
+2b04e2de877a 76 LazyCompile:~_combinedTickCallback internal/process/next_tick.js:129
+2b04e2de8a62 18 LazyCompile:~emitListeningNT net.js:1391
+2b04e2de8bea 37 LazyCompile:~emitAfterScript internal/async_hooks.js:330
+2b04e2de8dfa c6 LazyCompile:~popAsyncIds internal/async_hooks.js:364
+2b04e2de919a 77 LazyCompile:~tickDone internal/process/next_tick.js:88
+2b04e2de9412 12 LazyCompile:~clear internal/process/next_tick.js:42
+2b04e2de95fa b8 LazyCompile:~emitPendingUnhandledRejections internal/process/promises.js:100&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;map 文件的三列依次为：16进制的符号地址、大小、符号名，perf 会尝试查找 /tmp/perf-&lt;PID&gt;.map 文件将16进制的符号转换为人能够读懂的符号&lt;/p&gt;
+&lt;h4&gt;生成火焰图&lt;/h4&gt;
+&lt;p&gt;clone 火焰图工具&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; clone https://github.com/brendangregg/FlameGraph.git ~/FlameGraph&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;使用 ab 压测&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ &lt;span class=&quot;token function&quot;&gt;curl&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;http://localhost:8001/newUser?name=admin&amp;amp;password=123456&apos;&lt;/span&gt;
+
+$ ab -k -c 10 -n 2000 &lt;span class=&quot;token string&quot;&gt;&apos;http://localhost:8001/auth?name=admin&amp;amp;password=123456&apos;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;在另一个终端中使用 perf 记录运行情况&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ &lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; perf record -F 99  -p 3709 -g -- &lt;span class=&quot;token function&quot;&gt;sleep&lt;/span&gt; 30
+&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt; perf record: Woken up 2 &lt;span class=&quot;token function&quot;&gt;times&lt;/span&gt; to &lt;span class=&quot;token function&quot;&gt;write&lt;/span&gt; data &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt; perf record: Captured and wrote 0.423 MB perf.data &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;1494 samples&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+$ &lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;chown&lt;/span&gt; root /tmp/perf-3709.map
+$ &lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; perf script &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; perf.stacks
+
+$ ~/FlameGraph/stackcollapse-perf.pl --kernel &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt; perf.stacks &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; ~/FlameGraph/flamegraph.pl --color&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;js --hash &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; flamegraph.svg&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;下面是生成的 svg 火焰图 图片&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://s2.ax1x.com/2019/08/09/eHeXg1.jpg&quot;&gt;&lt;/p&gt;
+&lt;p&gt;2019-08-10更新&lt;/p&gt;
+&lt;hr&gt;
+&lt;h4&gt;perf 的使用&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;-F 指定采样频率&lt;/li&gt;
+&lt;li&gt;-p 指定进程 pid&lt;/li&gt;
+&lt;li&gt;-g 启用 call-graph 记录&lt;/li&gt;
+&lt;li&gt;sleep 指定记录的秒数&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;perf record 会将记录的信息保存到当前执行目录的 perf.data 文件&lt;/p&gt;
+&lt;p&gt;perf script 将读取 perf.data 的 trace 信息写入 perf.stacks 文件&lt;/p&gt;
+&lt;h4&gt;火焰图的含义&lt;/h4&gt;
+&lt;p&gt;运行 FlameGraph 时，使用 —color=js 指定生成 Javascript 配色的 svg，其中 green 代表 Javascript, blue 代表 Buildin, yellow 代表 C++，red 代表 System。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;每一个小块代表一个函数在栈中的位置（即一个栈帧）&lt;/li&gt;
+&lt;li&gt;Y 轴代表栈的深度，每个方块下面是他的祖先（即父函数）&lt;/li&gt;
+&lt;li&gt;X 轴代表总的样例群体，从左至右并非按照时间排序，仅仅是按照字母顺序排列&lt;/li&gt;
+&lt;li&gt;方块的高度代表 CPU 时间，越宽代表 CPU 时间越长，或者 CPU 使用很频繁&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;从下面的火焰图可以看出 node::crypto::PBKDF2Request C++代码占用的大量的 CPU 时间&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://s2.ax1x.com/2019/08/10/eqOCuR.png&quot;&gt;&lt;/p&gt;
+&lt;p&gt;是因为使用了 &lt;code class=&quot;language-text&quot;&gt;crypto.pbkdf2Sync&lt;/code&gt; 同步方法，将 pbkdf2Sync 改为异步的 pbkdf2 方法，再生成火焰图&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token operator&quot;&gt;...&lt;/span&gt;
+app&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;/auth&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;req&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; res&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token operator&quot;&gt;...&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; salt &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; user&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;salt
+    crypto&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;pbkdf2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;password&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; salt&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;10000&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;64&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;sha512&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;err&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; hash&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        hash &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; hash&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;toString&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;hex&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;user&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;hash &lt;span class=&quot;token operator&quot;&gt;===&lt;/span&gt; hash&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;token comment&quot;&gt;// res.status(204)&lt;/span&gt;
+            res&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;登录成功&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+            res&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;密码错误&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;token operator&quot;&gt;...&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;重新生成的火焰图&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://s2.ax1x.com/2019/08/10/eqO858.jpg&quot;&gt;&lt;/p&gt;
+&lt;p&gt;绿色的 Javascript 部分明显减小，是因为异步的 I/O 方式，底层使用了多线程执行&lt;/p&gt;</content:encoded></item><item><title><![CDATA[使用 Node.js 编写命令行程序（二）]]></title><description><![CDATA[使用 Node.js 创建 Todo 命令行程序完成一个命令行小程序，具有以下功能：todo new        创建一个 todotodo get        获取 todo 列表todo complete   完成一个 todotodo help…]]></description><link>https://gitblog.chao-home.com//command/nodejs-command-todo/</link><guid isPermaLink="false">https://gitblog.chao-home.com//command/nodejs-command-todo/</guid><pubDate>Tue, 06 Aug 2019 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;使用 Node.js 创建 Todo 命令行程序&lt;/h2&gt;
 &lt;p&gt;完成一个命令行小程序，具有以下功能：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;todo new        创建一个 todo&lt;/li&gt;
