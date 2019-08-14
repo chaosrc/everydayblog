@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[温故而知新]]></title><description><![CDATA[个人博客, 坚持每天一篇！]]></description><link>https://gitblog.chao-home.com/</link><generator>RSS for Node</generator><lastBuildDate>Tue, 13 Aug 2019 16:57:41 GMT</lastBuildDate><item><title><![CDATA[使用 Tick Processor 分析 CPU 使用情况]]></title><description><![CDATA[使用 Tick Processor 分析 CPU 使用情况Tick Processor 是 v8 内置的一个性能分析工具，可以记录 Javascript、C、C++代码的堆栈信息，该功能默认是关闭的，可以通过添加命令行参数 —prof 开启创建测试代码创建了一个 hash…]]></description><link>https://gitblog.chao-home.com//debug/tick-processor/</link><guid isPermaLink="false">https://gitblog.chao-home.com//debug/tick-processor/</guid><content:encoded>&lt;h2&gt;使用 Tick Processor 分析 CPU 使用情况&lt;/h2&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[温故而知新]]></title><description><![CDATA[个人博客, 坚持每天一篇！]]></description><link>https://gitblog.chao-home.com/</link><generator>RSS for Node</generator><lastBuildDate>Wed, 14 Aug 2019 17:10:42 GMT</lastBuildDate><item><title><![CDATA[使用 Tick Processor 分析 CPU 使用情况]]></title><description><![CDATA[使用 Tick Processor 分析 CPU 使用情况Tick Processor 是 v8 内置的一个性能分析工具，可以记录 Javascript、C、C++代码的堆栈信息，该功能默认是关闭的，可以通过添加命令行参数 —prof 开启创建测试代码创建了一个 hash…]]></description><link>https://gitblog.chao-home.com//debug/tick-processor/</link><guid isPermaLink="false">https://gitblog.chao-home.com//debug/tick-processor/</guid><content:encoded>&lt;h2&gt;使用 Tick Processor 分析 CPU 使用情况&lt;/h2&gt;
 &lt;p&gt;Tick Processor 是 v8 内置的一个性能分析工具，可以记录 Javascript、C、C++代码的堆栈信息，该功能默认是关闭的，可以通过添加命令行参数 —prof 开启&lt;/p&gt;
 &lt;h4&gt;创建测试代码&lt;/h4&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; crypto &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;crypto&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
@@ -191,6 +191,102 @@ $ &lt;span class=&quot;token function&quot;&gt;npm&lt;/span&gt; &lt;span class=&
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ gcore -o core_file &lt;span class=&quot;token variable&quot;&gt;&lt;span class=&quot;token variable&quot;&gt;`&lt;/span&gt;pgrep -n node&lt;span class=&quot;token variable&quot;&gt;`&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;生成 Core Dump 文件 core_file&lt;/p&gt;
 &lt;p&gt;下一步将会分析生成的 Core Dump 文件&lt;/p&gt;
+&lt;p&gt;运行 lldb&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ lldb-4.0 -c core.1070
+&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;lldb&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;此时 llnode 还不能使用，需要加载 llnode 插件到 lldb 中&lt;/p&gt;
+&lt;h4&gt;加载 llnode 插件&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;使用 llnode 命令&lt;/p&gt;
+&lt;p&gt;通过全局安装 llnode（npm install -g llnode）后，使用 llnode 命令会启动 lldb 并且自动加载 llnode 插件，所有 llnode 的参数都会传给 lldb&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;使用 ~/.lldbinit 加载&lt;/p&gt;
+&lt;p&gt;在 ~/.lldbinit 中添加 plugin load 命令，lldb 在启动是会自动加载插件&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;plugin load /path/to/the/llnode/plugin&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;手动加载 llnode 插件&lt;/p&gt;
+&lt;p&gt;运行 lldb 后，使用 plugin load 命令加载&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ lldb-4.0 -c core.10706 
+&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;lldb&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; target create --core &lt;span class=&quot;token string&quot;&gt;&quot;core.10706&quot;&lt;/span&gt;
+Core &lt;span class=&quot;token function&quot;&gt;file&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;/home/chao/workspace/core-dump/core.10706&apos;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;x86_64&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; was loaded.
+&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;lldb&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; plugin load /path/llnode/llnode.so&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;使用 llnode 分析 Core 文件&lt;/h4&gt;
+&lt;p&gt;成功加载 llnode 后，运行 &lt;code class=&quot;language-text&quot;&gt;v8 help&lt;/code&gt; 查看命令选项&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ llnode -c core.10706 
+&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;lldb&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; target create --core &lt;span class=&quot;token string&quot;&gt;&quot;core.10706&quot;&lt;/span&gt;
+Core &lt;span class=&quot;token function&quot;&gt;file&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;/home/chao/workspace/core-dump/core.10706&apos;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;x86_64&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; was loaded.
+&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;lldb&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; plugin load &lt;span class=&quot;token string&quot;&gt;&apos;/home/chao/software/node/lib/node_modules/llnode/llnode.so&apos;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;lldb&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; settings &lt;span class=&quot;token keyword&quot;&gt;set&lt;/span&gt; prompt &lt;span class=&quot;token string&quot;&gt;&apos;(llnode) &apos;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;llnode&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;  v8 &lt;span class=&quot;token function&quot;&gt;help&lt;/span&gt;
+     Node.js helpers
+
+Syntax: 
+
+The following subcommands are supported:
+
+      bt                -- Show a backtrace with node.js JavaScript functions
+                           and their args. An optional argument is accepted&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt;
+                           that argument is a number, it specifies the number
+                           of frames to display. Otherwise all frames will be
+                           dumped.
+                           Syntax: v8 bt &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;number&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+      findjsinstances   -- List every object with the specified &lt;span class=&quot;token function&quot;&gt;type&lt;/span&gt;
+                           name.
+                           Flags:
+&lt;span class=&quot;token punctuation&quot;&gt;..&lt;/span&gt;.&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;运行 v8 findjsobjects 查看所有对象的实例以及总共占用的内存大小&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;llnode&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; v8 findjsobjects
+ Instances  Total Size Name
+ ---------- ---------- ----
+          1         24 AssertionError
+          1         24 AsyncResource
+          1         24 FastBuffer
+          1         24 Loader
+          &lt;span class=&quot;token punctuation&quot;&gt;..&lt;/span&gt;.
+          3        280 AsyncHook
+         12        384 ContextifyScript
+         12        712 TickObject
+         14       1120 &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;ArrayBufferView&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+         55       3520 NativeModule
+        339      10848 &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;Array&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+        647      36584 Object
+       1101      44024 LeakClass
+       7855      41008 &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;String&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+ ---------- ---------- 
+      10099     142656 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;可以看到 LeakClass 实例有 1101 个 占用来 44024 Byte内存&lt;/p&gt;
+&lt;p&gt;运行 v8 findjsinstances 查看类的所有实例&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;llnode&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; v8 findjsinstances LeakClass
+0x19e5b993ce91:&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;Object: LeakClass&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+0x19e5b993ce11:&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;Object: LeakClass&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+0x19e5b993cd91:&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;Object: LeakClass&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+0x19e5b993cd11:&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;Object: LeakClass&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+0x19e5b993cc91:&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;Object: LeakClass&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+0x19e5b993cc11:&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;Object: LeakClass&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+0x19e5b993cb91:&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;Object: LeakClass&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+0x19e5b993cb11:&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;Object: LeakClass&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;..&lt;/span&gt;.&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;运行 v8 i 或 v8 inspect 查看实例的具体内容&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;llnode&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; v8 i 0x19e5b993ce91
+0x19e5b993ce91:&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;Object: LeakClass properties &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    .name&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;0x19e5b993cec9:&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;String: &lt;span class=&quot;token string&quot;&gt;&quot;0.hu7sgkclxh&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;,
+    .age&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;3.357192&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;可以看到 0x19e5b993ce91 实例的两个属性 name 和 age ，以及它们的值&lt;/p&gt;
+&lt;p&gt;运行 v8 findrefs 查看引用&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;llnode&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; v8 findrefs 0x19e5b993ce91
+0x19e5b9911a21: &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;Array&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;999&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;0x19e5b993ce91
+&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;llnode&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; v8 i 0x19e5b9911a21
+0x19e5b9911a21:&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;Array: length&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;1289 &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;0&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;0x19e5b9913091:&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;Object: LeakClass&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;,
+    &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;1&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;0x19e5b9913271:&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;Object: LeakClass&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;,
+    &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;2&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;0x19e5b9913359:&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;Object: LeakClass&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;,
+    &lt;span class=&quot;token punctuation&quot;&gt;..&lt;/span&gt;.&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;实例 0x19e5b993ce91 的引用是一个数组里面有 1289 个 LeakClass 实例，也就是代码里面 leaks 数组&lt;/p&gt;
 &lt;div class=&quot;footnotes&quot;&gt;
 &lt;hr&gt;
 &lt;ol&gt;
