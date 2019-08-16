@@ -97,6 +97,155 @@ $ gcore -o core_file `pgrep -n node`
 下一步将会分析生成的 Core Dump 文件
 
 
+运行 lldb
+
+```bash
+$ lldb-4.0 -c core.1070
+(lldb) 
+```
+
+此时 llnode 还不能使用，需要加载 llnode 插件到 lldb 中
+
+
+
+
+#### 加载 llnode 插件
+
+- 使用 llnode 命令
+
+  通过全局安装 llnode（npm install -g llnode）后，使用 llnode 命令会启动 lldb 并且自动加载 llnode 插件，所有 llnode 的参数都会传给 lldb
+
+- 使用 ~/.lldbinit 加载
+
+  在 ~/.lldbinit 中添加 plugin load 命令，lldb 在启动是会自动加载插件
+  ```
+  plugin load /path/to/the/llnode/plugin
+  ```
+
+- 手动加载 llnode 插件
+
+  运行 lldb 后，使用 plugin load 命令加载
+  ```bash
+  $ lldb-4.0 -c core.10706 
+  (lldb) target create --core "core.10706"
+  Core file '/home/chao/workspace/core-dump/core.10706' (x86_64) was loaded.
+  (lldb) plugin load /path/llnode/llnode.so
+  ```
+
+
+
+
+#### 使用 llnode 分析 Core 文件
+
+
+成功加载 llnode 后，运行 `v8 help` 查看命令选项
+
+```bash
+$ llnode -c core.10706 
+(lldb) target create --core "core.10706"
+Core file '/home/chao/workspace/core-dump/core.10706' (x86_64) was loaded.
+(lldb) plugin load '/home/chao/software/node/lib/node_modules/llnode/llnode.so'
+(lldb) settings set prompt '(llnode) '
+(llnode)  v8 help
+     Node.js helpers
+
+Syntax: 
+
+The following subcommands are supported:
+
+      bt                -- Show a backtrace with node.js JavaScript functions
+                           and their args. An optional argument is accepted; if
+                           that argument is a number, it specifies the number
+                           of frames to display. Otherwise all frames will be
+                           dumped.
+                           Syntax: v8 bt [number]
+      findjsinstances   -- List every object with the specified type
+                           name.
+                           Flags:
+...
+```
+
+
+
+运行 v8 findjsobjects 查看所有对象的实例以及总共占用的内存大小
+
+```bash
+(llnode) v8 findjsobjects
+ Instances  Total Size Name
+ ---------- ---------- ----
+          1         24 AssertionError
+          1         24 AsyncResource
+          1         24 FastBuffer
+          1         24 Loader
+          ...
+          3        280 AsyncHook
+         12        384 ContextifyScript
+         12        712 TickObject
+         14       1120 (ArrayBufferView)
+         55       3520 NativeModule
+        339      10848 (Array)
+        647      36584 Object
+       1101      44024 LeakClass
+       7855      41008 (String)
+ ---------- ---------- 
+      10099     142656 
+```
+可以看到 LeakClass 实例有 1101 个 占用来 44024 Byte内存
+
+
+
+运行 v8 findjsinstances 查看类的所有实例
+
+```bash
+(llnode) v8 findjsinstances LeakClass
+0x19e5b993ce91:<Object: LeakClass>
+0x19e5b993ce11:<Object: LeakClass>
+0x19e5b993cd91:<Object: LeakClass>
+0x19e5b993cd11:<Object: LeakClass>
+0x19e5b993cc91:<Object: LeakClass>
+0x19e5b993cc11:<Object: LeakClass>
+0x19e5b993cb91:<Object: LeakClass>
+0x19e5b993cb11:<Object: LeakClass>
+...
+```
+
+
+
+运行 v8 i 或 v8 inspect 查看实例的具体内容
+```bash
+(llnode) v8 i 0x19e5b993ce91
+0x19e5b993ce91:<Object: LeakClass properties {
+    .name=0x19e5b993cec9:<String: "0.hu7sgkclxh">,
+    .age=3.357192}>
+```
+可以看到 0x19e5b993ce91 实例的两个属性 name 和 age ，以及它们的值
+
+
+
+运行 v8 findrefs 查看引用
+
+```bash
+(llnode) v8 findrefs 0x19e5b993ce91
+0x19e5b9911a21: (Array)[999]=0x19e5b993ce91
+(llnode) v8 i 0x19e5b9911a21
+0x19e5b9911a21:<Array: length=1289 {
+    [0]=0x19e5b9913091:<Object: LeakClass>,
+    [1]=0x19e5b9913271:<Object: LeakClass>,
+    [2]=0x19e5b9913359:<Object: LeakClass>,
+    ...
+```
+实例 0x19e5b993ce91 的引用是一个数组里面有 1289 个 LeakClass 实例，也就是代码里面 leaks 数组
+
+
+
+
+
+
+
+
+
+
+
 
 
 
