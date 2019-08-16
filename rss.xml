@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[温故而知新]]></title><description><![CDATA[个人博客, 坚持每天一篇！]]></description><link>https://gitblog.chao-home.com/</link><generator>RSS for Node</generator><lastBuildDate>Wed, 14 Aug 2019 17:10:42 GMT</lastBuildDate><item><title><![CDATA[使用 Tick Processor 分析 CPU 使用情况]]></title><description><![CDATA[使用 Tick Processor 分析 CPU 使用情况Tick Processor 是 v8 内置的一个性能分析工具，可以记录 Javascript、C、C++代码的堆栈信息，该功能默认是关闭的，可以通过添加命令行参数 —prof 开启创建测试代码创建了一个 hash…]]></description><link>https://gitblog.chao-home.com//debug/tick-processor/</link><guid isPermaLink="false">https://gitblog.chao-home.com//debug/tick-processor/</guid><content:encoded>&lt;h2&gt;使用 Tick Processor 分析 CPU 使用情况&lt;/h2&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[温故而知新]]></title><description><![CDATA[个人博客, 坚持每天一篇！]]></description><link>https://gitblog.chao-home.com/</link><generator>RSS for Node</generator><lastBuildDate>Fri, 16 Aug 2019 17:58:33 GMT</lastBuildDate><item><title><![CDATA[使用 Tick Processor 分析 CPU 使用情况]]></title><description><![CDATA[使用 Tick Processor 分析 CPU 使用情况Tick Processor 是 v8 内置的一个性能分析工具，可以记录 Javascript、C、C++代码的堆栈信息，该功能默认是关闭的，可以通过添加命令行参数 —prof 开启创建测试代码创建了一个 hash…]]></description><link>https://gitblog.chao-home.com//debug/tick-processor/</link><guid isPermaLink="false">https://gitblog.chao-home.com//debug/tick-processor/</guid><content:encoded>&lt;h2&gt;使用 Tick Processor 分析 CPU 使用情况&lt;/h2&gt;
 &lt;p&gt;Tick Processor 是 v8 内置的一个性能分析工具，可以记录 Javascript、C、C++代码的堆栈信息，该功能默认是关闭的，可以通过添加命令行参数 —prof 开启&lt;/p&gt;
 &lt;h4&gt;创建测试代码&lt;/h4&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; crypto &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;crypto&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
@@ -147,7 +147,259 @@ Statistical profiling result from isolate-0x102803e00-69628-v8.log, &lt;span cla
       1   50.0%        LazyCompile: ~&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;anonymous&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; internal/per_context/primordials.js:104:11
       1  100.0%          t __ZN2v88internalL47Builtin_Impl_Stats_CallSitePrototypeGetTypeNameEiPmPNS0_7IsolateE
       1  100.0%            Eval: ~&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;anonymous&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; internal/per_context/primordials.js:1:1&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;可以看出使用异步方法 CPU 时钟周期从 600 多次减少到了 150 几次&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Node.js 内存调试之 gcore 与 llnode]]></title><description><![CDATA[Node.js 内存调试之 gcore 与 llnode内存泄露是 Node.js 常见的问题之一，不当的全局缓存、事件监听、闭包等都可能导致内存泄露，如何检测、定位内存泄露是非常重要的话题什么是 Core Dump…]]></description><link>https://gitblog.chao-home.com//debug/gcore_llnode/</link><guid isPermaLink="false">https://gitblog.chao-home.com//debug/gcore_llnode/</guid><pubDate>Tue, 13 Aug 2019 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;Node.js 内存调试之 gcore 与 llnode&lt;/h2&gt;
+&lt;p&gt;可以看出使用异步方法 CPU 时钟周期从 600 多次减少到了 150 几次&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Node.js 内存调试之 memwatch-next]]></title><description><![CDATA[Node.js 内存调试之 memwatch-nextmemwatch-next 是一个用来监测内存泄露和比较堆信息的模块，下面介绍如何使用 memwatch-next创建测试代码每次请求时注册 10000 个 request 事件来引发内存泄露，然后手动触发一次 GC…]]></description><link>https://gitblog.chao-home.com//debug/memwatch-next/</link><guid isPermaLink="false">https://gitblog.chao-home.com//debug/memwatch-next/</guid><pubDate>Fri, 16 Aug 2019 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;Node.js 内存调试之 memwatch-next&lt;/h2&gt;
+&lt;p&gt;memwatch-next 是一个用来监测内存泄露和比较堆信息的模块，下面介绍如何使用 memwatch-next&lt;/p&gt;
+&lt;h4&gt;创建测试代码&lt;/h4&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; memwatch &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;memwatch-next&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; http &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;http&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; count &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;
+
+memwatch&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;on&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;stats&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;stats&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;count&lt;span class=&quot;token operator&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; stats&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+memwatch&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;on&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;leak&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;info&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;---&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;info&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;---&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; server &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; http&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;createServer&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;req&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; res&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; i &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; i &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;10000&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; i&lt;span class=&quot;token operator&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        server&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;on&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;request&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;leakCallback&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+    req&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;Hello World&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    global&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;gc&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+server&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;listen&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3000&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;每次请求时注册 10000 个 request 事件来引发内存泄露，然后手动触发一次 GC&lt;/p&gt;
+&lt;p&gt;使用 —expose-gc 参数来运行 Node.js 将会暴露 GC 方法，可以手动触发 GC&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ node --expose-gc index.js&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h4&gt;memwatch 的事件&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;stats：GC 事件，每一次执行 GC 都会触发该事件并返回 heap 相关信息&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; 
+  num_full_gc&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;//完整的垃圾回收次数&lt;/span&gt;
+  num_inc_gc&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// 增长的垃圾回收次数&lt;/span&gt;
+  heap_compactions&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// 内存压缩次数&lt;/span&gt;
+  usage_trend&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// 使用趋势&lt;/span&gt;
+  estimated_base&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;5796560&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// 预期基数&lt;/span&gt;
+  current_base&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;5796560&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// 当前基数&lt;/span&gt;
+  min&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// 最小值&lt;/span&gt;
+  max&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// 最大值&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ol start=&quot;2&quot;&gt;
+&lt;li&gt;leak：为可疑的内存泄露事件，触发该事件的条件是内存在连续 5 次 GC 后都是增长的&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; 
+  growth&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;3563080&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+  reason&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;heap growth over 5 consecutive GCs (0s) - -2147483648 bytes/hr&apos;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;运行&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ node --expose-gc leaks2.js 
+&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;node:24921&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; MaxListenersExceededWarning: Possible EventEmitter memory leak detected. 11 request listeners added. Use emitter.setMaxListeners&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; to increase limit
+0 &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; num_full_gc: 1,
+  num_inc_gc: 1,
+  heap_compactions: 1,
+  usage_trend: 0,
+  estimated_base: 5796560,
+  current_base: 5796560,
+  min: 0,
+  max: 0 &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+1 &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; num_full_gc: 2,
+  num_inc_gc: 2,
+  heap_compactions: 2,
+  usage_trend: 0,
+  estimated_base: 6722656,
+  current_base: 6722656,
+  min: 0,
+  max: 0 &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+2 &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; num_full_gc: 3,
+  num_inc_gc: 3,
+  heap_compactions: 3,
+  usage_trend: 0,
+  estimated_base: 7635344,
+  current_base: 7635344,
+  min: 7635344,
+  max: 7635344 &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+3 &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; num_full_gc: 4,
+  num_inc_gc: 5,
+  heap_compactions: 4,
+  usage_trend: 0,
+  estimated_base: 8536880,
+  current_base: 8536880,
+  min: 7635344,
+  max: 8536880 &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+---
+&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; growth: 3563080,
+  reason: &lt;span class=&quot;token string&quot;&gt;&apos;heap growth over 5 consecutive GCs (0s) - -2147483648 bytes/hr&apos;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+---
+4 &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; num_full_gc: 5,
+  num_inc_gc: 7,
+  heap_compactions: 5,
+  usage_trend: 0,
+  estimated_base: 9359640,
+  current_base: 9359640,
+  min: 7635344,
+  max: 9359640 &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+5 &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; num_full_gc: 6,
+  num_inc_gc: 8,
+  heap_compactions: 6,
+  usage_trend: 0,
+  estimated_base: 9007952,
+  current_base: 9007952,
+  min: 7635344,
+  max: 9359640 &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+6 &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; num_full_gc: 7,
+  num_inc_gc: 9,
+  heap_compactions: 7,
+  usage_trend: 0,
+  estimated_base: 9007968,
+  current_base: 9007968,
+  min: 7635344,
+  max: 9359640 &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Node.js 已经警告事件监听过多可能会导致内存泄露。连续多次 GC 后内存增长触发了 leak 事件，打印出了增长的内存数（Bytes）已经预估的每小时增长内存数&lt;/p&gt;
+&lt;h4&gt;使用 Heap Diff&lt;/h4&gt;
+&lt;p&gt;使用 memwatch 的 HeapDiff 函数来对比两次堆快照之间的差异&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; memwatch &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;memwatch-next&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; http &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;http&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+
+&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; server &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; http&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;createServer&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;req&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; res&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; i &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; i &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;10000&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; i&lt;span class=&quot;token operator&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        server&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;on&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;request&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;leakCallback&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+    res&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;Hello World&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    global&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;gc&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+server&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;listen&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3000&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; hd &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;memwatch&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;HeapDiff&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+memwatch&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;on&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;leak&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;info&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; diff &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; hd&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+    console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;dir&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;diff&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;depth&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;同样的内存泄露代码，先创建 HeapDiff 对象，在 leak 事件时计算两次堆快照的差异并打印出来&lt;/p&gt;
+&lt;p&gt;运行，并使用同样的 ab 命令测试&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ node --expose-gc leaks3.js 
+&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;node:26612&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; MaxListenersExceededWarning: Possible EventEmitter memory leak detected. 11 request listeners added. Use emitter.setMaxListeners&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; to increase limit
+&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; before: &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; nodes: 36946, size_bytes: 4765736, size: &lt;span class=&quot;token string&quot;&gt;&apos;4.54 mb&apos;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;,
+  after: &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; nodes: 88799, size_bytes: 9000168, size: &lt;span class=&quot;token string&quot;&gt;&apos;8.58 mb&apos;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;,
+  change: 
+   &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; size_bytes: 4234432,
+     size: &lt;span class=&quot;token string&quot;&gt;&apos;4.04 mb&apos;&lt;/span&gt;,
+     freed_nodes: 876,
+     allocated_nodes: 52729,
+     details: 
+      &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; what: &lt;span class=&quot;token string&quot;&gt;&apos;Arguments&apos;&lt;/span&gt;,
+          size_bytes: 32,
+          size: &lt;span class=&quot;token string&quot;&gt;&apos;32 bytes&apos;&lt;/span&gt;,
+          &lt;span class=&quot;token string&quot;&gt;&apos;+&apos;&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;:&lt;/span&gt; 1,
+          &lt;span class=&quot;token string&quot;&gt;&apos;-&apos;&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;:&lt;/span&gt; 0 &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;,
+        &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; what: &lt;span class=&quot;token string&quot;&gt;&apos;Array&apos;&lt;/span&gt;,
+          size_bytes: 497584,
+          size: &lt;span class=&quot;token string&quot;&gt;&apos;485.92 kb&apos;&lt;/span&gt;,
+          &lt;span class=&quot;token string&quot;&gt;&apos;+&apos;&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;:&lt;/span&gt; 946,
+          &lt;span class=&quot;token string&quot;&gt;&apos;-&apos;&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;:&lt;/span&gt; 517 &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;,
+&lt;span class=&quot;token punctuation&quot;&gt;..&lt;/span&gt;.&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;可以看出在内存泄露之前和之后，内存由 4.54 mb 增加到了 8.58&lt;/p&gt;
+&lt;h4&gt;结合 heapdump 使用&lt;/h4&gt;
+&lt;p&gt;memwatch 在结合 heapdump 使用时才能发挥更好的作用，通常使用 memwatch 监测内存泄露，用 heapdump 导出多分快照，再使用 Chrome DevTools 分析比较，定位内存泄露的元凶&lt;/p&gt;
+&lt;p&gt;测试代码&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; memwatch &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;memwatch-next&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; http &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;http&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; heapdump &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;heapdump&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; server &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; http&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;createServer&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;req&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; res&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; i &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; i &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;10000&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; i&lt;span class=&quot;token operator&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        server&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;on&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;request&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;leakCallback&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+    res&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;end&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;Hello World&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    global&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;gc&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+server&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;listen&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3000&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;token function&quot;&gt;dump&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+memwatch&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;on&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;leak&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;info&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token function&quot;&gt;dump&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;dump&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; filename &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token template-string&quot;&gt;&lt;span class=&quot;token string&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;token interpolation&quot;&gt;&lt;span class=&quot;token interpolation-punctuation punctuation&quot;&gt;${&lt;/span&gt;__dirname&lt;span class=&quot;token interpolation-punctuation punctuation&quot;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;/heap/heapdump-&lt;/span&gt;&lt;span class=&quot;token interpolation&quot;&gt;&lt;span class=&quot;token interpolation-punctuation punctuation&quot;&gt;${&lt;/span&gt;process&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;pid&lt;span class=&quot;token interpolation-punctuation punctuation&quot;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token interpolation&quot;&gt;&lt;span class=&quot;token interpolation-punctuation punctuation&quot;&gt;${&lt;/span&gt;Date&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;now&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token interpolation-punctuation punctuation&quot;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;.heapsnapshot`&lt;/span&gt;&lt;/span&gt;
+
+    heapdump&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;writeSnapshot&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;filename&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token template-string&quot;&gt;&lt;span class=&quot;token string&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;token interpolation&quot;&gt;&lt;span class=&quot;token interpolation-punctuation punctuation&quot;&gt;${&lt;/span&gt;filename&lt;span class=&quot;token interpolation-punctuation punctuation&quot;&gt;}&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt; dump compeleted.`&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;在程序启动后先执行一次 heapdump ，在触发 leak 事件时再执行一次 heapdump。&lt;/p&gt;
+&lt;p&gt;使用相同的 ab 命令测试，生成两个 heapdump 文件，用 Chrome DevTools 加载这两个 文件，选择 comparison 比较&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://s2.ax1x.com/2019/08/17/mmXj7F.png&quot;&gt;&lt;/p&gt;
+&lt;p&gt;可以看出增加了 5 万个 leakCallback 函数&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Node.js 内存调试之 heapdump]]></title><description><![CDATA[Node.js 内存调试之 heapdumpheapdump 是一个 dump V8 堆信息的工具，前面提到的 v8-profiler 也有堆信息的功能，这两个工具的原理是一样的，但是 heapdump 更简单一点使用 heapdump…]]></description><link>https://gitblog.chao-home.com//debug/heapdump/</link><guid isPermaLink="false">https://gitblog.chao-home.com//debug/heapdump/</guid><pubDate>Thu, 15 Aug 2019 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;Node.js 内存调试之 heapdump&lt;/h2&gt;
+&lt;p&gt;heapdump 是一个 dump V8 堆信息的工具，前面提到的 v8-profiler 也有堆信息的功能，这两个工具的原理是一样的，但是 heapdump 更简单一点&lt;/p&gt;
+&lt;h4&gt;使用 heapdump&lt;/h4&gt;
+&lt;p&gt;首先创建一段内存泄露的测试代码&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; heapdump &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;heapdump&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; leakObject &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;null&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; count &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;
+
+
+&lt;span class=&quot;token function&quot;&gt;setInterval&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; originLeak &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; leakObject
+
+    &lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;token function-variable function&quot;&gt;unused&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;originLeak&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+            console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;originLeak&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; originLeak&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+    leakObject &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+        count&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; count&lt;span class=&quot;token operator&quot;&gt;++&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+        leakString&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Array&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1e7&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;join&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;*&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+        &lt;span class=&quot;token function-variable function&quot;&gt;leakMethod&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+            console&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;leak message&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1000&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;这是一段经典的内存泄露测试代码，内存泄露的原因是：在 setInterval 的回调方法中有两个闭包一个是 unused 方法，一个是 leakMethod 方法。unused 方法中引用了全局的 originLeak 变量，如果没有后面的 leakMethod 方法，则在函数执行完成后 unused 将会被销毁，闭包作用域被销毁，不会产生内存泄露，因为后面的 leakMethod 被全局的 leakObject 引用，leakMethod 形成的闭包作用域引用了 unused 从而引用了 originLeak 变量，导致 originLeak 不能被销毁，随着 setInterval 的不断被调用形成闭包链，导致所有的 leakObject 都不能被销毁，最终导致内存泄露&lt;/p&gt;
+&lt;p&gt;运行测试代码&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ node leaks.js&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;执行两次下面的命令&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ &lt;span class=&quot;token function&quot;&gt;kill&lt;/span&gt; -USR2 &lt;span class=&quot;token variable&quot;&gt;&lt;span class=&quot;token variable&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;grep&lt;/span&gt; -n node&lt;span class=&quot;token variable&quot;&gt;`&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;生成两个 heapsnapshot 文件&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;$ &lt;span class=&quot;token function&quot;&gt;ls&lt;/span&gt;
+heapdump-165258801.171380.heapsnapshot  index.js
+heapdump-165267934.430.heapsnapshot     leaks.js&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h4&gt;使用 Chrome DevTools 分析 heapsnapshot 文件&lt;/h4&gt;
+&lt;p&gt;打开 Chrome DevTool 选择 memory 面板，点击 load 加载 heapsnapshot 文件&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://s2.ax1x.com/2019/08/15/mVhwn0.png&quot;&gt;&lt;/p&gt;
+&lt;p&gt;两个文件都 load 后，在左上角可以看到 4 个下拉选项&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://s2.ax1x.com/2019/08/16/mV4VbV.png&quot;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Summary: 以构造函数名分类显示&lt;/li&gt;
+&lt;li&gt;Comparison: 比较多个快照之间的差异&lt;/li&gt;
+&lt;li&gt;Containment: 查看整个 GC 路径&lt;/li&gt;
+&lt;li&gt;Statistics: 以饼状图形式显示内存占用信息&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;最常用的是 Summary 和 Comparison&lt;/p&gt;
+&lt;p&gt;选择 Summary 进行查看&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Constructor： 构造函数名，加括号的表示是内置的。构造函数名后面的 x 加数字，表示对象的个数&lt;/li&gt;
+&lt;li&gt;Distance: 指到 GC 根对象（root）的距离，指到 GC 根对象在浏览器中一般是 window 对象，在 node.js 中一般为 global 对象。距离越大说明引用越深&lt;/li&gt;
+&lt;li&gt;Shallow Size: 指对象自身的大小，不包括他引用对象的大小&lt;/li&gt;
+&lt;li&gt;Retained Size: 指对象自身的大小和它引用的对象的大小，即该对象被 GC 之后能回收的大小&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;点击 Retained Size 进行降序排列，展开 closure 这一项，可以看到 leakMethod，再继续展开 leakMethod，可以看到对 originLeak 的引用，而 originLeak 又继续引用了上一个 leakMethod &lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://s2.ax1x.com/2019/08/16/mVIT4U.png&quot;&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Node.js 内存调试之 gcore 与 llnode]]></title><description><![CDATA[Node.js 内存调试之 gcore 与 llnode内存泄露是 Node.js 常见的问题之一，不当的全局缓存、事件监听、闭包等都可能导致内存泄露，如何检测、定位内存泄露是非常重要的话题什么是 Core Dump…]]></description><link>https://gitblog.chao-home.com//debug/gcore_llnode/</link><guid isPermaLink="false">https://gitblog.chao-home.com//debug/gcore_llnode/</guid><pubDate>Tue, 13 Aug 2019 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;Node.js 内存调试之 gcore 与 llnode&lt;/h2&gt;
 &lt;p&gt;内存泄露是 Node.js 常见的问题之一，不当的全局缓存、事件监听、闭包等都可能导致内存泄露，如何检测、定位内存泄露是非常重要的话题&lt;/p&gt;
 &lt;h4&gt;什么是 Core Dump&lt;/h4&gt;
 &lt;p&gt;当程序在运行过程中异常终止或者崩溃时，操作系统将会将程序当时的内存状态记录下来，并保存在一个文件中，这种行为就叫 Core Dump。Core Dump 不仅会保存内存信息，也会保存寄存器信息、内存管理信息、其他处理器以及操作系统状态信息等，对于程序的诊断和调试非常有帮助，当程序出错后 Core Dump 可以再现出错时的场景&lt;/p&gt;
