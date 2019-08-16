@@ -208,3 +208,47 @@ $ node --expose-gc leaks3.js
 可以看出在内存泄露之前和之后，内存由 4.54 mb 增加到了 8.58
 
 
+#### 结合 heapdump 使用
+
+memwatch 在结合 heapdump 使用时才能发挥更好的作用，通常使用 memwatch 监测内存泄露，用 heapdump 导出多分快照，再使用 Chrome DevTools 分析比较，定位内存泄露的元凶
+
+
+测试代码
+
+```js
+const memwatch = require('memwatch-next')
+const http = require('http')
+const heapdump = require('heapdump')
+
+const server = http.createServer((req, res) => {
+    for(let i = 0; i < 10000; i++) {
+        server.on('request', function leakCallback() {})
+    }
+
+    res.end('Hello World')
+    global.gc()
+})
+
+server.listen(3000)
+
+dump()
+memwatch.on('leak', (info) => {
+    dump()
+})
+
+function dump() {
+    const filename = `${__dirname}/heap/heapdump-${process.pid}-${Date.now()}.heapsnapshot`
+
+    heapdump.writeSnapshot(filename, () => {
+        console.log(`${filename} dump compeleted.`)
+    })
+}
+```
+
+在程序启动后先执行一次 heapdump ，在触发 leak 事件时再执行一次 heapdump。
+
+使用相同的 ab 命令测试，生成两个 heapdump 文件，用 Chrome DevTools 加载这两个 文件，选择 comparison 比较
+
+![](https://s2.ax1x.com/2019/08/17/mmXj7F.png)
+
+可以看出增加了 5 万个 leakCallback 函数
