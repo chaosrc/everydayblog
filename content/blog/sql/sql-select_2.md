@@ -1,7 +1,7 @@
 ---
 title: 数据检索（二）
 date: 2019-08-27
-description:　使用 SELECT 语句进行数据检索
+# description:　使用 SELECT 语句进行数据检索
 ---
 
 
