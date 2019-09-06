@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[温故而知新]]></title><description><![CDATA[个人博客, 坚持每天一篇！]]></description><link>https://gitblog.chao-home.com/</link><generator>RSS for Node</generator><lastBuildDate>Fri, 30 Aug 2019 16:48:51 GMT</lastBuildDate><item><title><![CDATA[使用 Tick Processor 分析 CPU 使用情况]]></title><description><![CDATA[使用 Tick Processor 分析 CPU 使用情况Tick Processor 是 v8 内置的一个性能分析工具，可以记录 Javascript、C、C++代码的堆栈信息，该功能默认是关闭的，可以通过添加命令行参数 —prof 开启创建测试代码创建了一个 hash…]]></description><link>https://gitblog.chao-home.com//debug/tick-processor/</link><guid isPermaLink="false">https://gitblog.chao-home.com//debug/tick-processor/</guid><content:encoded>&lt;h2&gt;使用 Tick Processor 分析 CPU 使用情况&lt;/h2&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[温故而知新]]></title><description><![CDATA[个人博客, 坚持每天一篇！]]></description><link>https://gitblog.chao-home.com/</link><generator>RSS for Node</generator><lastBuildDate>Fri, 06 Sep 2019 16:03:19 GMT</lastBuildDate><item><title><![CDATA[使用 Tick Processor 分析 CPU 使用情况]]></title><description><![CDATA[使用 Tick Processor 分析 CPU 使用情况Tick Processor 是 v8 内置的一个性能分析工具，可以记录 Javascript、C、C++代码的堆栈信息，该功能默认是关闭的，可以通过添加命令行参数 —prof 开启创建测试代码创建了一个 hash…]]></description><link>https://gitblog.chao-home.com//debug/tick-processor/</link><guid isPermaLink="false">https://gitblog.chao-home.com//debug/tick-processor/</guid><content:encoded>&lt;h2&gt;使用 Tick Processor 分析 CPU 使用情况&lt;/h2&gt;
 &lt;p&gt;Tick Processor 是 v8 内置的一个性能分析工具，可以记录 Javascript、C、C++代码的堆栈信息，该功能默认是关闭的，可以通过添加命令行参数 —prof 开启&lt;/p&gt;
 &lt;h4&gt;创建测试代码&lt;/h4&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; crypto &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;crypto&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
@@ -256,7 +256,439 @@ chain recieve: first value&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;ts&quot;&gt;&lt;pre class=&quot;language-ts&quot;&gt;&lt;code class=&quot;language-ts&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;// 如果 onResolve 或者 onReject 不是函数，其必须被忽略&lt;/span&gt;
 onResolve &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;typeof&lt;/span&gt; onResolve &lt;span class=&quot;token operator&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;function&quot;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;?&lt;/span&gt; &lt;span class=&quot;token function-variable function&quot;&gt;onResolve&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token parameter&quot;&gt;value&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; value&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
 onReject &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;typeof&lt;/span&gt; onReject &lt;span class=&quot;token operator&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;function&quot;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;?&lt;/span&gt; &lt;span class=&quot;token function-variable function&quot;&gt;onReject&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token parameter&quot;&gt;value&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; value&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;基本上对 Promise 规范有了一个简单的实现，对其内部的实现原理会有更好的理解&lt;/p&gt;</content:encoded></item><item><title><![CDATA[数据检索（三）]]></title><description><![CDATA[数据检索（三）限制检索结果SELECT 语句返回指定表中所有匹配的行，如果只想返回第一行或者一定数量的行，在不同数据库中这一 SQL 实现并不相同如果使用 SQL Server 和 Access，可以通过 TOP 关键字来限制最多返回多少行上面的代码使用 SELECT TOP…]]></description><link>https://gitblog.chao-home.com//sql/sql-select_3/</link><guid isPermaLink="false">https://gitblog.chao-home.com//sql/sql-select_3/</guid><pubDate>Thu, 29 Aug 2019 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;数据检索（三）&lt;/h2&gt;
+&lt;p&gt;基本上对 Promise 规范有了一个简单的实现，对其内部的实现原理会有更好的理解&lt;/p&gt;</content:encoded></item><item><title><![CDATA[使用函数处理数据]]></title><link>https://gitblog.chao-home.com//sql/sql-function/</link><guid isPermaLink="false">https://gitblog.chao-home.com//sql/sql-function/</guid><pubDate>Fri, 06 Sep 2019 00:00:00 GMT</pubDate><content:encoded></content:encoded></item><item><title><![CDATA[创建计算字段]]></title><description><![CDATA[创建计算字段一般储存在表中数据可能不是应用程序所需要的格式，我们需要对数据库中检索的字段进行转换、计算或者格式化后再返回给应用程序，这时就可以使用计算字段拼接字段可以通过拼接字段来使用计算字段。我们现在有一个 Vendors…]]></description><link>https://gitblog.chao-home.com//sql/sql-computed-field/</link><guid isPermaLink="false">https://gitblog.chao-home.com//sql/sql-computed-field/</guid><pubDate>Thu, 05 Sep 2019 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;创建计算字段&lt;/h2&gt;
+&lt;p&gt;一般储存在表中数据可能不是应用程序所需要的格式，我们需要对数据库中检索的字段进行转换、计算或者格式化后再返回给应用程序，这时就可以使用计算字段&lt;/p&gt;
+&lt;h4&gt;拼接字段&lt;/h4&gt;
+&lt;p&gt;可以通过拼接字段来使用计算字段。我们现在有一个 Vendors 表，里面包含供应商名和地址信息列，如果要生成一个报表，报表中需要展示名称和供应商，并且供应商使用括号扩起来，而数据库中并没有名称和供应商组合的字段以及括号，这时可以使用拼接字段进行组合&lt;/p&gt;
+&lt;p&gt;在不同的数据库中拼接字段的方式不一样，多数数据库可以使用加号（+）或者两个竖杠（||）表示，在 MySQL 和 MariaDB 中，必须使用特殊的函数&lt;/p&gt;
+&lt;p&gt;输入&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;SELECT&lt;/span&gt; vend_name &lt;span class=&quot;token operator&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos; (&apos;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;||&lt;/span&gt;  vend_country &lt;span class=&quot;token operator&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;)&apos;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; Vendors
+&lt;span class=&quot;token keyword&quot;&gt;ORDER&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;BY&lt;/span&gt; vend_name&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;输出&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;Bear Emporium &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;USA&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+Bears R Us &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;USA&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+Doll House Inc&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;USA&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+Fun &lt;span class=&quot;token operator&quot;&gt;and&lt;/span&gt; Games &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;England&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+Furball Inc&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;USA&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+Jouets et ours &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;France&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;上面的 SELECT 语句拼接了以下语句：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;vend_name 列中的名字&lt;/li&gt;
+&lt;li&gt;左括号字符&lt;/li&gt;
+&lt;li&gt;vend_country 列中的国家&lt;/li&gt;
+&lt;li&gt;右括号字符&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;使用别名&lt;/h4&gt;
+&lt;p&gt;上面的 SQL 语句拼接了名称和地址，但是这个新计算的列没有名字，在应用程序中无法引用。为了解决这个问题，SQL 中支持别名，别名可以做为一个字段或值的替换名。使用 AS 关键词来声明别名&lt;/p&gt;
+&lt;p&gt;输入&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;SELECT&lt;/span&gt; vend_name &lt;span class=&quot;token operator&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos; (&apos;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;||&lt;/span&gt; vend_country &lt;span class=&quot;token operator&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;)&apos;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;AS&lt;/span&gt; vend_title
+&lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; Vendors
+&lt;span class=&quot;token keyword&quot;&gt;ORDER&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;BY&lt;/span&gt; vend_title &lt;span class=&quot;token keyword&quot;&gt;DESC&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;输出&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;Jouets et ours &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;France&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+Furball Inc&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;USA&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+Fun &lt;span class=&quot;token operator&quot;&gt;and&lt;/span&gt; Games &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;England&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+Doll House Inc&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;USA&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+Bears R Us &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;USA&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+Bear Emporium &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;USA&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;上面的 SQL 语句对计算字段添加了别名 vend&lt;em&gt;title，使用 DESC 对 vend&lt;/em&gt;title 进行降序排序，此时的 vend_title 在应用程序中也可以使用，就像一个实际的列一样&lt;/p&gt;
+&lt;h4&gt;执行算数计算&lt;/h4&gt;
+&lt;p&gt;计算字段另一个常用的地方是对检索的数据就像算数计算，比如   OrderItems 表中包含每个订单中各项物品的价格和数量，可以通过算数计算来计算出各个物品的总价格&lt;/p&gt;
+&lt;p&gt;输入&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;SELECT&lt;/span&gt; prod_id&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; quantity&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; item_price&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; quantity &lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt; item_price &lt;span class=&quot;token keyword&quot;&gt;AS&lt;/span&gt; total_amount
+&lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; OrderItems
+&lt;span class=&quot;token keyword&quot;&gt;WHERE&lt;/span&gt; order_num &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;20008&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;输出&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;RGAN01&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;4.99&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;24.95&lt;/span&gt;
+BR03&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;11.99&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;59.95&lt;/span&gt;
+BNBG01&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3.49&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;34.9&lt;/span&gt;
+BNBG02&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3.49&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;34.9&lt;/span&gt;
+BNBG03&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3.49&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;34.9&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;上面的 SQL 语句中 total&lt;em&gt;amount 字段为计算字段，其值为 quantity * item&lt;/em&gt;price，在应用程序中可以像其他实际字段一样使用&lt;/p&gt;</content:encoded></item><item><title><![CDATA[用通配符进行过滤（二）]]></title><description><![CDATA[用通配符进行过滤（二）下划线（_）通配符下划线通配符也是一个非常有用的通配符，它与 % 通配符的用途很相似，但是它只匹配单个字符，而不是多个字符。输入输出上面的 SQL 语句使用了两个 _ 通配符匹配，只有同时匹配两个操作符的行会被检索出来，比如第一行匹配 1…]]></description><link>https://gitblog.chao-home.com//sql/sql-select-like-2/</link><guid isPermaLink="false">https://gitblog.chao-home.com//sql/sql-select-like-2/</guid><pubDate>Wed, 04 Sep 2019 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;用通配符进行过滤（二）&lt;/h2&gt;
+&lt;h4&gt;下划线（_）通配符&lt;/h4&gt;
+&lt;p&gt;下划线通配符也是一个非常有用的通配符，它与 % 通配符的用途很相似，但是它只匹配单个字符，而不是多个字符。&lt;/p&gt;
+&lt;p&gt;输入&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;SELECT&lt;/span&gt; prod_id&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; prod_name
+&lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; Products
+&lt;span class=&quot;token keyword&quot;&gt;WHERE&lt;/span&gt; prod_name &lt;span class=&quot;token operator&quot;&gt;LIKE&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;__ inch teddy bear&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;输出&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;BR02&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;12&lt;/span&gt; inch teddy bear
+BR03&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;18&lt;/span&gt; inch teddy bear&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;上面的 SQL 语句使用了两个 _ 通配符匹配，只有同时匹配两个操作符的行会被检索出来，比如第一行匹配 12， 第二行匹配 18。对比 % 操作符，执行下面的 SQL &lt;/p&gt;
+&lt;p&gt;输入&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;SELECT&lt;/span&gt; prod_id&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; prod_name
+&lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; Products
+&lt;span class=&quot;token keyword&quot;&gt;WHERE&lt;/span&gt; prod_name &lt;span class=&quot;token operator&quot;&gt;LIKE&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;% inch teddy bear&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;输出&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;BR01&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;8&lt;/span&gt; inch teddy bear
+BR02&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;12&lt;/span&gt; inch teddy bear
+BR03&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;18&lt;/span&gt; inch teddy bear&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;在使用两个 _ 通配符时，第一行 8 就没有匹配因为 8 只匹配一个 _ 通配符。&lt;/p&gt;
+&lt;p&gt;与 % 匹配多个字符不同，_ 只能匹配一个字符，即不能多也不能少&lt;/p&gt;
+&lt;h4&gt;方括号（[]）通配符&lt;/h4&gt;
+&lt;p&gt;方括号（[]）通配符可以用来指定一个字符集, 搜索结果必须匹配指定集合中的一个字符&lt;/p&gt;
+&lt;p&gt;需要注意的是支持方括号（[]）通配符的数据库比较少，现在只有 Access 和 SQL Server 支持。&lt;/p&gt;
+&lt;p&gt;输入&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;SELECT&lt;/span&gt; cust_contact
+&lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; Customers
+&lt;span class=&quot;token keyword&quot;&gt;Where&lt;/span&gt; cust_contact &lt;span class=&quot;token operator&quot;&gt;LIKE&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;[JM]%&apos;&lt;/span&gt; &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;上面的 SQL 语句匹配所有名字以 J 或 M 开头的行。&lt;/p&gt;
+&lt;p&gt;输出&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;Jim Jones
+John Smith
+Michelle Green&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h4&gt;通配符使用总结&lt;/h4&gt;
+&lt;p&gt;SQL 的通配符很有用，但是通配符的搜索比一般的搜索要消费更长的时间。在使用通配符是尽量遵循下面的原则：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;不要过度使用通配符，如果其他的操作符能够到达相同的目的，应该优先使用其他操作符&lt;/li&gt;
+&lt;li&gt;在确实要使用通配符时，尽量不要把通配符放在开始出，因为通配符在开始处时搜索起来最慢&lt;/li&gt;
+&lt;li&gt;注意通配符的位置，如果放错位置，可能不会返回想要的数据&lt;/li&gt;
+&lt;/ul&gt;</content:encoded></item><item><title><![CDATA[使用通配符进行过滤]]></title><description><![CDATA[使用通配符进行过滤使用 LIKE 操作符进行通配搜索，可以对数据进行复杂的过滤LIKE 操作符前面介绍的几种操作符，不管是匹配一个值、多个值，还是某个范围的值，都是根据已知的值进行比较，如果要搜索包含某个文本的值就无法继续比较了，这时就要用到 LIKE 通配符了。LIKE…]]></description><link>https://gitblog.chao-home.com//sql/sql-select-like/</link><guid isPermaLink="false">https://gitblog.chao-home.com//sql/sql-select-like/</guid><pubDate>Tue, 03 Sep 2019 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;使用通配符进行过滤&lt;/h2&gt;
+&lt;p&gt;使用 LIKE 操作符进行通配搜索，可以对数据进行复杂的过滤&lt;/p&gt;
+&lt;h4&gt;LIKE 操作符&lt;/h4&gt;
+&lt;p&gt;前面介绍的几种操作符，不管是匹配一个值、多个值，还是某个范围的值，都是根据已知的值进行比较，如果要搜索包含某个文本的值就无法继续比较了，这时就要用到 LIKE 通配符了。&lt;/p&gt;
+&lt;p&gt;LIKE 操作符后面跟通配符，告诉数据库使用搜索模式匹配而不是进行相等比较&lt;/p&gt;
+&lt;h4&gt;百分号（%）通配符&lt;/h4&gt;
+&lt;p&gt;百分号（%）通配符是最常用的，% 表示任何字符出现任意次数&lt;/p&gt;
+&lt;p&gt;输入&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://s2.ax1x.com/2019/09/03/nAQB4O.jpg&quot;&gt;&lt;/p&gt;
+&lt;p&gt;输出
+&lt;img src=&quot;https://s2.ax1x.com/2019/09/03/nAQ0UK.jpg&quot;&gt;&lt;/p&gt;
+&lt;p&gt;上面的 SQL 使用 ‘Fish%’ 来检索产品名称以 Fish 开头的所有行&lt;/p&gt;
+&lt;p&gt;通配符可以在在搜索模式的任意位置使用，并且可以使用多个通配符&lt;/p&gt;
+&lt;p&gt;输入&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://s2.ax1x.com/2019/09/03/nADhOx.jpg&quot;&gt;&lt;/p&gt;
+&lt;p&gt;输出&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://s2.ax1x.com/2019/09/03/nAD5m6.jpg&quot;&gt;&lt;/p&gt;
+&lt;p&gt;上面的 SQL 中 ‘%bean bag%’ 表示匹配 prod_name 上任何位置包含 bean bag 的值，不管他前后或后面出现什么值&lt;/p&gt;
+&lt;p&gt;通配符也可以出现在搜索模式的中间，比如&lt;/p&gt;
+&lt;p&gt;输入&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://s2.ax1x.com/2019/09/03/nA6O58.jpg&quot;&gt;&lt;/p&gt;
+&lt;p&gt;输出&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://s2.ax1x.com/2019/09/03/nA6Hbt.jpg&quot;&gt;&lt;/p&gt;
+&lt;p&gt;需要特别注意的是，除了能匹配一个或多个字符，% 还能匹配 0 个字符，但是 % 不会匹配 NULL。&lt;/p&gt;</content:encoded></item><item><title><![CDATA[数据过滤（三）]]></title><description><![CDATA[数据过滤（三）IN 操作符IN 操作符用来指定特定的条件范围，范围中的每个条件都可以进行匹配。IN 取一组由逗号分隔，括在圆括号中的合法值。输入输出SmartSelect_20190902-082604_Termux上面的 SELECT 语句检索由供应商 DLL01 和 BRS…]]></description><link>https://gitblog.chao-home.com//sql/sql-select-filter-3/</link><guid isPermaLink="false">https://gitblog.chao-home.com//sql/sql-select-filter-3/</guid><pubDate>Mon, 02 Sep 2019 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;数据过滤（三）&lt;/h2&gt;
+&lt;h4&gt;IN 操作符&lt;/h4&gt;
+&lt;p&gt;IN 操作符用来指定特定的条件范围，范围中的每个条件都可以进行匹配。IN 取一组由逗号分隔，括在圆括号中的合法值。&lt;/p&gt;
+&lt;p&gt;输入&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://s2.ax1x.com/2019/09/02/niOam8.jpg&quot;&gt;&lt;/p&gt;
+&lt;p&gt;输出&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://s2.ax1x.com/2019/09/02/niOBkQ.jpg&quot; alt=&quot;SmartSelect_20190902-082604_Termux&quot;&gt;&lt;/p&gt;
+&lt;p&gt;上面的 SELECT 语句检索由供应商 DLL01 和 BRS01 制造的所有产品。IN 操作符中的值用逗号分隔且必须在圆括号内。&lt;/p&gt;
+&lt;p&gt;其实使用 OR 操作符也能到达相同的效果&lt;/p&gt;
+&lt;p&gt;输入
+&lt;img src=&quot;https://s2.ax1x.com/2019/09/02/niOJSI.jpg&quot;&gt;&lt;/p&gt;
+&lt;p&gt;输出
+&lt;img src=&quot;https://s2.ax1x.com/2019/09/02/niOt6P.jpg&quot;&gt;&lt;/p&gt;
+&lt;p&gt;使用 IN 操作符的优点：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;在有很多选项时 IN 操作符更加清楚直观&lt;/li&gt;
+&lt;li&gt;在与其他 AND 和 OR 组合使用 IN 时求值顺序更容易管理&lt;/li&gt;
+&lt;li&gt;IN 操作符一般比一组 OR 操作符执行得更快&lt;/li&gt;
+&lt;li&gt;IN 语句中还可以包含其他的 SELECT 语句，能够更动态
+的建立 WHERE 子句&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;NOT 操作符&lt;/h4&gt;
+&lt;p&gt;WHERE 子句中的 NOT 操作符有且只有一个功能，那就是否定它后面所跟的任何条件。&lt;/p&gt;
+&lt;p&gt;输入&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://s2.ax1x.com/2019/09/02/niOd0S.jpg&quot;&gt;&lt;/p&gt;
+&lt;p&gt;输出&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://s2.ax1x.com/2019/09/02/niODYj.jpg&quot;&gt;&lt;/p&gt;
+&lt;p&gt;上面的 SQL 语句中 NOT 否定了它后面的条件，检索出所有 vend_id 不是 DLL01 的所有产品&lt;/p&gt;
+&lt;p&gt;上面的语句也可以使用 != 来实现&lt;/p&gt;
+&lt;p&gt;输入&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://s2.ax1x.com/2019/09/02/niO8fA.jpg&quot;&gt;&lt;/p&gt;
+&lt;p&gt;输出&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://s2.ax1x.com/2019/09/02/niOwTg.jpg&quot;&gt;&lt;/p&gt;
+&lt;p&gt;虽然 != 在这个语句中也同样能满足需求，但是在更加复杂的语句中 NOT 是非常有用的，比如 NOT 与 IN 组合，可以非常简单的找出与 IN 中条件列表不匹配的行&lt;/p&gt;
+&lt;p&gt;输入&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://s2.ax1x.com/2019/09/02/niOYlt.jpg&quot;&gt;&lt;/p&gt;
+&lt;p&gt;输出&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://s2.ax1x.com/2019/09/02/niONOf.jpg&quot;&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[过滤数据（二）]]></title><description><![CDATA[过滤数据（二）组合 WHERE 子句为了进行更强的过滤控制，SQL 允许多个 WHRER 子句组合，使用 AND 或 OR 分隔。AND 操作符如果要对多个列进行过滤，可以使用 AND 操作符添加多个条件输入输出上面的 SQL 语句检索出供应商为 DLL01 且产品价格小于…]]></description><link>https://gitblog.chao-home.com//sql/sql-select-filter-2/</link><guid isPermaLink="false">https://gitblog.chao-home.com//sql/sql-select-filter-2/</guid><pubDate>Sun, 01 Sep 2019 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;过滤数据（二）&lt;/h2&gt;
+&lt;h4&gt;组合 WHERE 子句&lt;/h4&gt;
+&lt;p&gt;为了进行更强的过滤控制，SQL 允许多个 WHRER 子句组合，使用 AND 或 OR 分隔。&lt;/p&gt;
+&lt;h4&gt;AND 操作符&lt;/h4&gt;
+&lt;p&gt;如果要对多个列进行过滤，可以使用 AND 操作符添加多个条件&lt;/p&gt;
+&lt;p&gt;输入&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;SELECT&lt;/span&gt; prod_id&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; prod_price&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; prod_name
+&lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; Products
+&lt;span class=&quot;token keyword&quot;&gt;WHERE&lt;/span&gt; vend_id &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;DLL01&apos;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;AND&lt;/span&gt; prod_price &lt;span class=&quot;token operator&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;输出&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;BNBG01&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3.49&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;Fish bean bag toy
+BNBG02&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3.49&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;Bird bean bag toy
+BNBG03&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3.49&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;Rabbit bean bag toy&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;上面的 SQL 语句检索出供应商为 DLL01 且产品价格小于 4 的所有产品的 id 、价格和名称。WHERE 子句中包含了两个条件，使用 AND 关键词连接，表示检索出同时满足两个条件的行。&lt;/p&gt;
+&lt;h4&gt;OR 操作符&lt;/h4&gt;
+&lt;p&gt;OR 操作符与 AND 相反，表示检索匹配任意条件的的行。一般在匹配第一个条件后就不在计算第二个条件了。&lt;/p&gt;
+&lt;p&gt;输入&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;SELECT&lt;/span&gt; prod_name&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; prod_price
+&lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt;  Products
+&lt;span class=&quot;token keyword&quot;&gt;WHERE&lt;/span&gt; vend_id &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;DLL01&apos;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;OR&lt;/span&gt; vend_id &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;BRS01&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;输出&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token number&quot;&gt;8&lt;/span&gt; inch teddy bear&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;5.99&lt;/span&gt;
+&lt;span class=&quot;token number&quot;&gt;12&lt;/span&gt; inch teddy bear&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;8.99&lt;/span&gt;
+&lt;span class=&quot;token number&quot;&gt;18&lt;/span&gt; inch teddy bear&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;11.99&lt;/span&gt;
+Fish bean bag toy&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3.49&lt;/span&gt;
+Bird bean bag toy&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3.49&lt;/span&gt;
+Rabbit bean bag toy&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3.49&lt;/span&gt;
+Raggedy Ann&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;4.99&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;上面的 SQL 语句检索出满足任意 WHERE 子句中指定供应商的所有产品的名称和价格。OR 语句告诉数据库匹配任意条件而不是同时匹配两个条件。&lt;/p&gt;
+&lt;h4&gt;求值顺序&lt;/h4&gt;
+&lt;p&gt;WHRER 子句可以包含任意数目的 AND 和 OR 操作符，允许两者进行复杂、高级的过滤。&lt;/p&gt;
+&lt;p&gt;假如需要列出价格为 10 以上而且由 DLL01 或 BRS01 供应商制造的所有产品。使用下面的 SQL 语句&lt;/p&gt;
+&lt;p&gt;输入&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;SELECT&lt;/span&gt; prod_name&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; prod_price
+&lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; Products
+&lt;span class=&quot;token keyword&quot;&gt;WHERE&lt;/span&gt; vend_id &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;DLL01&apos;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;OR&lt;/span&gt; vend_id &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;BRS01&apos;&lt;/span&gt;
+      &lt;span class=&quot;token operator&quot;&gt;AND&lt;/span&gt; prod_price &lt;span class=&quot;token operator&quot;&gt;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;输出&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token number&quot;&gt;18&lt;/span&gt; inch teddy bear&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;11.99&lt;/span&gt;
+Fish bean bag toy&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3.49&lt;/span&gt;
+Bird bean bag toy&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3.49&lt;/span&gt;
+Rabbit bean bag toy&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3.49&lt;/span&gt;
+Raggedy Ann&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;4.99&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;可以看输出结果并不满足要求，有 4 个小于 10 的价格，因为 SQL 在处理 OR 操作符之前会优先处理 AND 操作符，上面的 SQL 语句解释为：检索由供应商为 BRS01 且价格大于等于 10 的所有产品，或者供应商为 DLL01 的所有产品，不管其价格如何。&lt;/p&gt;
+&lt;p&gt;解决这个问题的方法是使用圆括号对操作符进行明确的分组&lt;/p&gt;
+&lt;p&gt;输入&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;SELECT&lt;/span&gt; prod_name&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; prod_price
+&lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; Products
+&lt;span class=&quot;token keyword&quot;&gt;WHERE&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;vend_id &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;DLL01&apos;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;or&lt;/span&gt; vend_id &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;BRS01&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+       &lt;span class=&quot;token operator&quot;&gt;AND&lt;/span&gt; prod_price &lt;span class=&quot;token operator&quot;&gt;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;输出&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token number&quot;&gt;18&lt;/span&gt; inch teddy bear&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;11.99&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;圆括号具有比 AND 或 OR 更高的求值顺序，所以会先过滤圆括号内的 OR 条件。上面 SQL 语句可以理解为：检索出由供应商 DLL01 或 BRS01 制造且价格大于 10 的所有产品。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;为了避免出错或者歧义，应该尽可能的使用圆括号进行操作符分组&lt;/p&gt;
+&lt;/blockquote&gt;</content:encoded></item><item><title><![CDATA[过滤数据（一）]]></title><description><![CDATA[过滤数据（一）使用 WHERE 子句数据表一般包含大量的数据，而通常只需要根据特定的要求检索表中的部分行，而不是所有行。在 SELECT 语句中，数据根据 WHERE 子句中特定的搜索条件进行过滤。输入输出上面的 SQL 语句检索两个列，但是只返回 prod_price 为…]]></description><link>https://gitblog.chao-home.com//sql/sql-select-filter/</link><guid isPermaLink="false">https://gitblog.chao-home.com//sql/sql-select-filter/</guid><pubDate>Sat, 31 Aug 2019 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;过滤数据（一）&lt;/h2&gt;
+&lt;h4&gt;使用 WHERE 子句&lt;/h4&gt;
+&lt;p&gt;数据表一般包含大量的数据，而通常只需要根据特定的要求检索表中的部分行，而不是所有行。&lt;/p&gt;
+&lt;p&gt;在 SELECT 语句中，数据根据 WHERE 子句中特定的搜索条件进行过滤。&lt;/p&gt;
+&lt;p&gt;输入&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;SELECT&lt;/span&gt; prod_name&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; prod_price
+&lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; Products
+&lt;span class=&quot;token keyword&quot;&gt;WHERE&lt;/span&gt; prod_price &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;3.49&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;输出&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;Fish bean bag toy&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3.49&lt;/span&gt;
+Bird bean bag toy&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3.49&lt;/span&gt;
+Rabbit bean bag toy&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3.49&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;上面的 SQL 语句检索两个列，但是只返回 prod_price 为 3.49 的行&lt;/p&gt;
+&lt;h4&gt;WHERE 子句操作符&lt;/h4&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th align=&quot;center&quot;&gt;操作符&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;th align=&quot;center&quot;&gt;操作符&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td align=&quot;center&quot;&gt;=&lt;/td&gt;
+&lt;td&gt;等于&lt;/td&gt;
+&lt;td align=&quot;center&quot;&gt;&gt;&lt;/td&gt;
+&lt;td&gt;大于&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&quot;center&quot;&gt;&amp;#x3C;&gt;&lt;/td&gt;
+&lt;td&gt;不等于&lt;/td&gt;
+&lt;td align=&quot;center&quot;&gt;&gt;=&lt;/td&gt;
+&lt;td&gt;大于等于&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&quot;center&quot;&gt;!=&lt;/td&gt;
+&lt;td&gt;不等于&lt;/td&gt;
+&lt;td align=&quot;center&quot;&gt;!&gt;&lt;/td&gt;
+&lt;td&gt;不大于&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&quot;center&quot;&gt;&amp;#x3C;&lt;/td&gt;
+&lt;td&gt;小于&lt;/td&gt;
+&lt;td align=&quot;center&quot;&gt;BETWEEN&lt;/td&gt;
+&lt;td&gt;在指定的两值之间&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&quot;center&quot;&gt;&amp;#x3C;=&lt;/td&gt;
+&lt;td&gt;小于等于&lt;/td&gt;
+&lt;td align=&quot;center&quot;&gt;IS NULL&lt;/td&gt;
+&lt;td&gt;为 NULL 值&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td align=&quot;center&quot;&gt;!&amp;#x3C;&lt;/td&gt;
+&lt;td&gt;不小于&lt;/td&gt;
+&lt;td align=&quot;center&quot;&gt;&lt;/td&gt;
+&lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;上面的操作符并非所有的数据库都支持，想要确定是否支持需要查看相应文档&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4&gt;大于/小于检查&lt;/h4&gt;
+&lt;p&gt;输入&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;SELECT&lt;/span&gt; prod_name&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; prod_price
+&lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; Products
+&lt;span class=&quot;token keyword&quot;&gt;WHERE&lt;/span&gt; prod_price &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;10&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;输出&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token number&quot;&gt;8&lt;/span&gt; inch teddy bear&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;5.99&lt;/span&gt;
+&lt;span class=&quot;token number&quot;&gt;12&lt;/span&gt; inch teddy bear&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;8.99&lt;/span&gt;
+Fish bean bag toy&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3.49&lt;/span&gt;
+Bird bean bag toy&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3.49&lt;/span&gt;
+Rabbit bean bag toy&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3.49&lt;/span&gt;
+Raggedy Ann&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;4.99&lt;/span&gt;
+King doll&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;9.49&lt;/span&gt;
+Queen doll&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;9.49&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;上面的 SQL 语句检索出了所有价格小于 10 的产品&lt;/p&gt;
+&lt;h4&gt;不匹配检查&lt;/h4&gt;
+&lt;p&gt;输入&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;SELECT&lt;/span&gt; vend_id&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; prod_name
+&lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; Products
+&lt;span class=&quot;token keyword&quot;&gt;WHERE&lt;/span&gt; vend_id &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&gt;&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;DLL01&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;输出&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;BRS01&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;8&lt;/span&gt; inch teddy bear
+BRS01&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;12&lt;/span&gt; inch teddy bear
+BRS01&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;18&lt;/span&gt; inch teddy bear
+FNG01&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;King doll
+FNG01&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;Queen doll&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;使用了 &amp;#x3C;&gt; 不等于操作符来过滤掉 vend_id 为 DLL01 的行&lt;/p&gt;
+&lt;h4&gt;范围值检查&lt;/h4&gt;
+&lt;p&gt;如果要查看某个范围的值，可以使用 BETWEEN 操作符。BETWEEN 操作符需要指定两个值一个开始值一个结束值。&lt;/p&gt;
+&lt;p&gt;检索价格在 5 至 10 之间的所有产品&lt;/p&gt;
+&lt;p&gt;输入&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;SELECT&lt;/span&gt; prod_name&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; prod_price
+&lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; Products
+&lt;span class=&quot;token keyword&quot;&gt;WHERE&lt;/span&gt; prod_price &lt;span class=&quot;token operator&quot;&gt;BETWEEN&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;5&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;AND&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;输出&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token number&quot;&gt;8&lt;/span&gt; inch teddy bear&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;5.99&lt;/span&gt;
+&lt;span class=&quot;token number&quot;&gt;12&lt;/span&gt; inch teddy bear&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;8.99&lt;/span&gt;
+King doll&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;9.49&lt;/span&gt;
+Queen doll&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;9.49&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;在使用 BETWEEN 时，指定开始值和结束值，用 AND 关键字分隔，检索出所有开始值和结束值之间的值，包括开始值和结束值&lt;/p&gt;
+&lt;h4&gt;空值检查&lt;/h4&gt;
+&lt;p&gt;在创建表时，可以指定列的值是否能为空，如果可以为空那么这个空值为 NULL&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;NULL 值与 0，空字符串以及空格值并不相同&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;要确定值是否为 NULL 不能简单的检查 = NULL。SELECT 语句中有一个特殊的 WHERE 子句 &lt;code class=&quot;language-text&quot;&gt;IS NULL&lt;/code&gt; 用来检查是否为 NULL 值。&lt;/p&gt;
+&lt;p&gt;输入&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;SELECT&lt;/span&gt; cust_name
+&lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; Customers
+&lt;span class=&quot;token keyword&quot;&gt;WHERE&lt;/span&gt; cust_email &lt;span class=&quot;token operator&quot;&gt;IS&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;NULL&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;输出&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;Kids Place
+The Toy Store&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;上面的 SQL 语句通过 &lt;code class=&quot;language-text&quot;&gt;WHERE cust_email IS NULL&lt;/code&gt; 来过滤 cust_email 为 NULL 的列&lt;/p&gt;</content:encoded></item><item><title><![CDATA[排序检索数据]]></title><description><![CDATA[排序检索数据使用 SELECT 语句的 ORDER BY 子句可以对检索数据进行排序排序数据使用 SQL…]]></description><link>https://gitblog.chao-home.com//sql/sql-select-order_1/</link><guid isPermaLink="false">https://gitblog.chao-home.com//sql/sql-select-order_1/</guid><pubDate>Fri, 30 Aug 2019 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;排序检索数据&lt;/h2&gt;
+&lt;p&gt;使用 SELECT 语句的 ORDER BY 子句可以对检索数据进行排序&lt;/p&gt;
+&lt;h4&gt;排序数据&lt;/h4&gt;
+&lt;p&gt;使用 SQL 语句进行查询表中的某个列，并没有特定的顺序，比如&lt;/p&gt;
+&lt;p&gt;输入&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;SELECT&lt;/span&gt; prod_name
+&lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; Products&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;输出&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token number&quot;&gt;8&lt;/span&gt; inch teddy bear
+&lt;span class=&quot;token number&quot;&gt;12&lt;/span&gt; inch teddy bear
+&lt;span class=&quot;token number&quot;&gt;18&lt;/span&gt; inch teddy bear
+Fish bean bag toy
+Bird bean bag toy
+Rabbit bean bag toy
+Raggedy Ann
+King doll
+Queen doll&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;上面检索出来的数据并不是随机显示的，如果不排序数据一般以它在底层表中出现的顺序显示，
+这有可能是添加数据到表中的顺序，但是如果数据进行过更新或者删除，那么这个顺序可能会受到数据库重用存储空间方式的影响&lt;/p&gt;
+&lt;p&gt;使用 ORDER BY 子句可以对一个或多个列进行排序&lt;/p&gt;
+&lt;p&gt;输入&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;SELECT&lt;/span&gt; prod_name
+&lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; Products
+&lt;span class=&quot;token keyword&quot;&gt;ORDER&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;BY&lt;/span&gt; prod_name&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;输出&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token number&quot;&gt;12&lt;/span&gt; inch teddy bear
+&lt;span class=&quot;token number&quot;&gt;18&lt;/span&gt; inch teddy bear
+&lt;span class=&quot;token number&quot;&gt;8&lt;/span&gt; inch teddy bear
+Bird bean bag toy
+Fish bean bag toy
+King doll
+Queen doll
+Rabbit bean bag toy
+Raggedy Ann&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;blockquote&gt;
+&lt;p&gt;在指定一条 ORDER BY 子句时，应该保证它是 SELECT 语句中最后一条子句，
+如果不是则会报错
+ORDER BY 子句中可以使用非选择列进行排序&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4&gt;按多个列进行排序&lt;/h4&gt;
+&lt;p&gt;按多个列进行排序，在 ORDER BY 子句中指定多个列名用逗号隔开&lt;/p&gt;
+&lt;p&gt;输入&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;SELECT&lt;/span&gt; prod_id&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; prod_price&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; prod_name
+&lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; Products
+&lt;span class=&quot;token keyword&quot;&gt;ORDER&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;BY&lt;/span&gt; prod_price&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; prod_name&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;输出&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;BNBG02&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3.49&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;Bird bean bag toy
+BNBG01&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3.49&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;Fish bean bag toy
+BNBG03&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3.49&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;Rabbit bean bag toy
+RGAN01&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;4.99&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;Raggedy Ann
+BR01&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;5.99&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;8&lt;/span&gt; inch teddy bear
+BR02&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;8.99&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;12&lt;/span&gt; inch teddy bear
+RYL01&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;9.49&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;King doll
+RYL02&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;9.49&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;Queen doll
+BR03&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;11.99&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;18&lt;/span&gt; inch teddy bear&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;多行排序时，排序的顺序完全按照规定进行，比如上面的例子中，仅在 prod&lt;em&gt;price 相同时，才会对 prod&lt;/em&gt;name 进行排序，
+如果 prod&lt;em&gt;price 列中所有的值都是唯一的，则不会按照 prod&lt;/em&gt;name 进行排序&lt;/p&gt;
+&lt;h4&gt;按列的位置进行排序&lt;/h4&gt;
+&lt;p&gt;除了能用列名来指出排序顺序以外，ORDER BY 还可以使用相对位置进行排序&lt;/p&gt;
+&lt;p&gt;输入&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;SELECT&lt;/span&gt; prod_id&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; prod_price&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; prod_name
+&lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; Products
+&lt;span class=&quot;token keyword&quot;&gt;ORDER&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;BY&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;输出&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;BNBG02&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3.49&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;Bird bean bag toy
+BNBG01&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3.49&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;Fish bean bag toy
+BNBG03&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3.49&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;Rabbit bean bag toy
+RGAN01&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;4.99&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;Raggedy Ann
+BR01&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;5.99&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;8&lt;/span&gt; inch teddy bear
+BR02&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;8.99&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;12&lt;/span&gt; inch teddy bear
+RYL01&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;9.49&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;King doll
+RYL02&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;9.49&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;Queen doll
+BR03&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;11.99&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;18&lt;/span&gt; inch teddy bear&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;ORDER BY 2, 3&lt;/code&gt; 中的 2 和 3 分别对应于选择的列的相对位置而不是列名，2 表示按照 prod&lt;em&gt;price 进行排序，3 表示按照 prod&lt;/em&gt;name 进行排序&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;使用相对位置排序的好处是不用输入列名，但是也容易出错，对 SELECT 列进行更改时容易忘记对 ORDER BY 子句进行更改。
+对于不在 SELECT 列中的列显然也无法使用这种排序方式&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4&gt;指定排序方向&lt;/h4&gt;
+&lt;p&gt;ORDER BY 子句的排序默认是升序排序（从 A 到 Z），如果要使用降序排序可以使用 DESC 关键词&lt;/p&gt;
+&lt;p&gt;输入&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;SELECT&lt;/span&gt; prod_id&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; prod_price&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; prod_name
+&lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; Products
+&lt;span class=&quot;token keyword&quot;&gt;ORDER&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;BY&lt;/span&gt; prod_price &lt;span class=&quot;token keyword&quot;&gt;DESC&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;输出&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;BR03&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;11.99&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;18&lt;/span&gt; inch teddy bear
+RYL01&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;9.49&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;King doll
+RYL02&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;9.49&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;Queen doll
+BR02&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;8.99&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;12&lt;/span&gt; inch teddy bear
+BR01&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;5.99&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;8&lt;/span&gt; inch teddy bear
+RGAN01&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;4.99&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;Raggedy Ann
+BNBG01&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3.49&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;Fish bean bag toy
+BNBG02&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3.49&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;Bird bean bag toy
+BNBG03&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3.49&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;Rabbit bean bag toy&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;上面的语句使用 DESC 关键词对 prod_price 进行降序排列&lt;/p&gt;
+&lt;p&gt;如果对多列进行排序，在需要指定排序方向的列上加上 DESC/ASC 关键词，DESC/ASC 关键词只作用于直接位于其前面的列&lt;/p&gt;
+&lt;p&gt;输入&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;SELECT&lt;/span&gt; prod_id&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; prod_price&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; prod_name
+&lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; Products
+&lt;span class=&quot;token keyword&quot;&gt;ORDER&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;BY&lt;/span&gt; prod_price &lt;span class=&quot;token keyword&quot;&gt;DESC&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; prod_name&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;输出&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;BR03&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;11.99&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;18&lt;/span&gt; inch teddy bear
+RYL01&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;9.49&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;King doll
+RYL02&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;9.49&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;Queen doll
+BR02&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;8.99&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;12&lt;/span&gt; inch teddy bear
+BR01&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;5.99&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;8&lt;/span&gt; inch teddy bear
+RGAN01&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;4.99&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;Raggedy Ann
+BNBG02&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3.49&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;Bird bean bag toy
+BNBG01&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3.49&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;Fish bean bag toy
+BNBG03&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3.49&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;Rabbit bean bag toy&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;上面检索结果中 prod&lt;em&gt;price 使用 DESC 以降序排列，prod&lt;/em&gt;name 仍然以默认的升序进行排列&lt;/p&gt;</content:encoded></item><item><title><![CDATA[数据检索（三）]]></title><description><![CDATA[数据检索（三）限制检索结果SELECT 语句返回指定表中所有匹配的行，如果只想返回第一行或者一定数量的行，在不同数据库中这一 SQL 实现并不相同如果使用 SQL Server 和 Access，可以通过 TOP 关键字来限制最多返回多少行上面的代码使用 SELECT TOP…]]></description><link>https://gitblog.chao-home.com//sql/sql-select_3/</link><guid isPermaLink="false">https://gitblog.chao-home.com//sql/sql-select_3/</guid><pubDate>Thu, 29 Aug 2019 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;数据检索（三）&lt;/h2&gt;
 &lt;h4&gt;限制检索结果&lt;/h4&gt;
 &lt;p&gt;SELECT 语句返回指定表中所有匹配的行，如果只想返回第一行或者一定数量的行，在不同数据库中这一 SQL 实现并不相同&lt;/p&gt;
 &lt;p&gt;如果使用 SQL Server 和 Access，可以通过 TOP 关键字来限制最多返回多少行&lt;/p&gt;
