@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[温故而知新]]></title><description><![CDATA[个人博客, 坚持每天一篇！]]></description><link>https://gitblog.chao-home.com/</link><generator>RSS for Node</generator><lastBuildDate>Fri, 06 Sep 2019 16:03:19 GMT</lastBuildDate><item><title><![CDATA[使用 Tick Processor 分析 CPU 使用情况]]></title><description><![CDATA[使用 Tick Processor 分析 CPU 使用情况Tick Processor 是 v8 内置的一个性能分析工具，可以记录 Javascript、C、C++代码的堆栈信息，该功能默认是关闭的，可以通过添加命令行参数 —prof 开启创建测试代码创建了一个 hash…]]></description><link>https://gitblog.chao-home.com//debug/tick-processor/</link><guid isPermaLink="false">https://gitblog.chao-home.com//debug/tick-processor/</guid><content:encoded>&lt;h2&gt;使用 Tick Processor 分析 CPU 使用情况&lt;/h2&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[温故而知新]]></title><description><![CDATA[个人博客, 坚持每天一篇！]]></description><link>https://gitblog.chao-home.com/</link><generator>RSS for Node</generator><lastBuildDate>Thu, 12 Sep 2019 15:26:32 GMT</lastBuildDate><item><title><![CDATA[使用 Tick Processor 分析 CPU 使用情况]]></title><description><![CDATA[使用 Tick Processor 分析 CPU 使用情况Tick Processor 是 v8 内置的一个性能分析工具，可以记录 Javascript、C、C++代码的堆栈信息，该功能默认是关闭的，可以通过添加命令行参数 —prof 开启创建测试代码创建了一个 hash…]]></description><link>https://gitblog.chao-home.com//debug/tick-processor/</link><guid isPermaLink="false">https://gitblog.chao-home.com//debug/tick-processor/</guid><content:encoded>&lt;h2&gt;使用 Tick Processor 分析 CPU 使用情况&lt;/h2&gt;
 &lt;p&gt;Tick Processor 是 v8 内置的一个性能分析工具，可以记录 Javascript、C、C++代码的堆栈信息，该功能默认是关闭的，可以通过添加命令行参数 —prof 开启&lt;/p&gt;
 &lt;h4&gt;创建测试代码&lt;/h4&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; crypto &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;crypto&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
@@ -256,7 +256,269 @@ chain recieve: first value&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;ts&quot;&gt;&lt;pre class=&quot;language-ts&quot;&gt;&lt;code class=&quot;language-ts&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;// 如果 onResolve 或者 onReject 不是函数，其必须被忽略&lt;/span&gt;
 onResolve &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;typeof&lt;/span&gt; onResolve &lt;span class=&quot;token operator&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;function&quot;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;?&lt;/span&gt; &lt;span class=&quot;token function-variable function&quot;&gt;onResolve&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token parameter&quot;&gt;value&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; value&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
 onReject &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;typeof&lt;/span&gt; onReject &lt;span class=&quot;token operator&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;function&quot;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;?&lt;/span&gt; &lt;span class=&quot;token function-variable function&quot;&gt;onReject&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token parameter&quot;&gt;value&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; value&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;基本上对 Promise 规范有了一个简单的实现，对其内部的实现原理会有更好的理解&lt;/p&gt;</content:encoded></item><item><title><![CDATA[使用函数处理数据]]></title><link>https://gitblog.chao-home.com//sql/sql-function/</link><guid isPermaLink="false">https://gitblog.chao-home.com//sql/sql-function/</guid><pubDate>Fri, 06 Sep 2019 00:00:00 GMT</pubDate><content:encoded></content:encoded></item><item><title><![CDATA[创建计算字段]]></title><description><![CDATA[创建计算字段一般储存在表中数据可能不是应用程序所需要的格式，我们需要对数据库中检索的字段进行转换、计算或者格式化后再返回给应用程序，这时就可以使用计算字段拼接字段可以通过拼接字段来使用计算字段。我们现在有一个 Vendors…]]></description><link>https://gitblog.chao-home.com//sql/sql-computed-field/</link><guid isPermaLink="false">https://gitblog.chao-home.com//sql/sql-computed-field/</guid><pubDate>Thu, 05 Sep 2019 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;创建计算字段&lt;/h2&gt;
+&lt;p&gt;基本上对 Promise 规范有了一个简单的实现，对其内部的实现原理会有更好的理解&lt;/p&gt;</content:encoded></item><item><title><![CDATA[分组数据（一）]]></title><description><![CDATA[分组数据（一）SQL 中的聚集函数可以汇总数据，能够计算平均值、最大值、最小值等，所有的计算都是表的所有数据或者匹配特定 WHERE 子句的数据，比如：输入输出如果要返回每个供应商的产品数目，或者返回1…]]></description><link>https://gitblog.chao-home.com//sql/sql-group-1/</link><guid isPermaLink="false">https://gitblog.chao-home.com//sql/sql-group-1/</guid><pubDate>Wed, 11 Sep 2019 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;分组数据（一）&lt;/h2&gt;
+&lt;p&gt;SQL 中的聚集函数可以汇总数据，能够计算平均值、最大值、最小值等，所有的计算都是表的所有数据或者匹配特定 WHERE 子句的数据，比如：&lt;/p&gt;
+&lt;p&gt;输入&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;COUNT&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;AS&lt;/span&gt; num_prods
+&lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; products
+&lt;span class=&quot;token keyword&quot;&gt;WHERE&lt;/span&gt; vend_id &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;DLL01&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;输出&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token number&quot;&gt;4&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;如果要返回每个供应商的产品数目，或者返回10个以上供应商的产品，那么就可以用到分组了。
+使用分组可以将数据分为多个逻辑组，对每个组进行集聚计算。&lt;/p&gt;
+&lt;h4&gt;创建分组&lt;/h4&gt;
+&lt;p&gt;在 SELECT　语句中使用 GROUP BY 子句建立&lt;/p&gt;
+&lt;p&gt;输出&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;SELECT&lt;/span&gt; vend_id&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;COUNT&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;AS&lt;/span&gt; num_prods
+&lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; products
+&lt;span class=&quot;token keyword&quot;&gt;GROUP&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;BY&lt;/span&gt; vend_id&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;输入&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;BRS01&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;
+DLL01&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;4&lt;/span&gt;
+FNG01&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;上面的 SQL 语句指定了两个列：vend&lt;em&gt;id 为产品供应商的 ID，num&lt;/em&gt;prods 为 COUNT(*) 计算字段，使用 GROUP BY 子句对 vend&lt;em&gt;id 进行排序并分组，此时 COUNT(*) 会对每个 vend&lt;/em&gt;id 的 num_props 进行计算。从输出结果可以看到有三个供应商，分别对应 3、4、2 个产品数量&lt;/p&gt;
+&lt;p&gt;使用 GROUP BY 的一些规定：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;GROUP BY 子句可以包含任意数目的列，因此可以对分组进行嵌套，从而进行更细致的数据分组&lt;/li&gt;
+&lt;li&gt;如果使用在 GROUP BY 子句中使用了嵌套分组，数据将在最后指定的分组上进行汇总&lt;/li&gt;
+&lt;li&gt;GROUP BY 子句中列出的每一列都必须是检索列或者有效表达式，但是不能是聚集函数&lt;/li&gt;
+&lt;li&gt;大多数 SQL 实现不允许 GROUP BY 带有长度可变的数据类型，比如文本类型&lt;/li&gt;
+&lt;li&gt;除了聚集函数语句外，SELECT 语句中的每一列都必须在 GROUP BY 子句中给出&lt;/li&gt;
+&lt;li&gt;如果分组列中包含具有 NULL 值的行，那么 NULL 将作为一个分组返回&lt;/li&gt;
+&lt;li&gt;GROUP BY 子句必须出现在 WHERE 子句之后，ORDER BY 子句之前&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;使用 GROUP BY 子句嵌套分组&lt;/p&gt;
+&lt;p&gt;输入&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;SELECT&lt;/span&gt; vend_id&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; prod_price&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;COUNT&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;prod_price&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; Products
+&lt;span class=&quot;token keyword&quot;&gt;GROUP&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;BY&lt;/span&gt; vend_id&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; prod_price&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;输出&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;BRS01&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;5.99&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;
+BRS01&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;8.99&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;
+BRS01&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;11.99&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;
+DLL01&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3.49&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;
+DLL01&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;4.99&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;
+FNG01&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;9.49&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;上面的 SQL 语句，COUNT(prod&lt;em&gt;price) 计算产品价格的计数，使用 GROUP BY 对 vend&lt;/em&gt;id 和 prod_price 进行嵌套分组&lt;/p&gt;</content:encoded></item><item><title><![CDATA[聚集函数（三）]]></title><description><![CDATA[聚集函数（三）前面介绍的几个聚集函数都可以如下使用：对所有行执行计算，可以指定指定特定行或者所有行（*）通过指定 DISTINCT 参数，可以只包含不同的值下面使用 DISTINCT 参数，计算平均值输入输出上面的 AVG(DISTINCT prod_price…]]></description><link>https://gitblog.chao-home.com//sql/sql-collect-function-3/</link><guid isPermaLink="false">https://gitblog.chao-home.com//sql/sql-collect-function-3/</guid><pubDate>Tue, 10 Sep 2019 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;聚集函数（三）&lt;/h2&gt;
+&lt;p&gt;前面介绍的几个聚集函数都可以如下使用：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;对所有行执行计算，可以指定指定特定行或者所有行（*）&lt;/li&gt;
+&lt;li&gt;通过指定 DISTINCT 参数，可以只包含不同的值&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;下面使用 DISTINCT 参数，计算平均值&lt;/p&gt;
+&lt;p&gt;输入&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;AVG&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;DISTINCT&lt;/span&gt; prod_price&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;AS&lt;/span&gt; avg_price
+&lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; Products
+&lt;span class=&quot;token keyword&quot;&gt;WHERE&lt;/span&gt; vend_id &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;DLL01&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;输出&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token number&quot;&gt;4.24&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;上面的 AVG(DISTINCT prod_price) 计算平均值只包含了各个不同的价格，价格相同的物品只会计算一次&lt;/p&gt;
+&lt;p&gt;下面是不使用 DISTINCT 参数的结果&lt;/p&gt;
+&lt;p&gt;输入&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt; &lt;span class=&quot;token keyword&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;AVG&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;prod_price&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;AS&lt;/span&gt; avg_price
+ &lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; Products
+ &lt;span class=&quot;token keyword&quot;&gt;WHERE&lt;/span&gt; vend_id &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;DLL01&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;输出&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token number&quot;&gt;3.865&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;因为没有使用 DISTINCT 计算了价格相同的物品所以平均值要小于使用 DISTINCT 时的结果&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;DISTINCT 不能用于 COUNT(*)
+DISTINCT 可以用于 MIN 和 MAX， 但是没有实际的价值，不管考不考虑不同值，计算结果都是相同的&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4&gt;组合聚集函数&lt;/h4&gt;
+&lt;p&gt;SELECT 语句还可以组合多个聚集函数使用&lt;/p&gt;
+&lt;p&gt;输入&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;COUNT&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;AS&lt;/span&gt; num_items&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;token function&quot;&gt;MIN&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;prod_price&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;AS&lt;/span&gt; price_min&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;token function&quot;&gt;MAX&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;prod_price&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;AS&lt;/span&gt; price_max&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;token function&quot;&gt;AVG&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;prod_price&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;AS&lt;/span&gt; proce_avg
+&lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; Products&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;输出&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token number&quot;&gt;9&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3.49&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;11.99&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;6.82333333333333&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;上面的 SELECT 语句使用了四个聚集函数 COUNT、MIN、MAX、AVG，同时计算产品数量、最高价格、最低价格以及平均值&lt;/p&gt;
+&lt;h4&gt;总结&lt;/h4&gt;
+&lt;p&gt; SQL 的聚集函数可以用来汇总数据，虽然应用也可以进行这些操作但是 SQL 聚集函数的效率要高很多&lt;/p&gt;</content:encoded></item><item><title><![CDATA[集聚函数（二）]]></title><description><![CDATA[集聚函数（二）MAX() 函数MAX() 函数返回指定列中的最大值。MAX() 要求指定列名输入输出上面的 SQL 语句中方 MAX(prod_price) 返回表中物品的最大价格MAX() 函数会忽略值为 NULL 的行MIN() 函数MIN() 函数与 MAX…]]></description><link>https://gitblog.chao-home.com//sql/sql-collect-function-2/</link><guid isPermaLink="false">https://gitblog.chao-home.com//sql/sql-collect-function-2/</guid><pubDate>Mon, 09 Sep 2019 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;集聚函数（二）&lt;/h2&gt;
+&lt;h4&gt;MAX() 函数&lt;/h4&gt;
+&lt;p&gt;MAX() 函数返回指定列中的最大值。MAX() 要求指定列名&lt;/p&gt;
+&lt;p&gt;输入&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;MAX&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;prod_price&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;AS&lt;/span&gt; max_price
+&lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; Products&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;输出&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token number&quot;&gt;11.99&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;上面的 SQL 语句中方 MAX(prod_price) 返回表中物品的最大价格&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;MAX() 函数会忽略值为 NULL 的行&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4&gt;MIN() 函数&lt;/h4&gt;
+&lt;p&gt;MIN() 函数与 MAX() 函数功能相反，返回指定列的最小值&lt;/p&gt;
+&lt;p&gt;输入&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;MIN&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;prod_price&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;AS&lt;/span&gt; min_price
+&lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; Products&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;输出&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token number&quot;&gt;3.49&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;blockquote&gt;
+&lt;p&gt;MIN() 函数会忽略值为 NULL 的行&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4&gt;SUM() 函数&lt;/h4&gt;
+&lt;p&gt;SUM() 函数计算指定列值的总和&lt;/p&gt;
+&lt;p&gt;输入&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;SUM&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;quantity&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;AS&lt;/span&gt; sum_quantity
+&lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; OrderItems
+&lt;span class=&quot;token keyword&quot;&gt;WHERE&lt;/span&gt; order_num &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;20005&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;输出&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token number&quot;&gt;200&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;上面的 SQL 语句 SUM(quantity) 计算订单中所有数量之和，并且使用 WHERE 子句限定订单号&lt;/p&gt;
+&lt;p&gt;SUM() 函数也可以对计算值求和&lt;/p&gt;
+&lt;p&gt;输入&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;SUM&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;item_price &lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt; quantity&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;AS&lt;/span&gt; total_price
+&lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; OrderItems
+&lt;span class=&quot;token keyword&quot;&gt;WHERE&lt;/span&gt; order_num &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;20005&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;输出&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sqj&quot;&gt;&lt;pre class=&quot;language-sqj&quot;&gt;&lt;code class=&quot;language-sqj&quot;&gt;1648.0&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;函数 SUM(item_price * quantity) 计算数量与单价的乘积 返回订单中所有物品价钱之和&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;SUM() 函数忽略值为 NULL 的行&lt;/p&gt;
+&lt;/blockquote&gt;</content:encoded></item><item><title><![CDATA[集聚函数（一）]]></title><description><![CDATA[集聚函数（一）很多时候我们需要汇总数据而不是检索数据，SQL…]]></description><link>https://gitblog.chao-home.com//sql/sql-collect-function/</link><guid isPermaLink="false">https://gitblog.chao-home.com//sql/sql-collect-function/</guid><pubDate>Sun, 08 Sep 2019 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;集聚函数（一）&lt;/h2&gt;
+&lt;p&gt;很多时候我们需要汇总数据而不是检索数据，SQL 语句中提供了一些专门的函数来进行数据汇总&lt;/p&gt;
+&lt;p&gt;常见的数据汇总的案例：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;确定表中的行数&lt;/li&gt;
+&lt;li&gt;获得某些行的和&lt;/li&gt;
+&lt;li&gt;找出表列的最大值、最小值、平均值等&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;上面的案例都是汇总数据，而不需要检索数据，如果返回实际表中的数据就浪费时间和资源&lt;/p&gt;
+&lt;p&gt;常用的集聚函数&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;函数&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;AVG()&lt;/td&gt;
+&lt;td&gt;返回列的平均值&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;COUNT()&lt;/td&gt;
+&lt;td&gt;返回行数&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;MAX()&lt;/td&gt;
+&lt;td&gt;返回列的最大只能&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;MIN()&lt;/td&gt;
+&lt;td&gt;返回列的最小值&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;SUM()&lt;/td&gt;
+&lt;td&gt;返回列的和&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h4&gt;AVG 函数&lt;/h4&gt;
+&lt;p&gt;AVG() 函数通过对表中行数计数并计算列之和，求该列的平均值。使用 AVG() 函数可以返回所有列或特定列的平均值&lt;/p&gt;
+&lt;p&gt;输入&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;AVG&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;prod_price&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;AS&lt;/span&gt; avg_price
+&lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; Products&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;输出&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token number&quot;&gt;6.82333333333333&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;上面的 SELECT 语句返回值 avg_price 是 Products 表中所有产品的平均价格&lt;/p&gt;
+&lt;p&gt;AVG() 函数也可以返回特定列或行的平均值&lt;/p&gt;
+&lt;p&gt;输入&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;AVG&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;prod_price&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;AS&lt;/span&gt; avg_price
+&lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; Products
+&lt;span class=&quot;token keyword&quot;&gt;WHERE&lt;/span&gt; vend_id &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;DLL01&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;输出&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token number&quot;&gt;3.865&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;这条 SQL 语句中使用 WHERE 子句过滤出了 vend&lt;em&gt;id 为 DLL01 的产品，因此 AVG() 函数计算出来的结果也只是所有 vend&lt;/em&gt;id 为 DLL01 的产品的平均值&lt;/p&gt;
+&lt;h4&gt;COUNT() 函数&lt;/h4&gt;
+&lt;p&gt;使用 COUNT() 函数可以计算表中的行数或者符号特定条件的行数&lt;/p&gt;
+&lt;p&gt;输入&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt; &lt;span class=&quot;token keyword&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;COUNT&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;AS&lt;/span&gt; num
+ &lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; Customers&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;输出&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token number&quot;&gt;5&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;上面的 SQL 使用 COUNT(*) 对所有行进行计数，返回结果为 5，一共有 5 条数据&lt;/p&gt;
+&lt;p&gt;下面对特定的行进行计数&lt;/p&gt;
+&lt;p&gt;输入&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;COUNT&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;cust_email&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;AS&lt;/span&gt; num
+&lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; Customers&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;输出&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;上面的 SQL 语句中使用 COUNT(cust&lt;em&gt;email) 进行计数，只对 cust&lt;/em&gt;email 有值的列进行计算，有 cust_email 值的行数为 3&lt;/p&gt;</content:encoded></item><item><title><![CDATA[使用函数处理数据（一）]]></title><description><![CDATA[使用函数处理数据（一）与大多数其他编程语言一样，SQL 也支持函数来处理数据，为数据的转换和处理提供方便对于不同类型的函数除了少数被主要的数据库支持，大部分函数虽然功能相同但是函数的名称和语法可能完全不同SQL 中的函数类型大部分 SQL…]]></description><link>https://gitblog.chao-home.com//sql/sql-function/</link><guid isPermaLink="false">https://gitblog.chao-home.com//sql/sql-function/</guid><pubDate>Fri, 06 Sep 2019 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;使用函数处理数据（一）&lt;/h2&gt;
+&lt;p&gt;与大多数其他编程语言一样，SQL 也支持函数来处理数据，为数据的转换和处理提供方便&lt;/p&gt;
+&lt;p&gt;对于不同类型的函数除了少数被主要的数据库支持，大部分函数虽然功能相同但是函数的名称和语法可能完全不同&lt;/p&gt;
+&lt;h4&gt;SQL 中的函数类型&lt;/h4&gt;
+&lt;p&gt;大部分 SQL 都支持以下的函数类型：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;文本处理函数，比如删除空格，大小写转换等&lt;/li&gt;
+&lt;li&gt;数值处理函数，进行算术操作，比如代数运算，求取绝对值&lt;/li&gt;
+&lt;li&gt;日期和时间处理函数，比如计算两个日期之差，检查日期有效性等&lt;/li&gt;
+&lt;li&gt;系统函数，返回数据库的一些特殊信息，比如用户登录信息&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;函数即可以在列上使用，也可以在 WHERE 等子句中使用&lt;/p&gt;
+&lt;h4&gt;文本处理函数&lt;/h4&gt;
+&lt;p&gt;输入&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;SELECT&lt;/span&gt; vend_name&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; UPPER&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;vend_name&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;AS&lt;/span&gt; vend_name_upcase
+&lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; Vendors
+&lt;span class=&quot;token keyword&quot;&gt;ORDER&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;BY&lt;/span&gt; vend_name&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;输出&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;Bear Emporium&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;BEAR EMPORIUM
+Bears R Us&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;BEARS R US
+Doll House Inc&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;DOLL HOUSE INC&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;
+Fun &lt;span class=&quot;token operator&quot;&gt;and&lt;/span&gt; Games&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;FUN &lt;span class=&quot;token operator&quot;&gt;AND&lt;/span&gt; GAMES
+Furball Inc&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;FURBALL INC&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;
+Jouets et ours&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;JOUETS ET OURS&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;上面的 SQL 语句使用 UPPER 将文本转为大写，输出的第一列为表中储存的值，第二列为通过 UPPER 函数转为大写后的值&lt;/p&gt;
+&lt;p&gt;输入&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;SELECT&lt;/span&gt; vend_name&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; LENGTH&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;vend_name&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;AS&lt;/span&gt; vend_name_length
+&lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; Vendors&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;输出&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;Bears R Us&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;10&lt;/span&gt;
+Bear Emporium&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;13&lt;/span&gt;
+Doll House Inc&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;15&lt;/span&gt;
+Furball Inc&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;12&lt;/span&gt;
+Fun &lt;span class=&quot;token operator&quot;&gt;and&lt;/span&gt; Games&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;13&lt;/span&gt;
+Jouets et ours&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;14&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;上面的 SQL 语句使用 LENGTH 计算 vend&lt;em&gt;name 的长度，输出的第二列的值为对应行的 vend&lt;/em&gt;name 字符串长度&lt;/p&gt;
+&lt;p&gt;常见的文本处理函数&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;函数&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;LEFT()&lt;/td&gt;
+&lt;td&gt;返回字·符串左边的字符&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;LENGTH()&lt;/td&gt;
+&lt;td&gt;返回字符串的长度&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;LOWER()&lt;/td&gt;
+&lt;td&gt;将字符串转为小写&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;LTRIM()&lt;/td&gt;
+&lt;td&gt;去掉字符左边的空格&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;RTRIM()&lt;/td&gt;
+&lt;td&gt;去掉字符右边的空格&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;UPPER()&lt;/td&gt;
+&lt;td&gt;将字符串转为大写&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;</content:encoded></item><item><title><![CDATA[创建计算字段]]></title><description><![CDATA[创建计算字段一般储存在表中数据可能不是应用程序所需要的格式，我们需要对数据库中检索的字段进行转换、计算或者格式化后再返回给应用程序，这时就可以使用计算字段拼接字段可以通过拼接字段来使用计算字段。我们现在有一个 Vendors…]]></description><link>https://gitblog.chao-home.com//sql/sql-computed-field/</link><guid isPermaLink="false">https://gitblog.chao-home.com//sql/sql-computed-field/</guid><pubDate>Thu, 05 Sep 2019 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;创建计算字段&lt;/h2&gt;
 &lt;p&gt;一般储存在表中数据可能不是应用程序所需要的格式，我们需要对数据库中检索的字段进行转换、计算或者格式化后再返回给应用程序，这时就可以使用计算字段&lt;/p&gt;
 &lt;h4&gt;拼接字段&lt;/h4&gt;
 &lt;p&gt;可以通过拼接字段来使用计算字段。我们现在有一个 Vendors 表，里面包含供应商名和地址信息列，如果要生成一个报表，报表中需要展示名称和供应商，并且供应商使用括号扩起来，而数据库中并没有名称和供应商组合的字段以及括号，这时可以使用拼接字段进行组合&lt;/p&gt;
@@ -4838,7 +5100,80 @@ Watch movie&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;a href=&quot;#fnref-3&quot; class=&quot;footnote-backref&quot;&gt;↩&lt;/a&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;/div&gt;</content:encoded></item><item><title><![CDATA[Node.js Web 框架之 Sails]]></title><description><![CDATA[Node.js Web 框架之 SailsSails 是 Node.js 中最流行的 MVC 框架，类似于 Ruby on Rails。使用 Sails 可以轻松构建企业级的 Node.js Web 服务特点Sails 内置强大的 ROM…]]></description><link>https://gitblog.chao-home.com//nodejs/nodejs-web-framework-sails/</link><guid isPermaLink="false">https://gitblog.chao-home.com//nodejs/nodejs-web-framework-sails/</guid><pubDate>Sat, 06 Jul 2019 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;Node.js Web 框架之 Sails&lt;/h2&gt;
+&lt;/div&gt;</content:encoded></item><item><title><![CDATA[使用函数处理数据（二）]]></title><description><![CDATA[使用函数处理数据（二）时间和日历处理函数每个数据库在表中存储日期和时间类型的数据都有自己的特殊形式，日期和时间值以特殊的格式储存，以便能够快速有效的排序和过滤，并且可以节省物理存储空间以下的 SQL 是在 SQL Server 中检索 Orders 表中 201…]]></description><link>https://gitblog.chao-home.com//sql/sql-function-2/</link><guid isPermaLink="false">https://gitblog.chao-home.com//sql/sql-function-2/</guid><pubDate>Sun, 07 Jul 2019 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;使用函数处理数据（二）&lt;/h2&gt;
+&lt;h4&gt;时间和日历处理函数&lt;/h4&gt;
+&lt;p&gt;每个数据库在表中存储日期和时间类型的数据都有自己的特殊形式，日期和时间值以特殊的格式储存，以便能够快速有效的排序和过滤，并且可以节省物理存储空间&lt;/p&gt;
+&lt;p&gt;以下的 SQL 是在 SQL Server 中检索 Orders 表中 2012 年所有的订单&lt;/p&gt;
+&lt;p&gt;输入&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;SELECT&lt;/span&gt; order_num 
+&lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; Orders
+&lt;span class=&quot;token keyword&quot;&gt;WHERE&lt;/span&gt; DATEPART&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;yy&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; order_date&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;2002&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;输出&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token number&quot;&gt;20005&lt;/span&gt;
+&lt;span class=&quot;token number&quot;&gt;20006&lt;/span&gt;
+&lt;span class=&quot;token number&quot;&gt;20007&lt;/span&gt;
+&lt;span class=&quot;token number&quot;&gt;20008&lt;/span&gt;
+&lt;span class=&quot;token number&quot;&gt;20009&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;上面的 SQL 语句使用了 DATEPART() 函数返回日期的某一部分。DATEPART() 函数有两个参数，它们分别是日期值中返回的部分和日期值。上面 SQL 中 DATEPART() 返回 order_date 中的年份,然后与 2012 进行比较，从而过滤出 2012 年的所有行。&lt;/p&gt;
+&lt;p&gt;同样的功能在 PostgreSQL 是使用 DATE_PAERT 函数&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;SELECT&lt;/span&gt; order_name
+&lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; Orders
+&lt;span class=&quot;token keyword&quot;&gt;WHERE&lt;/span&gt; DATA_PART&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;year&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; order_date &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;2012&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;在 MySQL 和 MarialDN 中使用 YEAR() 函数提取日期中的年份&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;SELECT&lt;/span&gt; order_num 
+&lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; Orders
+&lt;span class=&quot;token keyword&quot;&gt;WHERE&lt;/span&gt; YAER&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;order_date&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;2002&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;在 SQLite 中使用 strftime(),获取年份&lt;/p&gt;
+&lt;p&gt;输入&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;rder_name
+&lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; Orders
+&lt;span class=&quot;token keyword&quot;&gt;WHERE&lt;/span&gt; strftime&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;%Y&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; order_date&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;2012&apos;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h4&gt;数值处理函数&lt;/h4&gt;
+&lt;p&gt;数值处理函数一般用来计算数值的代数，三角或几何运算。数值处理函数在大部分数据库是相同的，是最统一最一致的&lt;/p&gt;
+&lt;p&gt;常用的数值处理函数&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;函数&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;ABS()&lt;/td&gt;
+&lt;td&gt;返回绝对值&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;COS()&lt;/td&gt;
+&lt;td&gt;返回余玄值&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;EXP()&lt;/td&gt;
+&lt;td&gt;返回指数值&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;PI()&lt;/td&gt;
+&lt;td&gt;返回圆周率&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;SIN()&lt;/td&gt;
+&lt;td&gt;返回正玄值&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;SQRT()&lt;/td&gt;
+&lt;td&gt;返回平方根&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;TAN()&lt;/td&gt;
+&lt;td&gt;返回正切值&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;数值处理函数的使用方式，和前面的一样&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4&gt;总结&lt;/h4&gt;
+&lt;p&gt;数据处理函数在数据过滤中非常有用，但是各个数据库的实现可能不一致&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Node.js Web 框架之 Sails]]></title><description><![CDATA[Node.js Web 框架之 SailsSails 是 Node.js 中最流行的 MVC 框架，类似于 Ruby on Rails。使用 Sails 可以轻松构建企业级的 Node.js Web 服务特点Sails 内置强大的 ROM…]]></description><link>https://gitblog.chao-home.com//nodejs/nodejs-web-framework-sails/</link><guid isPermaLink="false">https://gitblog.chao-home.com//nodejs/nodejs-web-framework-sails/</guid><pubDate>Sat, 06 Jul 2019 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;Node.js Web 框架之 Sails&lt;/h2&gt;
 &lt;p&gt;&lt;img src=&quot;https://sailsjs.com/images/get_started_hero@2x.png&quot;&gt;&lt;/p&gt;
 &lt;p&gt;Sails 是 Node.js 中最流行的 MVC 框架，类似于 Ruby on Rails。使用 Sails 可以轻松构建企业级的 Node.js Web 服务&lt;sup id=&quot;fnref-1&quot;&gt;&lt;a href=&quot;#fn-1&quot; class=&quot;footnote-ref&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;
 &lt;h4&gt;特点&lt;/h4&gt;
