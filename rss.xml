@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[温故而知新]]></title><description><![CDATA[个人博客, 坚持每天一篇！]]></description><link>https://gitblog.chao-home.com/</link><generator>RSS for Node</generator><lastBuildDate>Thu, 12 Sep 2019 15:26:32 GMT</lastBuildDate><item><title><![CDATA[使用 Tick Processor 分析 CPU 使用情况]]></title><description><![CDATA[使用 Tick Processor 分析 CPU 使用情况Tick Processor 是 v8 内置的一个性能分析工具，可以记录 Javascript、C、C++代码的堆栈信息，该功能默认是关闭的，可以通过添加命令行参数 —prof 开启创建测试代码创建了一个 hash…]]></description><link>https://gitblog.chao-home.com//debug/tick-processor/</link><guid isPermaLink="false">https://gitblog.chao-home.com//debug/tick-processor/</guid><content:encoded>&lt;h2&gt;使用 Tick Processor 分析 CPU 使用情况&lt;/h2&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[温故而知新]]></title><description><![CDATA[个人博客, 坚持每天一篇！]]></description><link>https://gitblog.chao-home.com/</link><generator>RSS for Node</generator><lastBuildDate>Sat, 14 Sep 2019 10:26:54 GMT</lastBuildDate><item><title><![CDATA[使用 Tick Processor 分析 CPU 使用情况]]></title><description><![CDATA[使用 Tick Processor 分析 CPU 使用情况Tick Processor 是 v8 内置的一个性能分析工具，可以记录 Javascript、C、C++代码的堆栈信息，该功能默认是关闭的，可以通过添加命令行参数 —prof 开启创建测试代码创建了一个 hash…]]></description><link>https://gitblog.chao-home.com//debug/tick-processor/</link><guid isPermaLink="false">https://gitblog.chao-home.com//debug/tick-processor/</guid><content:encoded>&lt;h2&gt;使用 Tick Processor 分析 CPU 使用情况&lt;/h2&gt;
 &lt;p&gt;Tick Processor 是 v8 内置的一个性能分析工具，可以记录 Javascript、C、C++代码的堆栈信息，该功能默认是关闭的，可以通过添加命令行参数 —prof 开启&lt;/p&gt;
 &lt;h4&gt;创建测试代码&lt;/h4&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; crypto &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;crypto&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
@@ -256,7 +256,172 @@ chain recieve: first value&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;ts&quot;&gt;&lt;pre class=&quot;language-ts&quot;&gt;&lt;code class=&quot;language-ts&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;// 如果 onResolve 或者 onReject 不是函数，其必须被忽略&lt;/span&gt;
 onResolve &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;typeof&lt;/span&gt; onResolve &lt;span class=&quot;token operator&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;function&quot;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;?&lt;/span&gt; &lt;span class=&quot;token function-variable function&quot;&gt;onResolve&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token parameter&quot;&gt;value&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; value&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
 onReject &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;typeof&lt;/span&gt; onReject &lt;span class=&quot;token operator&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;function&quot;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;?&lt;/span&gt; &lt;span class=&quot;token function-variable function&quot;&gt;onReject&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token parameter&quot;&gt;value&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&gt;&lt;/span&gt; value&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;基本上对 Promise 规范有了一个简单的实现，对其内部的实现原理会有更好的理解&lt;/p&gt;</content:encoded></item><item><title><![CDATA[分组数据（一）]]></title><description><![CDATA[分组数据（一）SQL 中的聚集函数可以汇总数据，能够计算平均值、最大值、最小值等，所有的计算都是表的所有数据或者匹配特定 WHERE 子句的数据，比如：输入输出如果要返回每个供应商的产品数目，或者返回1…]]></description><link>https://gitblog.chao-home.com//sql/sql-group-1/</link><guid isPermaLink="false">https://gitblog.chao-home.com//sql/sql-group-1/</guid><pubDate>Wed, 11 Sep 2019 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;分组数据（一）&lt;/h2&gt;
+&lt;p&gt;基本上对 Promise 规范有了一个简单的实现，对其内部的实现原理会有更好的理解&lt;/p&gt;</content:encoded></item><item><title><![CDATA[使用子查询]]></title><description><![CDATA[使用子查询在 SQL 语句中允许在查询语句中嵌套其他的查询语句，即子查询（subquery）利用子查询进行过滤现在存在三个表，Orders 表储存订单编号、客户 ID、订单日期，OrderItems 表储存订单物品的相关信息，Customer…]]></description><link>https://gitblog.chao-home.com//sql/sql-child-query/</link><guid isPermaLink="false">https://gitblog.chao-home.com//sql/sql-child-query/</guid><pubDate>Fri, 13 Sep 2019 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;使用子查询&lt;/h2&gt;
+&lt;p&gt;在 SQL 语句中允许在查询语句中嵌套其他的查询语句，即子查询（subquery）&lt;/p&gt;
+&lt;h4&gt;利用子查询进行过滤&lt;/h4&gt;
+&lt;p&gt;现在存在三个表，Orders 表储存订单编号、客户 ID、订单日期，OrderItems 表储存订单物品的相关信息，Customer 表中储存客户信息。如果要列出订购物品 RGAN01 的所有顾客，需要进行以下步骤：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;检索包含 RGAN01 的所有订单&lt;/li&gt;
+&lt;li&gt;根据上一步订单编号检索所有的顾客 ID&lt;/li&gt;
+&lt;li&gt;根据顾客 ID 检索所有顾客信息&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;每一条都可以是一个 SQL 语句，将上一条的结果应用与下一条 SQL 语句&lt;/p&gt;
+&lt;p&gt;第一步在 OrderItems 表中检索产品为 RGAN01 的订单&lt;/p&gt;
+&lt;p&gt;输入&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;SELECT&lt;/span&gt; order_num
+&lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; OrderItems
+&lt;span class=&quot;token keyword&quot;&gt;WHERE&lt;/span&gt; prod_id &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;RGAN01&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;输出&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token number&quot;&gt;20007&lt;/span&gt;
+&lt;span class=&quot;token number&quot;&gt;20008&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;第二步根据订单号在 Orders 表中检索检索顾客 ID&lt;/p&gt;
+&lt;p&gt;输入&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;SELECT&lt;/span&gt; cust_id
+&lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; Orders
+&lt;span class=&quot;token keyword&quot;&gt;WHERE&lt;/span&gt; order_num &lt;span class=&quot;token operator&quot;&gt;IN&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;20007&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;20008&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;输出&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token number&quot;&gt;1000000004&lt;/span&gt;
+&lt;span class=&quot;token number&quot;&gt;1000000005&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;第三步根据顾客 ID 在 Customers 表中检索顾客信息&lt;/p&gt;
+&lt;p&gt;输入&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;SELECT&lt;/span&gt; cust_name&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; cust_contact
+&lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; Customers
+&lt;span class=&quot;token keyword&quot;&gt;WHERE&lt;/span&gt; cust_id &lt;span class=&quot;token operator&quot;&gt;IN&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1000000004&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1000000005&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;输出&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;Fun4All&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;Denise L&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt; Stephens
+The Toy Store&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;Kim Howard&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;通过子查询将三个 SQL 语句合成一个&lt;/p&gt;
+&lt;p&gt;输入&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;SELECT&lt;/span&gt; cust_name&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; cust_contact
+&lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; Customers
+&lt;span class=&quot;token keyword&quot;&gt;WHERE&lt;/span&gt; cust_id &lt;span class=&quot;token operator&quot;&gt;IN&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;SELECT&lt;/span&gt; cust_id
+                   &lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; Orders
+                   &lt;span class=&quot;token keyword&quot;&gt;WHERE&lt;/span&gt; order_num &lt;span class=&quot;token operator&quot;&gt;IN&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;SELECT&lt;/span&gt; order_num
+                                        &lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; OrderItems
+                                        &lt;span class=&quot;token keyword&quot;&gt;WHERE&lt;/span&gt; prod_id &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;RGAN01&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;输出&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;Fun4All&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;Denise L&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt; Stephens
+The Toy Store&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;Kim Howard&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;上面的 SQL 语句有两条子查询依次从内向外执行，效果等同于前面的三条 SQL 语句&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;子查询只能查询单个列，检索多个列会报错&lt;/p&gt;
+&lt;/blockquote&gt;</content:encoded></item><item><title><![CDATA[分组数据（二）]]></title><description><![CDATA[分组数据（二）分组过滤GROUP BY 除了能对数据进行分组外，还可以对分组进行过滤，指定包含哪些分组，排除哪些分组与 WHERE 子句的不同是 WHERE 子句过滤的是行而不是分组。SQL 中提供了对分组进行过滤的子句 HAVING。HAVING 非常类似与 WHERE…]]></description><link>https://gitblog.chao-home.com//sql/sql-group-2/</link><guid isPermaLink="false">https://gitblog.chao-home.com//sql/sql-group-2/</guid><pubDate>Thu, 12 Sep 2019 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;分组数据（二）&lt;/h2&gt;
+&lt;h4&gt;分组过滤&lt;/h4&gt;
+&lt;p&gt;GROUP BY 除了能对数据进行分组外，还可以对分组进行过滤，指定包含哪些分组，排除哪些分组&lt;/p&gt;
+&lt;p&gt;与 WHERE 子句的不同是 WHERE 子句过滤的是行而不是分组。SQL 中提供了对分组进行过滤的子句 HAVING。HAVING 非常类似与 WHERE，且支持所有的 WHERE 子句操作符。&lt;/p&gt;
+&lt;p&gt;输入&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;SELECT&lt;/span&gt; cust_id&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;COUNT&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;as&lt;/span&gt; num
+&lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; orders
+&lt;span class=&quot;token keyword&quot;&gt;GROUP&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;BY&lt;/span&gt; cust_id
+&lt;span class=&quot;token keyword&quot;&gt;HAVING&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;COUNT&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;输出&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token number&quot;&gt;1000000001&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;上面的 SQL 语句使用 HAVING COUNT(*) &gt;= 2 过滤订单数量大于等于 2 的订单&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;HAVING 和 WHERE 的区别：
+WHERE 是在分组前进行过滤，而 HAVING 是在分组后进行过滤&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;同时使用 WHERE 和 HAVING 子句&lt;/p&gt;
+&lt;p&gt;输入&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;SELECT&lt;/span&gt; vend_id&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;COUNT&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;AS&lt;/span&gt; num
+&lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; products
+&lt;span class=&quot;token keyword&quot;&gt;WHERE&lt;/span&gt; prod_price &lt;span class=&quot;token operator&quot;&gt;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;4&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;GROUP&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;BY&lt;/span&gt; vend_id
+&lt;span class=&quot;token keyword&quot;&gt;HAVING&lt;/span&gt; num &lt;span class=&quot;token operator&quot;&gt;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;输出&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;BRS01&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;
+FNG01&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;上面的 SQL 语句先使用 WHERE 子句过滤 prod_price大于等于 4 的产品，然后对分组数量大于等于 2 的分组进行过滤&lt;/p&gt;
+&lt;h4&gt;分组排序&lt;/h4&gt;
+&lt;p&gt;GROUP BY 和 ORDER BY 经常完成相同的工作，但是它们之间有如下区别&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;ORDER BY&lt;/th&gt;
+&lt;th&gt;GROUP BY&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;对产生的输出排序&lt;/td&gt;
+&lt;td&gt;对行分组，但输出可能不是分组的顺序&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;对任意列都可使用&lt;/td&gt;
+&lt;td&gt;只能使用选择列或者表达式&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;不一定需要&lt;/td&gt;
+&lt;td&gt;如果与聚集函数一起使用列，则必须使用&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;检索包含三个及以上物品的订单号和订购物品的数目，并通过订单号进行分组&lt;/p&gt;
+&lt;p&gt;输入&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;SELECT&lt;/span&gt; order_num&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;COUNT&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;AS&lt;/span&gt; items
+&lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; order_items
+&lt;span class=&quot;token keyword&quot;&gt;GROUP&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;BY&lt;/span&gt; order_num
+&lt;span class=&quot;token keyword&quot;&gt;HAVING&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;COUNT&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;输出&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token number&quot;&gt;20006&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;
+&lt;span class=&quot;token number&quot;&gt;20007&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;5&lt;/span&gt;
+&lt;span class=&quot;token number&quot;&gt;20008&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;5&lt;/span&gt;
+&lt;span class=&quot;token number&quot;&gt;20009&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;添加 ORDER BY 子句对物品的数量进行排序&lt;/p&gt;
+&lt;p&gt;输入&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;SELECT&lt;/span&gt; order_num&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;COUNT&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;AS&lt;/span&gt; items
+&lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; order_items
+&lt;span class=&quot;token keyword&quot;&gt;GROUP&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;BY&lt;/span&gt; order_num
+&lt;span class=&quot;token keyword&quot;&gt;HAVING&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;COUNT&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;ORDER&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;BY&lt;/span&gt; items&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;输出&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token number&quot;&gt;20006&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;
+&lt;span class=&quot;token number&quot;&gt;20009&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;
+&lt;span class=&quot;token number&quot;&gt;20007&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;5&lt;/span&gt;
+&lt;span class=&quot;token number&quot;&gt;20008&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;5&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h4&gt;SELECT 子句的顺序&lt;/h4&gt;
+&lt;p&gt;SELECT 语句中使用时必须遵循的次序&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;子句&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;th&gt;是否必须使用&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;SELECT&lt;/td&gt;
+&lt;td&gt;要返回的列或表达式&lt;/td&gt;
+&lt;td&gt;是&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;FROM&lt;/td&gt;
+&lt;td&gt;检索数据的表&lt;/td&gt;
+&lt;td&gt;是&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;WHERE&lt;/td&gt;
+&lt;td&gt;行级过滤&lt;/td&gt;
+&lt;td&gt;否&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;GROUP BY&lt;/td&gt;
+&lt;td&gt;分组&lt;/td&gt;
+&lt;td&gt;仅在按组计算集聚数据时使用&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;HAVING&lt;/td&gt;
+&lt;td&gt;组级过滤&lt;/td&gt;
+&lt;td&gt;否&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;ORDER BY&lt;/td&gt;
+&lt;td&gt;对输出排序&lt;/td&gt;
+&lt;td&gt;否&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;</content:encoded></item><item><title><![CDATA[分组数据（一）]]></title><description><![CDATA[分组数据（一）SQL 中的聚集函数可以汇总数据，能够计算平均值、最大值、最小值等，所有的计算都是表的所有数据或者匹配特定 WHERE 子句的数据，比如：输入输出如果要返回每个供应商的产品数目，或者返回1…]]></description><link>https://gitblog.chao-home.com//sql/sql-group-1/</link><guid isPermaLink="false">https://gitblog.chao-home.com//sql/sql-group-1/</guid><pubDate>Wed, 11 Sep 2019 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;分组数据（一）&lt;/h2&gt;
 &lt;p&gt;SQL 中的聚集函数可以汇总数据，能够计算平均值、最大值、最小值等，所有的计算都是表的所有数据或者匹配特定 WHERE 子句的数据，比如：&lt;/p&gt;
 &lt;p&gt;输入&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;COUNT&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;AS&lt;/span&gt; num_prods
