@@ -103,8 +103,6 @@
 <span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre></div>
 <p>在 resolve 和 reject 函数中控制状态只能由 pending 到  fulfilled 或 rejected</p>
 <p>使用 setTimeout 是为了保证 onFulfilledCallbacks 中的方法是异步执行的</p>
-<p>2019-08-19更新</p>
-<hr>
 <h4>实现 then 方法</h4>
 <p>在 Promise 中 then 方法可以注册当前 Promise 状态确定后的回调</p>
 <div class="gatsby-highlight" data-language="js"><pre class="language-js"><code class="language-js">promise<span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span>onResolve<span class="token punctuation">,</span> onReject<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre></div>
