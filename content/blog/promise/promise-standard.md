@@ -141,10 +141,6 @@ new Promise((resolve, reject) => {
 
 
 
-2019-08-19更新
-
----
-
 
 
 #### 实现 then 方法
