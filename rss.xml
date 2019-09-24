@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[温故而知新]]></title><description><![CDATA[个人博客, 坚持每天一篇！]]></description><link>https://gitblog.chao-home.com/</link><generator>RSS for Node</generator><lastBuildDate>Mon, 23 Sep 2019 14:49:36 GMT</lastBuildDate><item><title><![CDATA[No title]]></title><description><![CDATA[实现 then 方法在 Promise 中 then 方法可以注册当前 Promise 状态确定后的回调其中 onResolve 是 fulfilled 的后的回调接受 promise 的最终结果，onReject 是 rejected 的后的回调接受 promise…]]></description><link>https://gitblog.chao-home.com//promise2/</link><guid isPermaLink="false">https://gitblog.chao-home.com//promise2/</guid><content:encoded>&lt;h4&gt;实现 then 方法&lt;/h4&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[温故而知新]]></title><description><![CDATA[个人博客, 坚持每天一篇！]]></description><link>https://gitblog.chao-home.com/</link><generator>RSS for Node</generator><lastBuildDate>Tue, 24 Sep 2019 16:34:15 GMT</lastBuildDate><item><title><![CDATA[No title]]></title><description><![CDATA[实现 then 方法在 Promise 中 then 方法可以注册当前 Promise 状态确定后的回调其中 onResolve 是 fulfilled 的后的回调接受 promise 的最终结果，onReject 是 rejected 的后的回调接受 promise…]]></description><link>https://gitblog.chao-home.com//promise2/</link><guid isPermaLink="false">https://gitblog.chao-home.com//promise2/</guid><content:encoded>&lt;h4&gt;实现 then 方法&lt;/h4&gt;
 &lt;p&gt;在 Promise 中 then 方法可以注册当前 Promise 状态确定后的回调&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;promise&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;then&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;onResolve&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; onReject&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;其中 onResolve 是 fulfilled 的后的回调接受 promise 的最终结果，onReject 是 rejected 的后的回调接受 promise 不能执行的原因&lt;/p&gt;
@@ -152,7 +152,164 @@ onReject &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span cl
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;RENAME&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;TABLE&lt;/span&gt; Vendors &lt;span class=&quot;token keyword&quot;&gt;TO&lt;/span&gt; vendors&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;SQLite 中使用 ALTER TABLE 语句&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;ALTER&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;TABLE&lt;/span&gt; Vendors
-&lt;span class=&quot;token keyword&quot;&gt;RENAME&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;TO&lt;/span&gt; vendors&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[创建和操控表（一）]]></title><description><![CDATA[创建和操控表（一）SQL 不仅可以对表的数据进行操纵，还可以对数据库和表本身进行操作，包括表本身的创建和处理表创建基础在 SQL 中可以使用 CREATE TABLE 来创建表。创建表是必须给出下列信息：新表的名字，跟在 CREATE TABLE…]]></description><link>https://gitblog.chao-home.com//sql/sql-create-table/</link><guid isPermaLink="false">https://gitblog.chao-home.com//sql/sql-create-table/</guid><pubDate>Sat, 21 Sep 2019 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;创建和操控表（一）&lt;/h2&gt;
+&lt;span class=&quot;token keyword&quot;&gt;RENAME&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;TO&lt;/span&gt; vendors&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[Typescript 及其基本类型]]></title><description><![CDATA[Typescript 及其基本类型Typescript 是 Javascript 的超集，可以编译成纯 Javascript。Typescript 中的 type 表示指类型，在 Javascript…]]></description><link>https://gitblog.chao-home.com//typescript/types-100/</link><guid isPermaLink="false">https://gitblog.chao-home.com//typescript/types-100/</guid><pubDate>Mon, 23 Sep 2019 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;Typescript 及其基本类型&lt;/h2&gt;
+&lt;p&gt;Typescript 是 Javascript 的超集，可以编译成纯 Javascript。Typescript 中的 type 表示指类型，在 Javascript 语言的基础上增加了可选的类型系统、类以及接口等静态语言特性。&lt;/p&gt;
+&lt;p&gt;使用 Typescript 类型系统带来的静态语言特性，结合 IDE 类型推断、代码提示能够大大提高开发效率，可以对代码做静态检查。由于其完全兼容 Javascript 语法，可以逐步添加类型，进行平滑迁移，甚至与 Javascript 代码共存。Typescript 已经逐渐成为前端开发的趋势&lt;/p&gt;
+&lt;p&gt;Typescript 与 Javascript 的关系&lt;/p&gt;
+&lt;img src=&quot;https://raw.githubusercontent.com/basarat/typescript-book/master/images/venn.png&quot; style=&quot;width:350px;text-algin:center&quot;&gt;
+&lt;h4&gt;Typescript 基础类型&lt;/h4&gt;
+&lt;p&gt;Typescript 支持与 Javascript 相同的数据类型，同时提供了一些额外的类型&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;布尔值
+最基本的数据类型值为 true/false，和 Javascript 一样用 boolean 类型表示&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;ts&quot;&gt;&lt;pre class=&quot;language-ts&quot;&gt;&lt;code class=&quot;language-ts&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; isRight&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;boolean&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;数值
+和 Javascript 一样，所以数值都为浮点数，用 number 类型表示&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;ts&quot;&gt;&lt;pre class=&quot;language-ts&quot;&gt;&lt;code class=&quot;language-ts&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;// 十进制&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; dec &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;9&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;// 十六进制&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; hex &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0x1dbdb1&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;// 八进制&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; oct &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0o677&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;// 二进制&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; bin &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0b010101&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;字符串
+和 Javascript 中的一样表示文本数据，可用单引号或双引号表示，其类型为 string&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;ts&quot;&gt;&lt;pre class=&quot;language-ts&quot;&gt;&lt;code class=&quot;language-ts&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; name&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;bob&apos;&lt;/span&gt;
+name &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;sam&quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;数组
+数组有两种定义方式，一种是在元素后面加 &lt;code class=&quot;language-text&quot;&gt;[]&lt;/code&gt;，表示由此元素组成的数组&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;ts&quot;&gt;&lt;pre class=&quot;language-ts&quot;&gt;&lt;code class=&quot;language-ts&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; list&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;number&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; names&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;bob&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;sam&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;另一种是使用数组泛型&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;ts&quot;&gt;&lt;pre class=&quot;language-ts&quot;&gt;&lt;code class=&quot;language-ts&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; list&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;Array&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token builtin&quot;&gt;number&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; names&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;Array&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token builtin&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;bob&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;sam&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;元组 Tuple
+元组类型可以用来表示一个已知数量和类型的数组，数组元素的类型可以不一样&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;ts&quot;&gt;&lt;pre class=&quot;language-ts&quot;&gt;&lt;code class=&quot;language-ts&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; foo&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token builtin&quot;&gt;number&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+foo &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;bob&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;// 如果类型不匹配则会报错&lt;/span&gt;
+foo &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;bob&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// 报错，类型不匹配&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;any
+有时候在编程阶段还不知道变量的类型，有可能是第三方库传人或者用户输入的动态内容，这时我们不希望编译器对此进行类型检查，那么可以用 any 类型来表示&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;ts&quot;&gt;&lt;pre class=&quot;language-ts&quot;&gt;&lt;code class=&quot;language-ts&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; name&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;any&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;bob&apos;&lt;/span&gt;
+name &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;123&lt;/span&gt;
+name &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;false&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;void
+void 与 any 相反，它表示没有任何值，一般在函数的返回为空时用 void 表示。void 一般不用于变量的类型声明&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;ts&quot;&gt;&lt;pre class=&quot;language-ts&quot;&gt;&lt;code class=&quot;language-ts&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;postUser&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;null 和 undefined&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;在 Typescript 中，null 和 undefined 值，分别对应两种类型 null、undefined。默认情况下 null 和 undefined 是所有类型的子类型，比如可以将 null 或 undefined 赋值给 number 类型&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;ts&quot;&gt;&lt;pre class=&quot;language-ts&quot;&gt;&lt;code class=&quot;language-ts&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; age&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;number&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;10&lt;/span&gt;
+age &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;null&lt;/span&gt;
+age &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; undefined&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;never&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;neber 类型表示永不存在的值的类型，比如抛出异常或者没有返回值的函数表达式&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;ts&quot;&gt;&lt;pre class=&quot;language-ts&quot;&gt;&lt;code class=&quot;language-ts&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;// 抛出异常&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;msg&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;string&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;never&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;throw&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Error&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;msg&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;// 没有返回值&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;loop&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;never&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;while&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;never 类型是任何类型的子类型，可以赋值给任何类型, 但是没有类型是 never 的子类型，即没有类型可以赋值给never类型（除了never本身之外）&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;object&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;object 表示非原始类型，即除了 boolen, number, string, symbol, null 和 undefined 之外的类型&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;ts&quot;&gt;&lt;pre class=&quot;language-ts&quot;&gt;&lt;code class=&quot;language-ts&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;let&lt;/span&gt; obj&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; object
+obj &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;name&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;sam&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[使用视图（一）]]></title><description><![CDATA[使用视图（一）视图视图是虚拟的表，与包含数据的表不一样，视图只包含使用时动态检索数据的查询下面的 SQL…]]></description><link>https://gitblog.chao-home.com//sql/sql-views-1/</link><guid isPermaLink="false">https://gitblog.chao-home.com//sql/sql-views-1/</guid><pubDate>Mon, 23 Sep 2019 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;使用视图（一）&lt;/h2&gt;
+&lt;h3&gt;视图&lt;/h3&gt;
+&lt;p&gt;视图是虚拟的表，与包含数据的表不一样，视图只包含使用时动态检索数据的查询&lt;/p&gt;
+&lt;p&gt;下面的 SQL 语句从三个表中检索数据&lt;/p&gt;
+&lt;p&gt;输入&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;SELECT&lt;/span&gt; cust_nam&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; cust_contact
+&lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; Customers&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; Orders&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; OrderItems
+&lt;span class=&quot;token keyword&quot;&gt;WHERE&lt;/span&gt; Customers&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;cust_id &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; Orders&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;cust_id 
+&lt;span class=&quot;token operator&quot;&gt;AND&lt;/span&gt; OrderItems&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;order_num &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; Orders&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;order_num
+&lt;span class=&quot;token operator&quot;&gt;AND&lt;/span&gt; prod_id &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;RGAN01&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;上面的语句通过关联三个表检索购买某种产品的顾客。任何需要这个数据的人都需要理解表的结构及其关联关系，在检索其他产品或多个产品的相同数据时，必须修改 WHERE 子句&lt;/p&gt;
+&lt;p&gt;如果可以将整个查询包装成为一个名为 ProductCustomers 的虚拟表，那么就可以很容易检索出相同的数据&lt;/p&gt;
+&lt;p&gt;输入&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;SELECT&lt;/span&gt; cust_name&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; cust_contact
+&lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; ProductCustomers
+&lt;span class=&quot;token keyword&quot;&gt;WHERE&lt;/span&gt; prod_id &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;RGAN01&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;这就是视图的作用，ProductCustomers 是一个视图，它不包含任何列或者行，包含的是一个查询&lt;/p&gt;
+&lt;h4&gt;为什么使用视图&lt;/h4&gt;
+&lt;p&gt;使用视图的一些常用应用场景&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;重用 SQL 语句&lt;/li&gt;
+&lt;li&gt;简化 SQL 语句操作&lt;/li&gt;
+&lt;li&gt;使用表的一部分而不是所有整个表&lt;/li&gt;
+&lt;li&gt;保护数据，可以授予用户访问表时的特定权限，而不是整个表&lt;/li&gt;
+&lt;li&gt;更改数据格式和表示，视图可以返回与底层表格式不同的数据&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;创建视图后，可以用与表基本相同的方式使用，比如 SELECT，过滤、排序以及联结其他视图或表&lt;/p&gt;
+&lt;p&gt;视图仅仅是用来查看存储在别处表的数据，本身不包含数据，因此返回的数据是从其他表中检索出来的&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;如果使用多个联结和过滤创建复杂的视图或者嵌套视图，可能会对性能有很大的影响&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4&gt;视图的规则和限制&lt;/h4&gt;
+&lt;p&gt;以下是视图创建和使用的一些常见的规则和限制&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;视图必须唯一命名，不能与表相同&lt;/li&gt;
+&lt;li&gt;对于可创建的视图数目没有限制&lt;/li&gt;
+&lt;li&gt;视图可以嵌套，可以利用其他视图中检索出的数据来构造视图（嵌套视图可能会严重降低查询性能，在使用前最好做性能测试）&lt;/li&gt;
+&lt;li&gt;许多数据库禁止在视图查询中使用 ORDER BY 子句&lt;/li&gt;
+&lt;li&gt;有些数据库要对返回的所有列进行命名，如果是计算字段则需要使用别名&lt;/li&gt;
+&lt;li&gt;视图不能索引，也不能有关联的触发器或默认值&lt;/li&gt;
+&lt;li&gt;有些数据库把视图做为只读查询，不能将数据写回底层表&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;不同的数据库对视图有不同的规则，在使用前需要查看相应的文档&lt;/p&gt;
+&lt;h4&gt;创建视图&lt;/h4&gt;
+&lt;p&gt;视图使用 CREATE VIEW 语句来创建，与 CREATE TABLE 一样， CREATE VIEW 只能创建不存在的视图&lt;/p&gt;
+&lt;p&gt;最常见的视图应用是隐藏复杂的 SQL，比如：&lt;/p&gt;
+&lt;p&gt;输入&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;CREATE&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;VIEW&lt;/span&gt; ProductCustomers &lt;span class=&quot;token keyword&quot;&gt;AS&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;SELECT&lt;/span&gt; cust_name&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; cust_contact&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; prod_id
+&lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; Customers&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; Orders&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; OrderItems
+&lt;span class=&quot;token keyword&quot;&gt;WHERE&lt;/span&gt; Customers&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;cust_id &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; Orders&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;cust_id 
+&lt;span class=&quot;token operator&quot;&gt;AND&lt;/span&gt; OrderItems&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;order_num &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; Orders&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;order_num&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;这条语句创建了一个 ProductCustomers 视图，联结了三个表。&lt;/p&gt;
+&lt;p&gt;通过这个视图来检索数据&lt;/p&gt;
+&lt;p&gt;输入&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;SELECT&lt;/span&gt; cust_name&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; cust_contact
+&lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; ProductCustomers
+&lt;span class=&quot;token keyword&quot;&gt;WHERE&lt;/span&gt; prod_id &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;RGAN01&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;输出&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;cust_name   cust_contact      
+&lt;span class=&quot;token comment&quot;&gt;----------  ------------------&lt;/span&gt;
+Fun4All     Denise L&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt; Stephens
+The Toy St  Kim Howard&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;通过 WHERE 子句检索视图中的特定数据，可以看出视图极大的简化了复杂 SQL 语句的使用，可以一次性编写基础的 SQL，然后根据需要多次使用&lt;/p&gt;</content:encoded></item><item><title><![CDATA[创建和操控表（一）]]></title><description><![CDATA[创建和操控表（一）SQL 不仅可以对表的数据进行操纵，还可以对数据库和表本身进行操作，包括表本身的创建和处理表创建基础在 SQL 中可以使用 CREATE TABLE 来创建表。创建表是必须给出下列信息：新表的名字，跟在 CREATE TABLE…]]></description><link>https://gitblog.chao-home.com//sql/sql-create-table/</link><guid isPermaLink="false">https://gitblog.chao-home.com//sql/sql-create-table/</guid><pubDate>Sat, 21 Sep 2019 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;创建和操控表（一）&lt;/h2&gt;
 &lt;p&gt;SQL 不仅可以对表的数据进行操纵，还可以对数据库和表本身进行操作，包括表本身的创建和处理&lt;/p&gt;
 &lt;h4&gt;表创建基础&lt;/h4&gt;
 &lt;p&gt;在 SQL 中可以使用 CREATE TABLE 来创建表。创建表是必须给出下列信息：&lt;/p&gt;
