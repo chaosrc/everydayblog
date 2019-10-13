@@ -1,4 +1,94 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[温故而知新]]></title><description><![CDATA[个人博客, 坚持每天一篇！]]></description><link>https://gitblog.chao-home.com/</link><generator>RSS for Node</generator><lastBuildDate>Fri, 11 Oct 2019 16:34:41 GMT</lastBuildDate><item><title><![CDATA[Go 程序结构（五）]]></title><description><![CDATA[Go 程序结构（五）元组(Tuple)赋值除了前面提到的赋值方式外，Go 还支持另一种赋值方式——元组赋值，允许一次赋值多个变量。所有右边的表达式在任何变量更新之前执行，当某个变量同时出现在等号两边时非常有用，比如交换两个变量时求两个整数的最大公约数计算第 n…]]></description><link>https://gitblog.chao-home.com//go/golang-structure-5/</link><guid isPermaLink="false">https://gitblog.chao-home.com//go/golang-structure-5/</guid><pubDate>Fri, 11 Oct 2019 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;Go 程序结构（五）&lt;/h2&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[温故而知新]]></title><description><![CDATA[个人博客, 坚持每天一篇！]]></description><link>https://gitblog.chao-home.com/</link><generator>RSS for Node</generator><lastBuildDate>Sun, 13 Oct 2019 10:46:02 GMT</lastBuildDate><item><title><![CDATA[Go 程序结构（七）]]></title><description><![CDATA[Go 程序结构（七）import在一个 Go 程序中，每个 package 都定义了一个唯一的字符串叫做导入路径（）。语言本身并没有定义这些字符串的来源及含义，而是处决于工具如何解析它们。当使用 Go 工具（go tool）时  表示一个文件夹，里面包含一个或多个 Go…]]></description><link>https://gitblog.chao-home.com//go/golang-structure-7/</link><guid isPermaLink="false">https://gitblog.chao-home.com//go/golang-structure-7/</guid><pubDate>Sun, 13 Oct 2019 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;Go 程序结构（七）&lt;/h2&gt;
+&lt;h4&gt;import&lt;/h4&gt;
+&lt;p&gt;在一个 Go 程序中，每个 package 都定义了一个唯一的字符串叫做导入路径（&lt;code class=&quot;language-text&quot;&gt;import path&lt;/code&gt;）。语言本身并没有定义这些字符串的来源及含义，而是处决于工具如何解析它们。当使用 Go 工具（go tool）时 &lt;code class=&quot;language-text&quot;&gt;import path&lt;/code&gt; 表示一个文件夹，里面包含一个或多个 Go 源码文件，这些文件一起组成一个包。每个包都有一个包名出现在包的声明中。为了方便，一般包名和导入路径的最后一个部分匹配，比如 “example.com/hello/tempconv” 的包名为 tempconv&lt;/p&gt;
+&lt;p&gt;下面在另一个包中使用之前定义的包 example.com/hello/tempconv&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;go&quot;&gt;&lt;pre class=&quot;language-go&quot;&gt;&lt;code class=&quot;language-go&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;package&lt;/span&gt; main 
+
+&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
+	&lt;span class=&quot;token string&quot;&gt;&quot;example.com/hello/tempconv&quot;&lt;/span&gt;
+	&lt;span class=&quot;token string&quot;&gt;&quot;os&quot;&lt;/span&gt;
+	&lt;span class=&quot;token string&quot;&gt;&quot;strconv&quot;&lt;/span&gt;
+	&lt;span class=&quot;token string&quot;&gt;&quot;fmt&quot;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;token keyword&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;_&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; arg &lt;span class=&quot;token operator&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;range&lt;/span&gt; os&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;Args&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+		t&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; err &lt;span class=&quot;token operator&quot;&gt;:=&lt;/span&gt; strconv&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;ParseFloat&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;arg&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;64&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+		&lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; err &lt;span class=&quot;token operator&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;nil&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+			fmt&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;Fprintf&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;os&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;Stderr&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;cf: %v\n&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; err&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+			os&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;Exit&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+		&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+		c &lt;span class=&quot;token operator&quot;&gt;:=&lt;/span&gt; tempconv&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;Celsius&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;t&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+		f &lt;span class=&quot;token operator&quot;&gt;:=&lt;/span&gt; tempconv&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;Fahrenheit&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;t&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+		fmt&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;Printf&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;%s = %s, %s = %s \n&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; 
+			c&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; tempconv&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;CToF&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;c&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; f&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; tempconv&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;FToC&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;f&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+	&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;上面的 import 语句导入包 example.com/hello/tempconv，在整个文件中都可以使用 tempconv 来引用包中的内容&lt;/p&gt;
+&lt;p&gt;运行上面的程序&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sh&quot;&gt;&lt;pre class=&quot;language-sh&quot;&gt;&lt;code class=&quot;language-sh&quot;&gt;$ go build .
+$ ls
+cf      cf.go
+$ ./cf 100
+100°C = 212°F, 100°F = 37.77777777777778°C 
+$ ./cf 0
+0°C = 32°F, 0°F = -17.77777777777778°C &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h4&gt;包初始化（Package Initialization）&lt;/h4&gt;
+&lt;p&gt;包的初始化开始于包级别变量的初始化，按照它们声明的顺序，但是依赖会先解析&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;go&quot;&gt;&lt;pre class=&quot;language-go&quot;&gt;&lt;code class=&quot;language-go&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; a &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; b &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; c    &lt;span class=&quot;token comment&quot;&gt;// 第三个初始化&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; b &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;      &lt;span class=&quot;token comment&quot;&gt;// 第二个初始化&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; c &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;        &lt;span class=&quot;token comment&quot;&gt;// 最先初始化&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; c &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;如果一个包有多个 .go 文件，它们初始化的顺序是文件给编译器的顺序，Go 工具在编译之前会对文件通过文件名进行排序&lt;/p&gt;
+&lt;p&gt;任何 .go 文件可以包含任意数量的初始化（init）方法&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;go&quot;&gt;&lt;pre class=&quot;language-go&quot;&gt;&lt;code class=&quot;language-go&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;init&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;init 方法除了不能被调用或者引用外，其他的与正常函数一样。每个文件中的 init 方法会在程序启动时按照声明顺序自动运行&lt;/p&gt;
+&lt;p&gt;每个包初始化一次，按照导入顺序，先执行依赖。如果某个包 a 引入了包 b，那么可以确定的是在 a 初始化之前 b 已经完全初始化&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Go 程序结构（六）]]></title><description><![CDATA[Go 程序结构（六）类型声明一个变量或表达式定义了值的特征，比如它的大小、内部展现方式、能够对它进行的操作以及与之相关的一些方法在任何程序中，都有一些变量有相同的展现形式，但是完全不同的含义，比如一个 int…]]></description><link>https://gitblog.chao-home.com//go/golang-structure-6/</link><guid isPermaLink="false">https://gitblog.chao-home.com//go/golang-structure-6/</guid><pubDate>Sat, 12 Oct 2019 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;Go 程序结构（六）&lt;/h2&gt;
+&lt;h4&gt;类型声明&lt;/h4&gt;
+&lt;p&gt;一个变量或表达式定义了值的特征，比如它的大小、内部展现方式、能够对它进行的操作以及与之相关的一些方法&lt;/p&gt;
+&lt;p&gt;在任何程序中，都有一些变量有相同的展现形式，但是完全不同的含义，比如一个 int 变量可以是一个循环的索引、一个时间戳、一个文件大小的描述或者一个月份&lt;/p&gt;
+&lt;p&gt;一个类型（type）声明定义了一个新的命名类型，具有与现在 type 相同的类型。一个命名类型提供了一种方式分离和独立类型的使用&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;go&quot;&gt;&lt;pre class=&quot;language-go&quot;&gt;&lt;code class=&quot;language-go&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;// 类型声明&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;type&lt;/span&gt; name underlying&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;type&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;类型声明多出现在包（package）级别，这里定义的类型对于包内可见，如果被导出（以大写字母开头），则在其他包中也可以使用&lt;/p&gt;
+&lt;p&gt;下面是一个温度转换程序，在摄氏度和华氏度之间进行转换&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;go&quot;&gt;&lt;pre class=&quot;language-go&quot;&gt;&lt;code class=&quot;language-go&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;package&lt;/span&gt; tempconv
+
+
+&lt;span class=&quot;token keyword&quot;&gt;type&lt;/span&gt; Celsius &lt;span class=&quot;token builtin&quot;&gt;float64&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;type&lt;/span&gt; Fahrenheit &lt;span class=&quot;token builtin&quot;&gt;float64&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
+	AbsoluteZero Celsius &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;273.15&lt;/span&gt;
+	FreezingC    Celsius &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;
+	BollingC     Celsius &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;100&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;CToF&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;c Celsius&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; Fahrenheit &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;Fahrenheit&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;c &lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;9&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;5&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;32&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;FToC&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;f Fahrenheit&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; Celsius &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;Celsius&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;f &lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;32&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;5&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;9&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;上面的 package 中定义了两个类型 Celsius 和 Fahrenheit,分别表示摄氏度和华氏度，尽管两个的基础类型都是 float64，但是它们不是同一个类型，所以它们之间不能比较或用算术表达式组合。从 float64 转换需要指明转换类型比如 Fahrenheit(t) 或 Celsius(t)。Fahrenheit(t) 或 Celsius(t)是类型转换而不是方法调用&lt;/p&gt;
+&lt;p&gt;对于每一个类型 T，都有一个相应的转换操作 T(x) 将 x 转换为 T 类型。如果两个类型的原始类型相同那么它们之间可以相互转换。&lt;/p&gt;
+&lt;p&gt;命名类型也使得给类型的值定义新的行为成为可能。这些行为表示为一组与类型相关的函数，称为类型的方法&lt;/p&gt;
+&lt;p&gt;为 Celsius 类型定义 String 方法&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;go&quot;&gt;&lt;pre class=&quot;language-go&quot;&gt;&lt;code class=&quot;language-go&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;c Celsius&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+	&lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; fmt&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;Sprintf&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;%g°C&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; c&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;很多类型都通过这种方式定义 String 方法，因为，它决定了在使用 fmt 包打印字符串时值的显示&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;go&quot;&gt;&lt;pre class=&quot;language-go&quot;&gt;&lt;code class=&quot;language-go&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; f Celsius &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;100&lt;/span&gt;
+fmt&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;Printf&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;%s\n&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; f&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token comment&quot;&gt;// 输出；100°C&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h4&gt;包（package）和文件&lt;/h4&gt;
+&lt;p&gt;包在 Go 中达到了在其他语言中库和模块相同的目的，支持模块化、封装、单独编译和复用。一个包的源码存在于一个或多个 .go 文件中，通常是在导入路径结尾名字的文件夹中，比如包 github.com/hello 的文件存放在 $GOPATH/src/github.com/hello 目录下&lt;/p&gt;
+&lt;p&gt;每个包都为其声明了一个独立的命名空间。包允许我们通过控制哪些名称是在包外面可见或导出来隐藏信息。在 Go 中使用一个简单的规则来管理那个标识符被导出：被导出的标识符使用大写字母开头&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Go 程序结构（五）]]></title><description><![CDATA[Go 程序结构（五）元组(Tuple)赋值除了前面提到的赋值方式外，Go 还支持另一种赋值方式——元组赋值，允许一次赋值多个变量。所有右边的表达式在任何变量更新之前执行，当某个变量同时出现在等号两边时非常有用，比如交换两个变量时求两个整数的最大公约数计算第 n…]]></description><link>https://gitblog.chao-home.com//go/golang-structure-5/</link><guid isPermaLink="false">https://gitblog.chao-home.com//go/golang-structure-5/</guid><pubDate>Fri, 11 Oct 2019 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;Go 程序结构（五）&lt;/h2&gt;
 &lt;h4&gt;元组(Tuple)赋值&lt;/h4&gt;
 &lt;p&gt;除了前面提到的赋值方式外，Go 还支持另一种赋值方式——元组赋值，允许一次赋值多个变量。&lt;/p&gt;
 &lt;p&gt;所有右边的表达式在任何变量更新之前执行，当某个变量同时出现在等号两边时非常有用，比如交换两个变量时&lt;/p&gt;
