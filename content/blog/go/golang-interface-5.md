@@ -1,11 +1,11 @@
 ---
-title: Go 接口（五）
+title: Golang 接口（五）
 date: 2019-11-10
 ---
 
 
 
-## Go 接口（五）
+## Golang 接口（五）
 
 
 
