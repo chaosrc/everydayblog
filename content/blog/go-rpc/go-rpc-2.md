@@ -5,7 +5,7 @@ date: 2019-12-21
 
 ## Go rpc (二) ：Protobuf
 
-Protobuf 是 Protobuf Buffers 的简称，是一个高效、灵活、带有自动序列化机制的数据语言，定位类似于 XML、JSON等描述语言。
+Protobuf 是 Protocal Buffers 的简称，是一个高效、灵活、带有自动序列化机制的数据语言，定位类似于 XML、JSON等描述语言。
 
 
 
