@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[温故而知新]]></title><description><![CDATA[个人博客, 坚持每天一篇！]]></description><link>https://gitblog.chao-home.com/</link><generator>RSS for Node</generator><lastBuildDate>Tue, 31 Dec 2019 13:59:32 GMT</lastBuildDate><item><title><![CDATA[Go RPC (五)]]></title><description><![CDATA[Go RPC (五)gRPC 简介gRPC 是 Google 基于 Protobul 开发的跨语言 RPC 框架。gRPC 基于 HTTP/2 协议设计，可基于一个 HTTP/2 连接提供多个服务，对移动设备更加友好。gRPC 技术栈gRPC 入门创建 hello.proto…]]></description><link>https://gitblog.chao-home.com//go-rpc/go-rpc-5/</link><guid isPermaLink="false">https://gitblog.chao-home.com//go-rpc/go-rpc-5/</guid><content:encoded>&lt;h2&gt;Go RPC (五)&lt;/h2&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[温故而知新]]></title><description><![CDATA[个人博客, 坚持每天一篇！]]></description><link>https://gitblog.chao-home.com/</link><generator>RSS for Node</generator><lastBuildDate>Tue, 31 Dec 2019 15:31:25 GMT</lastBuildDate><item><title><![CDATA[Go RPC (五)]]></title><description><![CDATA[Go RPC (五)gRPC 简介gRPC 是 Google 基于 Protobul 开发的跨语言 RPC 框架。gRPC 基于 HTTP/2 协议设计，可基于一个 HTTP/2 连接提供多个服务，对移动设备更加友好。gRPC 技术栈gRPC 入门创建 hello.proto…]]></description><link>https://gitblog.chao-home.com//go-rpc/go-rpc-5/</link><guid isPermaLink="false">https://gitblog.chao-home.com//go-rpc/go-rpc-5/</guid><content:encoded>&lt;h2&gt;Go RPC (五)&lt;/h2&gt;
 &lt;h4&gt;gRPC 简介&lt;/h4&gt;
 &lt;p&gt;gRPC 是 Google 基于 Protobul 开发的跨语言 RPC 框架。gRPC 基于 HTTP/2 协议设计，可基于一个 HTTP/2 连接提供多个服务，对移动设备更加友好。&lt;/p&gt;
 &lt;h4&gt;gRPC 技术栈&lt;/h4&gt;
@@ -63,7 +63,24 @@ service HelloService &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&
 	&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
 
 	fmt&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;Println&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;reply&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;GetValue&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[负载均衡]]></title><description><![CDATA[负载均衡现在有 n 个服务节点，需要从这 n…]]></description><link>https://gitblog.chao-home.com//go-distribute/go-distribute-3/</link><guid isPermaLink="false">https://gitblog.chao-home.com//go-distribute/go-distribute-3/</guid><pubDate>Mon, 30 Dec 2019 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;负载均衡&lt;/h2&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[现代密码学：简介（一）]]></title><description><![CDATA[现代密码学：简介（一）秘密学和现代密码学牛津词典中将密学定义为：加密或解密的艺术（The art of writing and solving codes）。这个定义在历史上可能是准确的，但是却不是现代密码学的核心。在2…]]></description><link>https://gitblog.chao-home.com//crypto/crypto-1/</link><guid isPermaLink="false">https://gitblog.chao-home.com//crypto/crypto-1/</guid><pubDate>Tue, 31 Dec 2019 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;现代密码学：简介（一）&lt;/h2&gt;
+&lt;h4&gt;秘密学和现代密码学&lt;/h4&gt;
+&lt;p&gt;牛津词典中将密学定义为：加密或解密的艺术（The art of writing and solving codes）。这个定义在历史上可能是准确的，但是却不是现代密码学的核心。&lt;/p&gt;
+&lt;p&gt;在20世纪末，密码学从根本上发生改变，大量理论出现，使密码学作为一门科学严格研究称为可能。密码学不再只是保密通信，而是包括信息验证、数字签名、私钥交换协议、电子拍卖和选举、电子货币等。&lt;/p&gt;
+&lt;p&gt;密码学已经从为处理军事保密信息走向了帮助普通用户保护系统。&lt;/p&gt;
+&lt;h4&gt;私钥加密的设置&lt;/h4&gt;
+&lt;p&gt;私钥加密的设置中，双方共享的相同秘密信息被称为一个 key，通过 key 可以进行私密通信。在这种通信中，使用相同的 key 转换原始文本为加密文本以及恢复加密文本为原始文本，这种加密方式也称为对称加密。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://imgchr.com/i/l8pW7Q&quot;&gt;&lt;img src=&quot;https://s2.ax1x.com/2019/12/31/l8pW7Q.md.png&quot; alt=&quot;l8pW7Q.md.png&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;与对称加密相反的是非对称加密，接收者和发送者不共享任何秘密，加密和解密使用不同的 key。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;加密语法&lt;/strong&gt; 加密通信由三个算法组成：生成 key、加密、解密。这三个算法具有以下功能&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;key 生成算法 Gen 根据某种方案生成 key ，用 k 表示。&lt;/li&gt;
+&lt;li&gt;加密算法 Enc 使用 k 和原始文本 m 生成 加密文本 c，使用 Enc&lt;sub&gt;k&lt;/sub&gt;(m) 表示&lt;/li&gt;
+&lt;li&gt;解密算法Dec 使用 k 和加密文本 c 生成原始文本 m，使用 Dec&lt;sub&gt;k&lt;/sub&gt;(c) 表示&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;生成 key 的过程定义了一个 key 的空间 K。加密的方案 定义了一个原始文本的可能集合 M，叫做原始文本空间（plaintext space）。K 和 M 定义所有可肯的加密文本 C。&lt;/p&gt;
+&lt;p&gt;任何加密方案基本的正确性需求是每一个有 Gen 生成的 k 和每个原始文本 m 满足：&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://imgchr.com/i/l8pSOS&quot;&gt;&lt;img src=&quot;https://s2.ax1x.com/2019/12/31/l8pSOS.md.png&quot; alt=&quot;l8pSOS.md.png&quot;&gt;&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[负载均衡]]></title><description><![CDATA[负载均衡现在有 n 个服务节点，需要从这 n…]]></description><link>https://gitblog.chao-home.com//go-distribute/go-distribute-3/</link><guid isPermaLink="false">https://gitblog.chao-home.com//go-distribute/go-distribute-3/</guid><pubDate>Mon, 30 Dec 2019 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;负载均衡&lt;/h2&gt;
 &lt;p&gt;现在有 n 个服务节点，需要从这 n 个服务中挑出一个来完成业务流程。每次随机选择一个服务节点，同时遇到下游返回错误时更换其他节点重试。&lt;/p&gt;
 &lt;p&gt;我们设计一个大小和节点数组相同的索引数组，每次新的请求过来，先对索引进行‘洗牌’，然后取第一个元素为服务节点，如果请求失败者选择下一个节点重试。&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;go&quot;&gt;&lt;pre class=&quot;language-go&quot;&gt;&lt;code class=&quot;language-go&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;package&lt;/span&gt; main
