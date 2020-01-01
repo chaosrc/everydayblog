@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[温故而知新]]></title><description><![CDATA[个人博客, 坚持每天一篇！]]></description><link>https://gitblog.chao-home.com/</link><generator>RSS for Node</generator><lastBuildDate>Tue, 31 Dec 2019 15:31:25 GMT</lastBuildDate><item><title><![CDATA[Go RPC (五)]]></title><description><![CDATA[Go RPC (五)gRPC 简介gRPC 是 Google 基于 Protobul 开发的跨语言 RPC 框架。gRPC 基于 HTTP/2 协议设计，可基于一个 HTTP/2 连接提供多个服务，对移动设备更加友好。gRPC 技术栈gRPC 入门创建 hello.proto…]]></description><link>https://gitblog.chao-home.com//go-rpc/go-rpc-5/</link><guid isPermaLink="false">https://gitblog.chao-home.com//go-rpc/go-rpc-5/</guid><content:encoded>&lt;h2&gt;Go RPC (五)&lt;/h2&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[温故而知新]]></title><description><![CDATA[个人博客, 坚持每天一篇！]]></description><link>https://gitblog.chao-home.com/</link><generator>RSS for Node</generator><lastBuildDate>Wed, 01 Jan 2020 16:06:41 GMT</lastBuildDate><item><title><![CDATA[Go RPC (五)]]></title><description><![CDATA[Go RPC (五)gRPC 简介gRPC 是 Google 基于 Protobul 开发的跨语言 RPC 框架。gRPC 基于 HTTP/2 协议设计，可基于一个 HTTP/2 连接提供多个服务，对移动设备更加友好。gRPC 技术栈gRPC 入门创建 hello.proto…]]></description><link>https://gitblog.chao-home.com//go-rpc/go-rpc-5/</link><guid isPermaLink="false">https://gitblog.chao-home.com//go-rpc/go-rpc-5/</guid><content:encoded>&lt;h2&gt;Go RPC (五)&lt;/h2&gt;
 &lt;h4&gt;gRPC 简介&lt;/h4&gt;
 &lt;p&gt;gRPC 是 Google 基于 Protobul 开发的跨语言 RPC 框架。gRPC 基于 HTTP/2 协议设计，可基于一个 HTTP/2 连接提供多个服务，对移动设备更加友好。&lt;/p&gt;
 &lt;h4&gt;gRPC 技术栈&lt;/h4&gt;
@@ -63,7 +63,30 @@ service HelloService &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&
 	&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
 
 	fmt&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;Println&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;reply&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;GetValue&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[现代密码学：简介（一）]]></title><description><![CDATA[现代密码学：简介（一）秘密学和现代密码学牛津词典中将密学定义为：加密或解密的艺术（The art of writing and solving codes）。这个定义在历史上可能是准确的，但是却不是现代密码学的核心。在2…]]></description><link>https://gitblog.chao-home.com//crypto/crypto-1/</link><guid isPermaLink="false">https://gitblog.chao-home.com//crypto/crypto-1/</guid><pubDate>Tue, 31 Dec 2019 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;现代密码学：简介（一）&lt;/h2&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[现代密码学：简介（二）]]></title><description><![CDATA[现代密码学：简介（二）Kerckhoffs 原则Auguste Kerckhoffs 提出的密码的设计原则：加密方法本身不需要保持私密，交流双方只需要将 key 做为唯一的私密信息原因为：首先维护一个短的 key 比维护一个算法更容易，通常一个加密程序的大小是一个 key…]]></description><link>https://gitblog.chao-home.com//crypto/crypto-2/</link><guid isPermaLink="false">https://gitblog.chao-home.com//crypto/crypto-2/</guid><pubDate>Wed, 01 Jan 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;现代密码学：简介（二）&lt;/h2&gt;
+&lt;h4&gt;Kerckhoffs 原则&lt;/h4&gt;
+&lt;p&gt;Auguste Kerckhoffs 提出的密码的设计原则：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;加密方法本身不需要保持私密，交流双方只需要将 key 做为唯一的私密信息&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;原因为：首先维护一个短的 key 比维护一个算法更容易，通常一个加密程序的大小是一个 key 几千倍，算法的细节能够被泄露或者通过逆向工程学习；其次如果 key 被暴露，更换 key 比更换使用的算法更容易。&lt;/p&gt;
+&lt;p&gt;如今，Kerchhoffs 原则被理解为：不但安全性不依赖于算法的使用，而且要求这些算法是公开的。&lt;/p&gt;
+&lt;p&gt;开放密码设计的好处：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;发布的设计经受公共的审查而更加强壮。很多年的经验示范了，创建好的加密方案是非·困难的。因此在经过了广泛的研究和承受住了很多攻击后，我们对一个方案的安全性会有更多的自信。&lt;/li&gt;
+&lt;li&gt;安全的瑕疵被”道德黑客”披露并公开，比让怀有恶意的人知道更好.&lt;/li&gt;
+&lt;li&gt;如果安全系统依赖于安全算法，那么对代码的逆向工程会严重威胁安全性。&lt;/li&gt;
+&lt;li&gt;公开的设计使标准的建立称为可能&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4&gt;攻击场景&lt;/h4&gt;
+&lt;p&gt;对加密方案的几种基本攻击类型：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Ciphertext-only 攻击：这是最基本的攻击方法，指对手知道加密文本尝试计算出被加密过的原始文本&lt;/li&gt;
+&lt;li&gt;Known-plaintext 攻击：对手学习同一个 key 加密的一个或多个原始文本/加密文本对，目标是给定其他的加密文本计算出对应的原始文本&lt;/li&gt;
+&lt;li&gt;Chosen-plaintext 攻击：对手能够对其选择获取任何原始文本的加密文本，尝试计算出其他加密文本的原始文本&lt;/li&gt;
+&lt;li&gt;Chosen-ciphertext 攻击：对手能够对其选择对任何加密文本进行解密，目的同样是对于给定的其他加密文本（对手无法直接解密）计算出原始文本&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;前两种类型攻击是被动的，对手仅仅接收了一些加密文本和对应的原始文本，然后发起攻击。相反，后面两种是主动攻击，对手能够对它选择文本进行加密或解密&lt;/p&gt;</content:encoded></item><item><title><![CDATA[现代密码学：简介（一）]]></title><description><![CDATA[现代密码学：简介（一）秘密学和现代密码学牛津词典中将密学定义为：加密或解密的艺术（The art of writing and solving codes）。这个定义在历史上可能是准确的，但是却不是现代密码学的核心。在2…]]></description><link>https://gitblog.chao-home.com//crypto/crypto-1/</link><guid isPermaLink="false">https://gitblog.chao-home.com//crypto/crypto-1/</guid><pubDate>Tue, 31 Dec 2019 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;现代密码学：简介（一）&lt;/h2&gt;
 &lt;h4&gt;秘密学和现代密码学&lt;/h4&gt;
 &lt;p&gt;牛津词典中将密学定义为：加密或解密的艺术（The art of writing and solving codes）。这个定义在历史上可能是准确的，但是却不是现代密码学的核心。&lt;/p&gt;
 &lt;p&gt;在20世纪末，密码学从根本上发生改变，大量理论出现，使密码学作为一门科学严格研究称为可能。密码学不再只是保密通信，而是包括信息验证、数字签名、私钥交换协议、电子拍卖和选举、电子货币等。&lt;/p&gt;
