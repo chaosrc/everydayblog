@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[温故而知新]]></title><description><![CDATA[个人博客, 坚持每天一篇！]]></description><link>https://gitblog.chao-home.com/</link><generator>RSS for Node</generator><lastBuildDate>Thu, 02 Jan 2020 17:11:37 GMT</lastBuildDate><item><title><![CDATA[Go RPC (五)]]></title><description><![CDATA[Go RPC (五)gRPC 简介gRPC 是 Google 基于 Protobul 开发的跨语言 RPC 框架。gRPC 基于 HTTP/2 协议设计，可基于一个 HTTP/2 连接提供多个服务，对移动设备更加友好。gRPC 技术栈gRPC 入门创建 hello.proto…]]></description><link>https://gitblog.chao-home.com//go-rpc/go-rpc-5/</link><guid isPermaLink="false">https://gitblog.chao-home.com//go-rpc/go-rpc-5/</guid><content:encoded>&lt;h2&gt;Go RPC (五)&lt;/h2&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[温故而知新]]></title><description><![CDATA[个人博客, 坚持每天一篇！]]></description><link>https://gitblog.chao-home.com/</link><generator>RSS for Node</generator><lastBuildDate>Sun, 05 Jan 2020 14:25:35 GMT</lastBuildDate><item><title><![CDATA[Go RPC (五)]]></title><description><![CDATA[Go RPC (五)gRPC 简介gRPC 是 Google 基于 Protobul 开发的跨语言 RPC 框架。gRPC 基于 HTTP/2 协议设计，可基于一个 HTTP/2 连接提供多个服务，对移动设备更加友好。gRPC 技术栈gRPC 入门创建 hello.proto…]]></description><link>https://gitblog.chao-home.com//go-rpc/go-rpc-5/</link><guid isPermaLink="false">https://gitblog.chao-home.com//go-rpc/go-rpc-5/</guid><content:encoded>&lt;h2&gt;Go RPC (五)&lt;/h2&gt;
 &lt;h4&gt;gRPC 简介&lt;/h4&gt;
 &lt;p&gt;gRPC 是 Google 基于 Protobul 开发的跨语言 RPC 框架。gRPC 基于 HTTP/2 协议设计，可基于一个 HTTP/2 连接提供多个服务，对移动设备更加友好。&lt;/p&gt;
 &lt;h4&gt;gRPC 技术栈&lt;/h4&gt;
@@ -63,7 +63,92 @@ service HelloService &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&
 	&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
 
 	fmt&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;Println&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;reply&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;GetValue&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[现代密码学：古典密码及其分析（一）]]></title><description><![CDATA[古典密码及其分析（一）凯撒密码凯撒密码是最古老的密码之一。凯撒密码通过将字母表中的字母旋转 3 个位置来加密，用 D 替代 a，E 替代 b，依次类推，在字母表的结尾字母环绕，所以 A 替代 x，B 替代 y，C 替代 z。位移密码和充分的 key…]]></description><link>https://gitblog.chao-home.com//crypto/crypto-3/</link><guid isPermaLink="false">https://gitblog.chao-home.com//crypto/crypto-3/</guid><pubDate>Thu, 02 Jan 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;古典密码及其分析（一）&lt;/h2&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[现代密码学：古典密码及其分析（三）]]></title><description><![CDATA[现代密码学：古典密码及其分析（三）Vigen`ere…]]></description><link>https://gitblog.chao-home.com//crypto/crypto-5/</link><guid isPermaLink="false">https://gitblog.chao-home.com//crypto/crypto-5/</guid><pubDate>Sat, 04 Jan 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;现代密码学：古典密码及其分析（三）&lt;/h2&gt;
+&lt;h4&gt;Vigen`ere 密码（多表置换密码）&lt;/h4&gt;
+&lt;p&gt;在单字母替换密码中之所以能够实施统计频率攻击是因为每个字母的映射是固定的。如果能够将不同位置上相同的明文字符映射为不同的加密字符就能阻止这种攻击。这种加密能够将输出的密文字符的可能分布更加“平滑”。因此计算字符的分布不会得到太多映射信息。&lt;/p&gt;
+&lt;p&gt;Vigen`ere 密码是按顺序执行多个位移密码。首先选择一个私密的单词做为 key，然后明文通过添加每个明文字符下面的 key 字符（做为位移密码）加密。比如，使用 cafe 做为 key 加密文本“tellhimaboutme”：&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;Plaintext:     tellhimaboutme
+Key:           cafecafecafeca
+Ciphertext:    WFRQKJSFEPAYPF&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;第 1、5、9 个字符使用相同的加密，位移加密 key = 3，同样 2、6、10 和 3、7、11 也分别使用相同的 位移加密 key = 1 和 k = 5。使用不同的 key 重复进行位移加密。上面的例子中 l 被映射为 R 或者 Q，而加密文本中的 F 有时是从 a 加密而来，有时从 e 加密而来。因此加密文本的字符频率被“抹平”了。&lt;/p&gt;
+&lt;p&gt;如果 key 是一个足够大的随机字符串，那么破解这种加密是很困难的。尽管这种加密是在 16 世纪发明的，对它系统性的攻击在几百年之后才发明。&lt;/p&gt;
+&lt;h4&gt;破解 Vigen`ere 密码&lt;/h4&gt;
+&lt;p&gt;对于 Vigen`ere 密码，如果 知道 key 的长度，那么破解将会变得很容易。如果 key 的长度为 t，那么可以将密文按照 t 长度分割，每个部分可以看作是一个位移密码，因此我们仍然能够使用统计频率攻击方式。&lt;/p&gt;
+&lt;p&gt;那么如果找出 key 的长度？一个方式是使用 Kasiski’s 方法，首先定位 2 个或 3 个加密字符的重复的部分，因为在英语中 2 个或 3 个字母的单词出现频率较高，比如单词 the 经常出现。单词 the 可能会映射为不同的加密字符，但是如果它在相同的相对位置出现，则会映射为相同的密文字符。&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;Plaintext:  the man and the woman retrieved the letter from the post office
+Key:        bea dsb ead sbe adsbe adsbeadsb ean sdeads bead sbe adsb eadbea
+Ciphertext: VMF QTP FOH MJJ XSFCS SIMTNFZXF YIS EIYUIK HWPQ MJJ QSLV TGJKGF&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;上面的 the 两次被映射为 MJJ。Kasiski 方法就是通过多次重复出现的文本之间的距离来计算加密周期大小，也就是 key 的长度。&lt;/p&gt;</content:encoded></item><item><title><![CDATA[现代密码学：古典密码及其分析（二）]]></title><description><![CDATA[现代密码学：古典密码及其分析（二）单字母替换位移密码将每个明文字符映射成不同的的密文字符，但是每个字符都是做相同的位移。单字母替换的想法是对每个明文字符做不同的映射，为了能够解密必须对每个字符做一对一的映射。key 空间的组成是字母表的所有排列方式，因此 key…]]></description><link>https://gitblog.chao-home.com//crypto/crypto-4/</link><guid isPermaLink="false">https://gitblog.chao-home.com//crypto/crypto-4/</guid><pubDate>Fri, 03 Jan 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;现代密码学：古典密码及其分析（二）&lt;/h2&gt;
+&lt;h4&gt;单字母替换&lt;/h4&gt;
+&lt;p&gt;位移密码将每个明文字符映射成不同的的密文字符，但是每个字符都是做相同的位移。单字母替换的想法是对每个明文字符做不同的映射，为了能够解密必须对每个字符做一对一的映射。key 空间的组成是字母表的所有排列方式，因此 key 空间的大小是 26!(接近 2&lt;sup&gt;88&lt;/sup&gt;)&lt;/p&gt;
+&lt;p&gt;对这种加密的 key 空间进行暴力破解，即使使用现在最强的计算机也需要发费大于几十年的时间。但是也不意味着这个密码是安全的，&lt;/p&gt;
+&lt;p&gt;假设英文文本被加密，那么就有可能利用英文的统计原则攻击单字母替换。在对这个密码的攻击中下面两个属性：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;在本算法中每个字符的映射是固定的，所以如果 e 映射为 D，那么明文中每一个出现 e 的地方在密文中都为 D。&lt;/li&gt;
+&lt;li&gt;在英语中每个独立字母的分布是已知的。因此不同的文本中每个字母的平均统计频率是不变的，文本越长平均统计频率越接近。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;通过列出密文的可能分布，比较英文文本字母的可能分布来进行攻击。首先对加密文本的每个字母出现频率进行统计，然后基于统计频率定义的 key 映射做一个初始猜测。除非加密文本很长，否则有些猜测可能是错误。但是，即使对很短的加密文本，这种猜测也足够快速解密。&lt;/p&gt;
+&lt;p&gt;英语中字母的平均出现频率&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://s2.ax1x.com/2020/01/04/ldG8SS.png&quot; alt=&quot;ldG8SS.png&quot;&gt;&lt;/p&gt;
+&lt;p&gt;通过统计频率对下面的密文进行解密&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;JGRMQOYGHMVBJWRWQFPWHGFFDQGFPFZRKBEEBJIZQQOCIBZKLFAFGQVFZFWWE OGWOPFGFHWOLPHLRLOLFDMFGQWBLWBWQOLKFWBYLBLYLFSFLJGRMQBOLWJVFP FWQVHQWFFPQOQVFPQOCFPOGFWFJIGFQVHLHLROQVFGWJVFPFOLFHGQVQVFILE OGQILHQFQGIQVVOSFAFGBWQVHQWIJVWJVFPFWHGFIWIHZZRQGBABHZQOCGFHX&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;go&quot;&gt;&lt;pre class=&quot;language-go&quot;&gt;&lt;code class=&quot;language-go&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;package&lt;/span&gt; main
+
+&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
+	&lt;span class=&quot;token string&quot;&gt;&quot;unicode&quot;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;letterCounter&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;text &lt;span class=&quot;token builtin&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token builtin&quot;&gt;rune&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token builtin&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+	count &lt;span class=&quot;token operator&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;make&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token builtin&quot;&gt;rune&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token builtin&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+	&lt;span class=&quot;token keyword&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;_&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; c &lt;span class=&quot;token operator&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;range&lt;/span&gt; text &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+		&lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; unicode&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;IsLetter&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;c&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+			count&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;c&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;++&lt;/span&gt;
+		&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+	&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+	&lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; count
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+	text &lt;span class=&quot;token operator&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;`
+	JGRMQOYGHMVBJWRWQFPWHGFFDQGFPFZRKBEEBJIZQQOCIBZKLFAFGQVFZFWWE 
+	OGWOPFGFHWOLPHLRLOLFDMFGQWBLWBWQOLKFWBYLBLYLFSFLJGRMQBOLWJVFP 
+	FWQVHQWFFPQOQVFPQOCFPOGFWFJIGFQVHLHLROQVFGWJVFPFOLFHGQVQVFILE 
+	OGQILHQFQGIQVVOSFAFGBWQVHQWIJVWJVFPFWHGFIWIHZZRQGBABHZQOCGFHX`&lt;/span&gt;
+
+	counter &lt;span class=&quot;token operator&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;letterCounter&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;text&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+
+	&lt;span class=&quot;token keyword&quot;&gt;for&lt;/span&gt; c&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; v &lt;span class=&quot;token operator&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;range&lt;/span&gt; counter &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+		fmt&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;Printf&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;%c, %d\n&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; c&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;v&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+	&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;输出统计结果&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;shell&quot;&gt;&lt;pre class=&quot;language-shell&quot;&gt;&lt;code class=&quot;language-shell&quot;&gt;go run &lt;span class=&quot;token keyword&quot;&gt;.&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;sort&lt;/span&gt; -k 2 -n -r
+F, 37
+Q, 26
+W, 21
+G, 19
+L, 17
+O, 16
+V, 15
+H, 14
+B, 12
+P, 10
+J, 9
+I, 9
+Z, 7
+R, 7
+M, 4
+E, 4
+Y, 3
+K, 3
+C, 3
+A, 3
+S, 2
+D, 2
+X, 1&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content:encoded></item><item><title><![CDATA[现代密码学：古典密码及其分析（一）]]></title><description><![CDATA[古典密码及其分析（一）凯撒密码凯撒密码是最古老的密码之一。凯撒密码通过将字母表中的字母旋转 3 个位置来加密，用 D 替代 a，E 替代 b，依次类推，在字母表的结尾字母环绕，所以 A 替代 x，B 替代 y，C 替代 z。位移密码和充分的 key…]]></description><link>https://gitblog.chao-home.com//crypto/crypto-3/</link><guid isPermaLink="false">https://gitblog.chao-home.com//crypto/crypto-3/</guid><pubDate>Thu, 02 Jan 2020 00:00:00 GMT</pubDate><content:encoded>&lt;h2&gt;古典密码及其分析（一）&lt;/h2&gt;
 &lt;h4&gt;凯撒密码&lt;/h4&gt;
 &lt;p&gt;凯撒密码是最古老的密码之一。凯撒密码通过将字母表中的字母旋转 3 个位置来加密，用 D 替代 a，E 替代 b，依次类推，在字母表的结尾字母环绕，所以 A 替代 x，B 替代 y，C 替代 z。&lt;/p&gt;
 &lt;h3&gt;位移密码和充分的 key 空间原则&lt;/h3&gt;
