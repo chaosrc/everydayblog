@@ -38,3 +38,4 @@ Ciphertext: VMF QTP FOH MJJ XSFCS SIMTNFZXF YIS EIYUIK HWPQ MJJ QSLV TGJKGF
 ```
 
 上面的 the 两次被映射为 MJJ。Kasiski 方法就是通过多次重复出现的文本之间的距离来计算加密周期大小，也就是 key 的长度。
+
